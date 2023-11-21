@@ -1,0 +1,33 @@
+@startuml
+hide footbox
+!pragma teoz true
+
+entity "User" as u
+
+box "E2E Simulator Orchestrator" #LightBlue
+participant "Orchestrator\nEngine" as orch
+participant "Pre-Processor" as pre
+participant "Post-Processor" as pst
+database input as in
+database output as ou
+end box
+
+u -> orch: run -i /input/scenario.yml
+activate orch
+orch -> pre: parse(scenario)
+activate pre
+pre <-> in: read /input/scenario.yml
+pre -> orch: simulation-logic
+deactivate pre
+orch -> orch: run
+orch -> pst: process
+deactivate orch
+activate pst
+pst -> pst: raw data
+pst -> pst: plot
+pst -> pst: write report
+pst -> ou: save\n/YYYYMMDD-HHMMSS-simId
+deactivate pst
+
+
+@enduml

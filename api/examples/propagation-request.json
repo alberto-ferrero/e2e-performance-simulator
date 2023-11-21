@@ -1,0 +1,143 @@
+{
+  "scenario": {
+    "id": "scenario-id",
+    "periodicUpdate": 0,
+    "startTimestamp": 0,
+    "endTimestamp": 0,
+    "propagator": {
+      "type": [ NUMERICAL | SGP4 | KEPLERIAN ]
+    }
+  },
+  "assets": [
+    {
+      "id": "sat-id",
+      "archetype": "satellite",
+      "noradId": 0,
+      "orbit": {
+        "type": [ TLE | BLSKEPLERIAN | KEPLERIAN | CARTESIAN ],
+        [TLE]"line1": "tle line 1",
+        [TLE]"line2": "tle line 2",
+          [CARTESIAN]"utcEpochMillis": 0,
+          [CARTESIAN]"referenceFrame": [ EME2000, ITRF ],
+          [CARTESIAN]"X": 0,
+          [CARTESIAN]"Y": 0,
+          [CARTESIAN]"Z": 0,
+          [CARTESIAN]"Vx": 0,
+          [CARTESIAN]"Vy": 0,
+          [CARTESIAN]"Vz": 0,
+            [KEPLERIAN]"utcEpochMillis": 0,
+            [KEPLERIAN]"referenceFrame": [ EME2000, ITRF ],
+            [KEPLERIAN]"semiMajorAxis": 0,
+            [KEPLERIAN]"eccentricity": 0,
+            [KEPLERIAN]"inclination": 0,
+            [KEPLERIAN]"rightAscensionAscendingNode": 0,
+            [KEPLERIAN]"argumentPeriapsis": 0,
+            [KEPLERIAN]"trueAnomaly": 0,
+              [BLSKEPLERIAN]"utcEpochMillis": 0,
+              [BLSKEPLERIAN]"referenceFrame": [ EME2000, ITRF ],
+              [BLSKEPLERIAN]"semiMajorAxis": 0,
+              [BLSKEPLERIAN]"eccentricity": 0,
+              [BLSKEPLERIAN]"inclination": 0,
+              [BLSKEPLERIAN]"rightAscensionAscendingNode": 0,
+              [BLSKEPLERIAN]"argumentPeriapsis": 0,
+              [BLSKEPLERIAN]"meanAnomaly": 0
+      },
+      "geometry": {
+        "shape": [ cube | sphere | parallelepiped ],
+          [parallelepiped]"dimX": 0,
+          [parallelepiped]"dimY": 0,
+          [parallelepiped]"dimZ": 0,
+            [cube]"latus": 0,
+              [sphere]"radius": 0
+      },
+      "mass": 0,
+      "reflectionCoefficient": 0,
+      "dragCoefficient": 0,
+      "solarArrays": [
+        {
+          "id": "string",
+          "surface": 0,
+          "orientation": {
+            "q0": 1,
+            "q1": 1,
+            "q2": 1,
+            "q3": 1
+          }
+        }
+      ],
+      "groundContacts": [
+        "string"
+      ],
+      "spaceContacts": [
+        "string"
+      ]
+    }
+  ],
+  "pointsOfInterest": [
+    {
+      "id": "string",
+      "latitude": 90,
+      "longitude": 180,
+      "altitude": 100000,
+      "minElevation": 90,
+      "elevationMask": [
+        {
+          "el": 90,
+          "az": 360
+        }
+      ]
+    }
+  ],
+  "areasOfInterest": [
+    {
+      "id": "string",
+      "polygon": [
+        {
+          "id": "string",
+          "latitude": 90,
+          "longitude": 180,
+          "altitude": 100000
+        },
+        {
+          "id": "string",
+          "latitude": 90,
+          "longitude": 180,
+          "altitude": 100000
+        },
+        {
+          "id": "string",
+          "latitude": 90,
+          "longitude": 180,
+          "altitude": 100000
+        }
+      ],
+      "minElevation": 90
+    }
+  ],
+  "coordinatesCrossing": [
+    {
+      "id": "string",
+      "type": "string",
+      "angle": 90
+    },
+    {
+      "id": "string",
+      "type": "string",
+      "angle": 180
+    }
+  ],
+  "coordinatesRangeCrossing": [
+    {
+      "id": "string",
+      "type": "string",
+      "from": 90,
+      "to": 90
+    },
+    {
+      "id": "string",
+      "type": "string",
+      "from": 180,
+      "to": 180
+    }
+  ]
+}

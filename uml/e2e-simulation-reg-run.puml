@@ -1,0 +1,31 @@
+@startuml
+hide footbox
+!pragma teoz true
+
+entity "User" as u
+
+box "E2E Simulator Orchestrator" #LightBlue
+participant "Orchestrator\nEngine" as orch
+participant "Regulatory\nHandler" as hndl
+end box
+
+participant "Regulatory Mapping\nTool" as srv
+
+u -> orch: run -i /input/scenario.yml
+activate orch
+orch -> orch: parse(scenario)
+...
+orch -> hndl: run Regulatory Mapping
+activate hndl
+hndl -> srv: POST: regulatoryRequest
+activate srv
+hndl <- srv: regulatoryData
+deactivate srv
+hndl -> hndl: parse(regulatoryData)
+hndl -> orch: regulatoryData
+deactivate hndl
+...
+orch -> orch: post-process
+
+
+@enduml

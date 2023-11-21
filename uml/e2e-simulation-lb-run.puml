@@ -1,0 +1,31 @@
+@startuml
+hide footbox
+!pragma teoz true
+
+entity "User" as u
+
+box "E2E Simulator Orchestrator" #LightBlue
+participant "Orchestrator\nEngine" as orch
+participant "Link Budget\nHandler" as hndl
+end box
+
+participant "Link Budget\nCalculator" as srv
+
+u -> orch: run -i /input/scenario.yml
+activate orch
+orch -> orch: parse(scenario)
+...
+orch -> hndl: run Link Budget
+activate hndl
+hndl -> srv: POST: linkbudgetRequest
+activate srv
+hndl <- srv: linkData
+deactivate srv
+hndl -> hndl: parse(linkData)
+hndl -> orch: linkData
+deactivate hndl
+...
+orch -> orch: post-process
+
+
+@enduml

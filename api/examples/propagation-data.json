@@ -1,0 +1,82 @@
+{
+  "sat-id": {
+    "orbitStateList": [
+      {
+        "utcTime": "2023-11-20T15:52:26.598Z",
+        "frame": "EME2000",
+        "isInsolating": true,
+        "q0": 1,
+        "q1": 1,
+        "q2": 1,
+        "q3": 1,
+        "mass": 0,
+        "X": 0,
+        "Y": 0,
+        "Z": 0,
+        "Vx": 0,
+        "Vy": 0,
+        "Vz": 0
+      }
+    ],
+    "keplerianStateList": [
+      {
+        "utcTime": "2023-11-20T15:52:26.598Z",
+        "frame": "EME2000",
+        "semiMajorAxis": 0,
+        "eccentricity": 1,
+        "inclination": 360,
+        "rightAscensionAscendingNode": 0,
+        "argumentPeriapsis": 0,
+        "trueAnomaly": 0
+      }
+    ],
+    "tles": [
+      {
+        "line1": "stringstringstringstringstringstringstringstringstringstringstringstr",
+        "line2": "stringstringstringstringstringstringstringstringstringstringstringstr",
+        "validFromUtcTime": "2023-11-20T15:52:26.598Z"
+      }
+    ],
+    "contactList": [
+      {
+        "argumentOfInterestId": "string",
+        "contactType": "POI",
+        "durationInMillis": 0,
+        "startUtcTime": "2023-11-20T15:52:26.598Z",
+        "startAzimuth": 0,
+        "startElevation": 0,
+        "startDistance": 0,
+        "endUtcTime": "2023-11-20T15:52:26.598Z",
+        "endAzimuth": 0,
+        "endElevation": 0,
+        "endDistance": 0
+      },
+      {
+        "argumentOfInterestId": "string",
+        "contactType": "POI",
+        "durationInMillis": 0,
+        "utcTime": "2023-11-20T15:52:26.598Z",
+        "azimuth": 0,
+        "elevation": 0,
+        "distance": 0
+      },
+      {
+        "argumentOfInterestId": "string",
+        "contactType": "POI",
+        "durationInMillis": 0,
+        "startUtcTime": "2023-11-20T15:52:26.598Z",
+        "startAzimuth": 0,
+        "startElevation": 0,
+        "startDistance": 0,
+        "maxElevationUtcTime": "2023-11-20T15:52:26.598Z",
+        "maxElevationAzimuth": 0,
+        "maxElevationElevation": 0,
+        "maxElevationDistance": 0,
+        "endUtcTime": "2023-11-20T15:52:26.598Z",
+        "endAzimuth": 0,
+        "endElevation": 0,
+        "endDistance": 0
+      }
+    ]
+  }
+}

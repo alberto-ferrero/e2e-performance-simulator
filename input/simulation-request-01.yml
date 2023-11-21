@@ -1,0 +1,170 @@
+id: scenario-id-01
+simulationWindow:
+  start: "2026-01-01T00:00:00.00Z"
+  end: "2026-01-10T00:00:00.00Z"
+
+modules:
+  flightDynamics:
+    data: run
+    address: http://localhost:8081/flight-dynamics
+    properties:
+      propagator: NUMERICAL
+      periodicUpdate: 500000
+
+satellites:
+- id: rsn-sat-0-0-24
+  orbit:
+    type: BLSKEPLERIAN
+    referenceFrame: EME2000
+    utcTime: "2026-01-01T00:00:00.00Z"
+    semiMajorAxis: 7428000
+    eccentricity: 0
+    inclination: 89
+    rightAscensionAscendingNode: 0
+    argumentPeriapsis: 0
+    meanAnomaly: 0
+  mass: 510
+  reflectionCoefficient: 1.8
+  dragCoefficient: 2.2
+  geometry:
+    shape: parallelepiped
+    dimX: 1
+    dimY: 0.25
+    dimZ: 0.5
+  solarArrays:
+  - id: solar-array-left
+    surface: 2
+    orientation:
+      q0: 0.7071068
+      q1: 0
+      q2: -0.7071068
+      q3: 0
+  - id: solar-array-right
+    surface: 2
+    orientation:
+      q0: 0.7071068
+      q1: 0
+      q2: -0.7071068
+      q3: 0
+  groundContacts:
+  - gs-0
+  - gs-1
+  - gs-2
+- id: rsn-sat-0-1-24
+  orbit:
+    type: BLSKEPLERIAN
+    referenceFrame: EME2000
+    utcTime: "2026-01-01T00:00:00.00Z"
+    semiMajorAxis: 7428000
+    eccentricity: 0
+    inclination: 89
+    rightAscensionAscendingNode: 0
+    argumentPeriapsis: 0
+    meanAnomaly: 15
+  mass: 510
+  reflectionCoefficient: 1.8
+  dragCoefficient: 2.2
+  geometry:
+    shape: parallelepiped
+    dimX: 1
+    dimY: 0.25
+    dimZ: 0.5
+  solarArrays:
+  - id: solar-array-left
+    surface: 2
+    orientation:
+      q0: 0.7071068
+      q1: 0
+      q2: -0.7071068
+      q3: 0
+  - id: solar-array-right
+    surface: 2
+    orientation:
+      q0: 0.7071068
+      q1: 0
+      q2: -0.7071068
+      q3: 0
+  TBC-isls:
+  - id: isl-right-front
+    anotherprop: blabla
+  - id: isl-right-back
+    anotherprop: blabla
+  - id: isl-left-front
+    anotherprop: blabla
+  - id: isl-left-back
+    anotherprop: blabla
+  TBC-antennas:
+  - id: antenna-Ka
+    band: Ka
+    orientation:
+      q0: 0.7071068
+      q1: 0
+      q2: -0.7071068
+      q3: 0
+  - id: antenna-S
+    band: S
+    orientation:
+      q0: 0.7071068
+      q1: 0
+      q2: -0.7071068
+      q3: 0
+  groundContacts:
+  - gs-0
+  - gs-1
+  - gs-2
+  spaceContacts:
+  - rsn-sat-0-0-24
+
+groundstations:
+- id: gs-0
+  location:
+    altitude: 3
+    latitude: -39
+    longitude: -4.3
+  antennas:
+  - id: ant-1
+    band: S
+  - id: ant-2
+    band: Ka
+- id: gs-1
+  location:
+    altitude: 293
+    latitude: 49
+    longitude: -30.3
+  antennas:
+  - id: ant-1
+    band: S
+  - id: ant-2
+    band: Ka
+- id: gs-2
+  location:
+    altitude: 0
+    latitude: -39.3
+    longitude: 59
+  antennas:
+  - id: ant-1
+    band: S
+  - id: ant-2
+    band: Ka
+
+userterminals:
+- id: ut-0
+  location:
+    altitude: 0
+    latitude: -39.3
+    longitude: 59
+  class: small
+  connections:
+  - ut-1
+  - ut-3
+  - ut-392
+- id: ut-1
+  location:
+    altitude: 30
+    latitude: 49.3
+    longitude: 159
+  class: large
+  connections:
+  - ut-0
+  - ut-3
+  - ut-392

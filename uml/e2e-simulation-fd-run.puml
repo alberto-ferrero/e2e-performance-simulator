@@ -1,0 +1,30 @@
+@startuml
+hide footbox
+!pragma teoz true
+
+entity "User" as u
+
+box "E2E Simulator Orchestrator" #LightBlue
+participant "Orchestrator\nEngine" as orch
+participant "Flight Dynamics\nHandler" as hndl
+end box
+
+participant "Flight Dynamics\nProvider" as srv
+
+u -> orch: run -i /input/scenario.yml
+activate orch
+orch -> orch: parse(scenario)
+orch -> hndl: run Flight Dynamics
+activate hndl
+hndl -> srv: POST: propagationRequest
+activate srv
+hndl <- srv: propagationData
+deactivate srv
+hndl -> hndl: parse(propagationData)
+hndl -> orch: propagationData
+deactivate hndl
+...
+orch -> orch: post-process
+
+
+@enduml
