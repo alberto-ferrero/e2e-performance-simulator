@@ -5,9 +5,6 @@
 
 """ Launch E2E Perfomance Simulation, running from the Simulation Request configuration file """
 
-# import importproject
-
-
 ###############################################################################w
 
 if __name__ == "__main__":
