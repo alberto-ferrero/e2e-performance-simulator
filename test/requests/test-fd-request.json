@@ -1,0 +1,151 @@
+{
+    "scenario": {
+      "id": "fd-scenario-id-01",
+      "startTimestamp": 1767225600000,
+      "endTimestamp": 1767312000000,
+      "periodicUpdate": 500000,
+      "propagator": {
+        "type": "NUMERICAL"
+      }
+    },
+    "assets": [
+      {
+        "id": "rsn-sat-0-0-24",
+        "archetype": "satellite",
+        "orbit": {
+          "type": "BLSKEPLERIAN",
+          "referenceFrame": "EME2000",
+          "semiMajorAxis": 7428000,
+          "eccentricity": 0,
+          "inclination": 89,
+          "rightAscensionAscendingNode": 0,
+          "argumentPeriapsis": 0,
+          "meanAnomaly": 0,
+          "utcEpochMillis": 1767225600000
+        },
+        "mass": 510,
+        "reflectionCoefficient": 1.8,
+        "dragCoefficient": 2.2,
+        "geometry": {
+          "shape": "parallelepiped",
+          "dimX": 1,
+          "dimY": 0.25,
+          "dimZ": 0.5
+        },
+        "solarArrays": [
+          {
+            "id": "solar-array-left",
+            "surface": 2,
+            "orientation": {
+              "q0": 0.7071068,
+              "q1": 0,
+              "q2": -0.7071068,
+              "q3": 0
+            }
+          },
+          {
+            "id": "solar-array-right",
+            "surface": 2,
+            "orientation": {
+              "q0": 0.7071068,
+              "q1": 0,
+              "q2": -0.7071068,
+              "q3": 0
+            }
+          }
+        ],
+        "groundContacts": [
+          "gs-0",
+          "gs-1",
+          "gs-2"
+        ],
+        "spaceContacts": []
+      },
+      {
+        "id": "rsn-sat-0-1-24",
+        "archetype": "satellite",
+        "orbit": {
+          "type": "BLSKEPLERIAN",
+          "referenceFrame": "EME2000",
+          "semiMajorAxis": 7428000,
+          "eccentricity": 0,
+          "inclination": 89,
+          "rightAscensionAscendingNode": 0,
+          "argumentPeriapsis": 0,
+          "meanAnomaly": 15,
+          "utcEpochMillis": 1767225600000
+        },
+        "mass": 510,
+        "reflectionCoefficient": 1.8,
+        "dragCoefficient": 2.2,
+        "geometry": {
+          "shape": "parallelepiped",
+          "dimX": 1,
+          "dimY": 0.25,
+          "dimZ": 0.5
+        },
+        "solarArrays": [
+          {
+            "id": "solar-array-left",
+            "surface": 2,
+            "orientation": {
+              "q0": 0.7071068,
+              "q1": 0,
+              "q2": -0.7071068,
+              "q3": 0
+            }
+          },
+          {
+            "id": "solar-array-right",
+            "surface": 2,
+            "orientation": {
+              "q0": 0.7071068,
+              "q1": 0,
+              "q2": -0.7071068,
+              "q3": 0
+            }
+          }
+        ],
+        "groundContacts": [
+          "gs-0",
+          "gs-1",
+          "gs-2"
+        ],
+        "spaceContacts": [
+          "rsn-sat-0-0-24"
+        ]
+      }
+    ],
+    "pointsOfInterest": [
+      {
+        "id": "gs-0",
+        "altitude": 3,
+        "latitude": -39,
+        "longitude": -4.3
+      },
+      {
+        "id": "gs-1",
+        "altitude": 293,
+        "latitude": 49,
+        "longitude": -30.3
+      },
+      {
+        "id": "gs-2",
+        "altitude": 0,
+        "latitude": -39.3,
+        "longitude": 59
+      },
+      {
+        "id": "ut-0",
+        "altitude": 0,
+        "latitude": -39.3,
+        "longitude": 59
+      },
+      {
+        "id": "ut-1",
+        "altitude": 30,
+        "latitude": 49.3,
+        "longitude": 159
+      }
+    ]
+  }

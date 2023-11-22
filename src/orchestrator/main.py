@@ -24,8 +24,8 @@ from ..utils.results import AppResult
 from ..utils.filemanager import getBasePath, makeOutputFolder
 
 #Import Orchestrator modules
-from .preprocessor.configparser import getSimulationRequest
-from .postprocessor.reporter import postProcess
+from .preprocessor.preprocessor import preProcessSimulationRequest
+from .postprocessor.postprocessor import postProcessSimulationData
 
 #Import Handlers
 from ..flightdynamics.main import getFlightDynamicsPropagationData
@@ -35,7 +35,7 @@ from ..regulatorymapper.main import getRegulatoryMapperData
 from ..airinterface.main import getAirInterfaceAnalysisData
 
     
-def main(inputFile: str):
+def main(inputFile: str) -> str:
     """Main Orchestrator function call"""
 
     print('\nWelcome to RSN E2E Performance Simulator\n')
@@ -45,7 +45,7 @@ def main(inputFile: str):
     #Parse input simulation request
     inputFileAbsPath = os.path.abspath(inputFile)
     print(' - Reading input scenario file: {}'.format(inputFileAbsPath))
-    simulationRequest: dict = getSimulationRequest(inputFileAbsPath)
+    simulationRequest: dict = preProcessSimulationRequest(inputFileAbsPath)
 
     #Build output folder
     simId = datetime.fromtimestamp(tick).strftime("%Y-%m-%d_%H-%M-%S") + "_" + simulationRequest['id']
@@ -58,7 +58,7 @@ def main(inputFile: str):
         print(' - Flight Dynamics Data generated in {:.4f} seconds'.format(time.time() - tick))
         tick = time.time()
     else:
-        propagationDataRes = AppResult(200, {})
+        propagationDataRes = AppResult (200, {}, {})
 
     if 'linkBudget' in simulationRequest['modules']:
         print(' - Getting Link Budget Data {}'.format(textDataFrom(simulationRequest['modules']['linkBudget']['data'])))
@@ -66,7 +66,7 @@ def main(inputFile: str):
         print(' - Link Budget Data generated in {:.4f} seconds'.format(time.time() - tick))
         tick = time.time()
     else:
-        linkDataRes = AppResult(200, {})
+        linkDataRes = AppResult (200, {}, {})
 
     if 'regulatoryMap' in simulationRequest['modules']:
         print(' - Getting Regulatory Data {}'.format(textDataFrom(simulationRequest['modules']['regulatoryMap']['data'])))
@@ -74,7 +74,7 @@ def main(inputFile: str):
         print(' - Regulatory Data generated in {:.4f} seconds'.format(time.time() - tick))
         tick = time.time()
     else:
-        regulatoryDataRes = AppResult(200, {})
+        regulatoryDataRes = AppResult (200, {}, {})
 
     if 'networkTopology' in simulationRequest['modules']:
         print(' - Getting Network Topology Data {}'.format(textDataFrom(simulationRequest['modules']['networkTopology']['data'])))
@@ -82,7 +82,7 @@ def main(inputFile: str):
         print(' - Network Topology Data generated in {:.4f} seconds'.format(time.time() - tick))
         tick = time.time()
     else:
-        networkDataRes = AppResult(200, {})
+        networkDataRes = AppResult (200, {}, {})
 
     if 'airInterface' in simulationRequest['modules']:
         print(' - Getting Air Interface Data {}'.format(textDataFrom(simulationRequest['modules']['airInterface']['data'])))
@@ -90,21 +90,23 @@ def main(inputFile: str):
         print(' - Air Interface Data generated in {:.4f} seconds'.format(time.time() - tick))
         tick = time.time()
     else:
-        airinterfaceDataRes = AppResult(200, {})
+        airinterfaceDataRes = AppResult (200, {}, {})
 
     print(' - E2E Simulation run completed in {:.4f} seconds'.format(time.time() - init))
     tick = time.time()
 
     #Post Processing and generating perfomance output
-    postProcess(simulationRequest, 
+    postProcessSimulationData(simulationRequest, 
                 outputPath,
-                propagationDataRes.result,
-                linkDataRes.result,
-                regulatoryDataRes.result,
-                networkDataRes.result,
-                airinterfaceDataRes.result)
+                propagationDataRes,
+                linkDataRes,
+                regulatoryDataRes,
+                networkDataRes,
+                airinterfaceDataRes)
     
     print(' - E2E Simulation post processing completed in in {:.4f} seconds\n'.format(time.time() - init))
+
+    return outputPath
 
 
 ###############################################################################

@@ -10,18 +10,33 @@ modules:
     properties:
       propagator: [ NUMERICAL | SGP4 | KEPLERIAN ]
       periodicUpdate: 500000
+    report:
+    - plot-something
+    - analysis-somethingelse
   linkBudget:
     data: [ run | local | remote ]
     address: address-to-data
+    report:
+    - plot-something
+    - analysis-somethingelse
   regulatoryMap:
     data: [ run | local | remote ]
     address: address-to-data
+    report:
+    - plot-something
+    - analysis-somethingelse
   networkTopology:
     data: [ run | local | remote ]
     address: address-to-data
+    report:
+    - plot-something
+    - analysis-somethingelse
   airInterface:
     data: [ run | local | remote ]
     address: address-to-data
+    report:
+    - plot-something
+    - analysis-somethingelse
 
 satellites:
 - id: rsn-sat-0-0-24

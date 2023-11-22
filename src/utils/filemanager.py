@@ -18,6 +18,9 @@ def getBasePath() -> str:
     cpList.pop()
     return os.sep.join(cpList)
 
+def getLogoPath() -> str:
+    return os.path.join(getBasePath(), "src", "orchestrator", "postprocessor", "logo")
+
 def makeOutputFolder(outputFolderPath: str) -> str:
     """ Make output folder """
     try:

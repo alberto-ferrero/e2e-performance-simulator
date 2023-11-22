@@ -3,9 +3,11 @@
 # Copyright (C)
 # Author: alberto-ferrero
 
+from ..utils.results import AppResult
+
 """ E2E Performance Simulator Regulatory Mapper Handler File Manager """
 
-def saveRegulatorynData(outputDataFolderPath: str, regulatoryData: dict):
+def saveRegulatorynData(outputDataFolderPath: str, regulatoryData: AppResult):
     pass
 
 # -*- coding: utf-8 -*-

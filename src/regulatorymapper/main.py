@@ -9,6 +9,6 @@ from ..utils.results import AppResult
 
 def getRegulatoryMapperData(simulationRequest: dict) -> dict:
     #TODO to implement
-    return AppResult(200, None)
+    return AppResult(200, None, None)
 
 # -*- coding: utf-8 -*-

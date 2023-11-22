@@ -4,8 +4,9 @@
 # Author: alberto-ferrero
 
 class AppResult:
-    def __init__ (self, code : int, result):
+    def __init__ (self, code : int, request, result):
       self.code: int = code
+      self.request: dict = request
       self.result: dict = result
       self.error: bool = False if code == 200 else True
       #Manage error

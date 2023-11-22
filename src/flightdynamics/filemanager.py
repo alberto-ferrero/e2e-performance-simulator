@@ -5,7 +5,8 @@
 
 import os
 
-from ..utils.filemanager import makeOutputFolder, saveListDictToCsv, readLocalCsvToDict, readRemoteCsvToDict, getBasePath
+from ..utils.results import AppResult
+from ..utils.filemanager import makeOutputFolder, saveListDictToCsv, readLocalCsvToDict, readRemoteCsvToDict, getBasePath, saveDictToJson
 from jsonschema import validate
 import json
 
@@ -45,12 +46,14 @@ def readCsvPropagationDataFiles(simulationRequest: dict, satId: str) -> list:
         #Raise error
         raise Exception('ERROR: validation of Propagation Data for satellite {} failed due to: {}'.format(satId, str(e)))
     
-def savePropagationData(outputDataFolderPath: str, propagationData: dict):
+def savePropagationData(outputDataFolderPath: str, propagationData: AppResult):
     """ Save to output/data/flightdynamics """
     outputPath = os.path.join(outputDataFolderPath, 'flightdyanmics')
     makeOutputFolder(outputPath)
-    for satId in propagationData:
+    result = propagationData.result
+    for satId in result:
         for propagationDataEntry, propgationDataFile in PROPAGATION_DATA_FILES_MAP.items():
-            saveListDictToCsv(propagationData[satId][propagationDataEntry], os.path.join(outputPath, satId + "_" + propgationDataFile + ".csv"))
+            saveListDictToCsv(result[satId][propagationDataEntry], os.path.join(outputPath, satId + "_" + propgationDataFile + ".csv"))
+    saveDictToJson(propagationData.request, os.path.join(outputPath, 'propagationrequest.json'))
 
 # -*- coding: utf-8 -*-

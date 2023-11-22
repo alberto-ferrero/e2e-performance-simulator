@@ -10,9 +10,9 @@ import json
 import re
 import os
 
-""" E2E Performance Simulator Simulation Request config file parser """
+""" E2E Performance Simulator pre processor """
 
-def getSimulationRequest(inputFilePath: str) -> dict:
+def preProcessSimulationRequest(inputFilePath: str) -> dict:
     """ Read input file and extrac Simulation Request as dictionary """
     #Read file
     simulationRequest = readSimulationRequest(inputFilePath)

@@ -1,0 +1,306 @@
+{
+  "type": "string",
+  "properties": {
+    "meta": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "orbitStateList": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "utcTime": {
+                "type": "string",
+                "format": "date"
+              },
+              "frame": {
+                "type": "string",
+                "enum": [
+                  "EME2000"
+                ]
+              },
+              "isInsolating": {
+                "type": "boolean"
+              },
+              "q0": {
+                "type": "number",
+                "minimum":-1,
+                  "maximum":1
+              },
+              "q1": {
+                "type": "number",
+                "minimum":-1,
+                  "maximum":1
+              },
+              "q2": {
+                "type": "number",
+                "minimum":-1,
+                  "maximum":1
+              },
+              "q3": {
+                "type": "number",
+                "minimum":-1,
+                  "maximum":1
+              },
+              "mass": {
+                "type": "number",
+                "minimum":0
+              },
+              "X": {
+                "type": "number"
+              },
+              "Y": {
+                "type": "number"
+              },
+              "Z": {
+                "type": "number"
+              },
+              "Vx": {
+                "type": "number"
+              },
+              "Vy": {
+                "type": "number"
+              },
+              "Vz": {
+                "type": "number"
+              }
+            },
+            "required": [
+              "utcTime",
+              "frame",
+              "isInsolating",
+              "q0",
+              "q1",
+              "q2",
+              "q3",
+              "mass",
+              "X",
+              "Y",
+              "Z",
+              "Vx",
+              "Vy",
+              "Vz"
+            ]
+          }
+        },
+        "keplerianStateList": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "utcTime": {
+                "type": "string",
+                "format": "date"
+              },
+              "frame": {
+                "type": "string",
+                "enum": [
+                  "EME2000"
+                ]
+              },
+              "semiMajorAxis": {
+                "type": "number",
+                "minimum":0
+              },
+              "eccentricity": {
+                "type": "number",
+                "minimum":0,
+                "maximum":1
+              },
+              "inclination": {
+                "type": "number"
+              },
+              "rightAscensionAscendingNode": {
+                "type": "number"
+              },
+              "argumentPeriapsis": {
+                "type": "number"
+              },
+              "trueAnomaly": {
+                "type": "number"
+              }
+            },
+            "required": [
+              "utcTime",
+              "frame",
+              "semiMajorAxis",
+              "eccentricity",
+              "inclination",
+              "rightAscensionAscendingNode",
+              "argumentPeriapsis",
+              "trueAnomaly"
+            ]
+          }
+        },
+        "blsKeplerianStateList": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "utcTime": {
+                "type": "string",
+                "format": "date"
+              },
+              "frame": {
+                "type": "string",
+                "enum": [
+                  "EME2000"
+                ]
+              },
+              "keplerianPeriodMillis": {
+                "type": "number"
+              },
+              "semiMajorAxis": {
+                "type": "number",
+                "minimum":0
+              },
+              "eccentricity": {
+                "type": "number",
+                "minimum":0,
+                "maximum":1
+              },
+              "inclination": {
+                "type": "number"
+              },
+              "rightAscensionAscendingNode": {
+                "type": "number"
+              },
+              "argumentPeriapsis": {
+                "type": "number"
+              },
+              "meanAnomaly": {
+                "type": "number"
+              }
+            },
+            "required": [
+              "utcTime",
+              "frame",
+              "keplerianPeriodMillis",
+              "semiMajorAxis",
+              "eccentricity",
+              "inclination",
+              "rightAscensionAscendingNode",
+              "argumentPeriapsis",
+              "meanAnomaly"
+            ]
+          }
+        },
+        "contactList": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "size": {
+                "type": "string",
+                "enum": [
+                  "single",
+                  "double",
+                  "triple"
+                ]
+              },
+              "argumentOfInterestId": {
+                "type": "string"
+              },
+              "contactType": {
+                "type": "string"
+              },
+              "durationInMillis": {
+                "type": "integer"
+              },
+              "startUtcTime": {
+                "type": "string",
+                "format": "date"
+              },
+              "startAzimuth": {
+                "type": "number"
+              },
+              "startElevation": {
+                "type": "number"
+              },
+              "startDistance": {
+                "type": "number"
+              },
+              "maxElevationUtcTime": {
+                "type": "string",
+                "format": "date"
+              },
+              "maxElevationAzimuth": {
+                "type": "number"
+              },
+              "maxElevationElevation": {
+                "type": "number"
+              },
+              "maxElevationDistance": {
+                "type": "number"
+              },
+              "endUtcTime": {
+                "type": "string",
+                "format": "date"
+              },
+              "endAzimuth": {
+                "type": "number"
+              },
+              "endElevation": {
+                "type": "number"
+              },
+              "endDistance": {
+                "type": "number"
+              }
+            },
+            "required": [
+              "size",
+              "argumentOfInterestId",
+              "contactType",
+              "durationInMillis",
+              "startUtcTime",
+              "startAzimuth",
+              "startElevation",
+              "startDistance",
+              "maxElevationUtcTime",
+              "maxElevationAzimuth",
+              "maxElevationElevation",
+              "maxElevationDistance",
+              "endUtcTime",
+              "endAzimuth",
+              "endElevation",
+              "endDistance"
+            ]
+          }
+        },
+        "tles": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "line1": {
+                "type": "string"
+              },
+              "line2": {
+                "type": "string"
+              },
+              "validFromUtcTime": {
+                "type": "string",
+                "format": "date"
+              }
+            },
+            "required": [
+              "line1",
+              "line2",
+              "validFromUtcTime"
+            ]
+          }
+        }
+      },
+      "required": [
+        "orbitStateList",
+        "contactList"
+      ]
+    }
+  }
+}

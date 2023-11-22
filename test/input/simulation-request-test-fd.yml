@@ -1,7 +1,7 @@
-id: scenario-id-01
+id: scenario-fd-01
 simulationWindow:
   start: "2026-01-01T00:00:00.00Z"
-  end: "2026-01-02T00:00:00.00Z"
+  end: "2026-01-01T00:00:00.00Z"
 
 modules:
   flightDynamics:
@@ -10,8 +10,6 @@ modules:
     properties:
       propagator: NUMERICAL
       periodicUpdate: 500000
-    report:
-      - plot-something
 
 satellites:
 - id: rsn-sat-0-0-24
