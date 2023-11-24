@@ -3,12 +3,10 @@
 # Copyright (C)
 # Author: alberto-ferrero
 
-from ..utils.results import AppResult
-
 """ E2E Performance Simulator Air Interface Analyzer Handler """
 
-def getAirInterfaceAnalysisData(simulationRequest: dict) -> dict:
+def getAirInterfaceAnalysisData(simulationRequest: dict, outputDataFolderPath: str) -> str:
     #TODO to implement
-    return AppResult(200, None, None)
+    raise NotImplementedError
 
 # -*- coding: utf-8 -*-

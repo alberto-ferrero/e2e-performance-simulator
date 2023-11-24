@@ -3,12 +3,10 @@
 # Copyright (C)
 # Author: alberto-ferrero
 
-from ..utils.results import AppResult
-
 """ E2E Performance Simulator Network Topology Handler """
 
-def getNetworkTopologyData(simulationRequest: dict) -> dict:
+def getNetworkTopologyData(simulationRequest: dict, outputDataFolderPath: str) -> str:
     #TODO to implement
-    return AppResult(200, None, None)
+    raise NotImplementedError
 
 # -*- coding: utf-8 -*-

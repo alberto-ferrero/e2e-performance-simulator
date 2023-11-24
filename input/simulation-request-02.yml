@@ -1,0 +1,700 @@
+id: scenario-id-01
+simulationWindow:
+  start: "2026-01-01T00:00:00.00Z"
+  end: "2026-01-02T00:00:00.00Z"
+
+modules:
+  flightDynamics:
+    data: local
+    address: C:\workspace\e2e-performance-simulator\test\data\test_flightdynamics
+    properties:
+      propagator: NUMERICAL
+      periodicUpdate: 500000
+    report:
+      - plot-something
+
+analysis:
+- constellation-geometry
+- userterminals-location
+- groundstations-location
+- latency
+
+satellites:
+- antennas:
+  - band: S
+    id: antenna-S
+    orientation:
+      q0: 1
+      q1: 0.0
+      q2: 0
+      q3: 0.0
+  - band: Ka
+    id: antenna-Ka
+    orientation:
+      q0: 1
+      q1: 0.0
+      q2: 0
+      q3: 0.0
+  archetype: satellite
+  dragCoefficient: 2.2
+  geometry:
+    dimX: 1
+    dimY: 0.25
+    dimZ: 0.5
+    shape: parallelepiped
+
+  id: rsn-sat-0-0-4-3
+  mass: 510
+  name: RSN Sat-0-0-4-3
+  orbit:
+    argumentPeriapsis: 0
+    eccentricity: 0
+    inclination: 89
+    meanAnomaly: 0.0
+    referenceFrame: EME2000
+    rightAscensionAscendingNode: 20
+    semiMajorAxis: 7428000
+    type: BLSKEPLERIAN
+    utcTime: '2026-01-01T00:00:00.00'
+  reflectionCoefficient: 1.8
+  solarArrays:
+  - id: solar-array-left
+    orientation:
+      q0: 0.7071068
+      q1: 0.0
+      q2: -0.7071068
+      q3: 0.0
+    surface: 2
+  - id: solar-array-right
+    orientation:
+      q0: 0.7071068
+      q1: 0.0
+      q2: -0.7071068
+      q3: 0.0
+    surface: 2
+- antennas:
+  - band: S
+    id: antenna-S
+    orientation:
+      q0: 1
+      q1: 0.0
+      q2: 0
+      q3: 0.0
+  - band: Ka
+    id: antenna-Ka
+    orientation:
+      q0: 1
+      q1: 0.0
+      q2: 0
+      q3: 0.0
+  archetype: satellite
+  dragCoefficient: 2.2
+  geometry:
+    dimX: 1
+    dimY: 0.25
+    dimZ: 0.5
+    shape: parallelepiped
+
+  id: rsn-sat-0-1-4-3
+  mass: 510
+  name: RSN Sat-0-1-4-3
+  orbit:
+    argumentPeriapsis: 0
+    eccentricity: 0
+    inclination: 89
+    meanAnomaly: 7.5
+    referenceFrame: EME2000
+    rightAscensionAscendingNode: 20
+    semiMajorAxis: 7428000
+    type: BLSKEPLERIAN
+    utcTime: '2026-01-01T00:00:00.00'
+  reflectionCoefficient: 1.8
+  solarArrays:
+  - id: solar-array-left
+    orientation:
+      q0: 0.7071068
+      q1: 0.0
+      q2: -0.7071068
+      q3: 0.0
+    surface: 2
+  - id: solar-array-right
+    orientation:
+      q0: 0.7071068
+      q1: 0.0
+      q2: -0.7071068
+      q3: 0.0
+    surface: 2
+- antennas:
+  - band: S
+    id: antenna-S
+    orientation:
+      q0: 1
+      q1: 0.0
+      q2: 0
+      q3: 0.0
+  - band: Ka
+    id: antenna-Ka
+    orientation:
+      q0: 1
+      q1: 0.0
+      q2: 0
+      q3: 0.0
+  archetype: satellite
+  dragCoefficient: 2.2
+  geometry:
+    dimX: 1
+    dimY: 0.25
+    dimZ: 0.5
+    shape: parallelepiped
+
+  id: rsn-sat-0-2-4-3
+  mass: 510
+  name: RSN Sat-0-2-4-3
+  orbit:
+    argumentPeriapsis: 0
+    eccentricity: 0
+    inclination: 89
+    meanAnomaly: 15.0
+    referenceFrame: EME2000
+    rightAscensionAscendingNode: 20
+    semiMajorAxis: 7428000
+    type: BLSKEPLERIAN
+    utcTime: '2026-01-01T00:00:00.00'
+  reflectionCoefficient: 1.8
+  solarArrays:
+  - id: solar-array-left
+    orientation:
+      q0: 0.7071068
+      q1: 0.0
+      q2: -0.7071068
+      q3: 0.0
+    surface: 2
+  - id: solar-array-right
+    orientation:
+      q0: 0.7071068
+      q1: 0.0
+      q2: -0.7071068
+      q3: 0.0
+    surface: 2
+- antennas:
+  - band: S
+    id: antenna-S
+    orientation:
+      q0: 1
+      q1: 0.0
+      q2: 0
+      q3: 0.0
+  - band: Ka
+    id: antenna-Ka
+    orientation:
+      q0: 1
+      q1: 0.0
+      q2: 0
+      q3: 0.0
+  archetype: satellite
+  dragCoefficient: 2.2
+  geometry:
+    dimX: 1
+    dimY: 0.25
+    dimZ: 0.5
+    shape: parallelepiped
+
+  id: rsn-sat-0-3-4-3
+  mass: 510
+  name: RSN Sat-0-3-4-3
+  orbit:
+    argumentPeriapsis: 0
+    eccentricity: 0
+    inclination: 89
+    meanAnomaly: 22.5
+    referenceFrame: EME2000
+    rightAscensionAscendingNode: 20
+    semiMajorAxis: 7428000
+    type: BLSKEPLERIAN
+    utcTime: '2026-01-01T00:00:00.00'
+  reflectionCoefficient: 1.8
+  solarArrays:
+  - id: solar-array-left
+    orientation:
+      q0: 0.7071068
+      q1: 0.0
+      q2: -0.7071068
+      q3: 0.0
+    surface: 2
+  - id: solar-array-right
+    orientation:
+      q0: 0.7071068
+      q1: 0.0
+      q2: -0.7071068
+      q3: 0.0
+    surface: 2
+- antennas:
+  - band: S
+    id: antenna-S
+    orientation:
+      q0: 1
+      q1: 0.0
+      q2: 0
+      q3: 0.0
+  - band: Ka
+    id: antenna-Ka
+    orientation:
+      q0: 1
+      q1: 0.0
+      q2: 0
+      q3: 0.0
+  archetype: satellite
+  dragCoefficient: 2.2
+  geometry:
+    dimX: 1
+    dimY: 0.25
+    dimZ: 0.5
+    shape: parallelepiped
+
+  id: rsn-sat-1-0-4-3
+  mass: 510
+  name: RSN Sat-1-0-4-3
+  orbit:
+    argumentPeriapsis: 0
+    eccentricity: 0
+    inclination: 89
+    meanAnomaly: 7.5
+    referenceFrame: EME2000
+    rightAscensionAscendingNode: 95
+    semiMajorAxis: 7428000
+    type: BLSKEPLERIAN
+    utcTime: '2026-01-01T00:00:00.00'
+  reflectionCoefficient: 1.8
+  solarArrays:
+  - id: solar-array-left
+    orientation:
+      q0: 0.7071068
+      q1: 0.0
+      q2: -0.7071068
+      q3: 0.0
+    surface: 2
+  - id: solar-array-right
+    orientation:
+      q0: 0.7071068
+      q1: 0.0
+      q2: -0.7071068
+      q3: 0.0
+    surface: 2
+- antennas:
+  - band: S
+    id: antenna-S
+    orientation:
+      q0: 1
+      q1: 0.0
+      q2: 0
+      q3: 0.0
+  - band: Ka
+    id: antenna-Ka
+    orientation:
+      q0: 1
+      q1: 0.0
+      q2: 0
+      q3: 0.0
+  archetype: satellite
+  dragCoefficient: 2.2
+  geometry:
+    dimX: 1
+    dimY: 0.25
+    dimZ: 0.5
+    shape: parallelepiped
+
+  id: rsn-sat-1-1-4-3
+  mass: 510
+  name: RSN Sat-1-1-4-3
+  orbit:
+    argumentPeriapsis: 0
+    eccentricity: 0
+    inclination: 89
+    meanAnomaly: 15.0
+    referenceFrame: EME2000
+    rightAscensionAscendingNode: 95
+    semiMajorAxis: 7428000
+    type: BLSKEPLERIAN
+    utcTime: '2026-01-01T00:00:00.00'
+  reflectionCoefficient: 1.8
+  solarArrays:
+  - id: solar-array-left
+    orientation:
+      q0: 0.7071068
+      q1: 0.0
+      q2: -0.7071068
+      q3: 0.0
+    surface: 2
+  - id: solar-array-right
+    orientation:
+      q0: 0.7071068
+      q1: 0.0
+      q2: -0.7071068
+      q3: 0.0
+    surface: 2
+- antennas:
+  - band: S
+    id: antenna-S
+    orientation:
+      q0: 1
+      q1: 0.0
+      q2: 0
+      q3: 0.0
+  - band: Ka
+    id: antenna-Ka
+    orientation:
+      q0: 1
+      q1: 0.0
+      q2: 0
+      q3: 0.0
+  archetype: satellite
+  dragCoefficient: 2.2
+  geometry:
+    dimX: 1
+    dimY: 0.25
+    dimZ: 0.5
+    shape: parallelepiped
+
+  id: rsn-sat-1-2-4-3
+  mass: 510
+  name: RSN Sat-1-2-4-3
+  orbit:
+    argumentPeriapsis: 0
+    eccentricity: 0
+    inclination: 89
+    meanAnomaly: 22.5
+    referenceFrame: EME2000
+    rightAscensionAscendingNode: 95
+    semiMajorAxis: 7428000
+    type: BLSKEPLERIAN
+    utcTime: '2026-01-01T00:00:00.00'
+  reflectionCoefficient: 1.8
+  solarArrays:
+  - id: solar-array-left
+    orientation:
+      q0: 0.7071068
+      q1: 0.0
+      q2: -0.7071068
+      q3: 0.0
+    surface: 2
+  - id: solar-array-right
+    orientation:
+      q0: 0.7071068
+      q1: 0.0
+      q2: -0.7071068
+      q3: 0.0
+    surface: 2
+- antennas:
+  - band: S
+    id: antenna-S
+    orientation:
+      q0: 1
+      q1: 0.0
+      q2: 0
+      q3: 0.0
+  - band: Ka
+    id: antenna-Ka
+    orientation:
+      q0: 1
+      q1: 0.0
+      q2: 0
+      q3: 0.0
+  archetype: satellite
+  dragCoefficient: 2.2
+  geometry:
+    dimX: 1
+    dimY: 0.25
+    dimZ: 0.5
+    shape: parallelepiped
+
+  id: rsn-sat-1-3-4-3
+  mass: 510
+  name: RSN Sat-1-3-4-3
+  orbit:
+    argumentPeriapsis: 0
+    eccentricity: 0
+    inclination: 89
+    meanAnomaly: 30.0
+    referenceFrame: EME2000
+    rightAscensionAscendingNode: 95
+    semiMajorAxis: 7428000
+    type: BLSKEPLERIAN
+    utcTime: '2026-01-01T00:00:00.00'
+  reflectionCoefficient: 1.8
+  solarArrays:
+  - id: solar-array-left
+    orientation:
+      q0: 0.7071068
+      q1: 0.0
+      q2: -0.7071068
+      q3: 0.0
+    surface: 2
+  - id: solar-array-right
+    orientation:
+      q0: 0.7071068
+      q1: 0.0
+      q2: -0.7071068
+      q3: 0.0
+    surface: 2
+- antennas:
+  - band: S
+    id: antenna-S
+    orientation:
+      q0: 1
+      q1: 0.0
+      q2: 0
+      q3: 0.0
+  - band: Ka
+    id: antenna-Ka
+    orientation:
+      q0: 1
+      q1: 0.0
+      q2: 0
+      q3: 0.0
+  archetype: satellite
+  dragCoefficient: 2.2
+  geometry:
+    dimX: 1
+    dimY: 0.25
+    dimZ: 0.5
+    shape: parallelepiped
+
+  id: rsn-sat-2-0-4-3
+  mass: 510
+  name: RSN Sat-2-0-4-3
+  orbit:
+    argumentPeriapsis: 0
+    eccentricity: 0
+    inclination: 89
+    meanAnomaly: 0.0
+    referenceFrame: EME2000
+    rightAscensionAscendingNode: 200
+    semiMajorAxis: 7428000
+    type: BLSKEPLERIAN
+    utcTime: '2026-01-01T00:00:00.00'
+  reflectionCoefficient: 1.8
+  solarArrays:
+  - id: solar-array-left
+    orientation:
+      q0: 0.7071068
+      q1: 0.0
+      q2: -0.7071068
+      q3: 0.0
+    surface: 2
+  - id: solar-array-right
+    orientation:
+      q0: 0.7071068
+      q1: 0.0
+      q2: -0.7071068
+      q3: 0.0
+    surface: 2
+- antennas:
+  - band: S
+    id: antenna-S
+    orientation:
+      q0: 1
+      q1: 0.0
+      q2: 0
+      q3: 0.0
+  - band: Ka
+    id: antenna-Ka
+    orientation:
+      q0: 1
+      q1: 0.0
+      q2: 0
+      q3: 0.0
+  archetype: satellite
+  dragCoefficient: 2.2
+  geometry:
+    dimX: 1
+    dimY: 0.25
+    dimZ: 0.5
+    shape: parallelepiped
+
+  id: rsn-sat-2-1-4-3
+  mass: 510
+  name: RSN Sat-2-1-4-3
+  orbit:
+    argumentPeriapsis: 0
+    eccentricity: 0
+    inclination: 89
+    meanAnomaly: 7.5
+    referenceFrame: EME2000
+    rightAscensionAscendingNode: 200
+    semiMajorAxis: 7428000
+    type: BLSKEPLERIAN
+    utcTime: '2026-01-01T00:00:00.00'
+  reflectionCoefficient: 1.8
+  solarArrays:
+  - id: solar-array-left
+    orientation:
+      q0: 0.7071068
+      q1: 0.0
+      q2: -0.7071068
+      q3: 0.0
+    surface: 2
+  - id: solar-array-right
+    orientation:
+      q0: 0.7071068
+      q1: 0.0
+      q2: -0.7071068
+      q3: 0.0
+    surface: 2
+- antennas:
+  - band: S
+    id: antenna-S
+    orientation:
+      q0: 1
+      q1: 0.0
+      q2: 0
+      q3: 0.0
+  - band: Ka
+    id: antenna-Ka
+    orientation:
+      q0: 1
+      q1: 0.0
+      q2: 0
+      q3: 0.0
+  archetype: satellite
+  dragCoefficient: 2.2
+  geometry:
+    dimX: 1
+    dimY: 0.25
+    dimZ: 0.5
+    shape: parallelepiped
+
+  id: rsn-sat-2-2-4-3
+  mass: 510
+  name: RSN Sat-2-2-4-3
+  orbit:
+    argumentPeriapsis: 0
+    eccentricity: 0
+    inclination: 89
+    meanAnomaly: 15.0
+    referenceFrame: EME2000
+    rightAscensionAscendingNode: 200
+    semiMajorAxis: 7428000
+    type: BLSKEPLERIAN
+    utcTime: '2026-01-01T00:00:00.00'
+  reflectionCoefficient: 1.8
+  solarArrays:
+  - id: solar-array-left
+    orientation:
+      q0: 0.7071068
+      q1: 0.0
+      q2: -0.7071068
+      q3: 0.0
+    surface: 2
+  - id: solar-array-right
+    orientation:
+      q0: 0.7071068
+      q1: 0.0
+      q2: -0.7071068
+      q3: 0.0
+    surface: 2
+- antennas:
+  - band: S
+    id: antenna-S
+    orientation:
+      q0: 1
+      q1: 0.0
+      q2: 0
+      q3: 0.0
+  - band: Ka
+    id: antenna-Ka
+    orientation:
+      q0: 1
+      q1: 0.0
+      q2: 0
+      q3: 0.0
+  archetype: satellite
+  dragCoefficient: 2.2
+  geometry:
+    dimX: 1
+    dimY: 0.25
+    dimZ: 0.5
+    shape: parallelepiped
+
+  id: rsn-sat-2-3-4-3
+  mass: 510
+  name: RSN Sat-2-3-4-3
+  orbit:
+    argumentPeriapsis: 0
+    eccentricity: 0
+    inclination: 89
+    meanAnomaly: 22.5
+    referenceFrame: EME2000
+    rightAscensionAscendingNode: 200
+    semiMajorAxis: 7428000
+    type: BLSKEPLERIAN
+    utcTime: '2026-01-01T00:00:00.00'
+  reflectionCoefficient: 1.8
+  solarArrays:
+  - id: solar-array-left
+    orientation:
+      q0: 0.7071068
+      q1: 0.0
+      q2: -0.7071068
+      q3: 0.0
+    surface: 2
+  - id: solar-array-right
+    orientation:
+      q0: 0.7071068
+      q1: 0.0
+      q2: -0.7071068
+      q3: 0.0
+    surface: 2
+
+groundstations:
+- id: gs-0
+  location:
+    altitude: 3
+    latitude: -39
+    longitude: -4.3
+  antennas:
+  - id: ant-1
+    band: S
+  - id: ant-2
+    band: Ka
+- id: gs-1
+  location:
+    altitude: 293
+    latitude: 49
+    longitude: -30.3
+  antennas:
+  - id: ant-1
+    band: S
+  - id: ant-2
+    band: Ka
+- id: gs-2
+  location:
+    altitude: 0
+    latitude: -39.3
+    longitude: 59
+  antennas:
+  - id: ant-1
+    band: S
+  - id: ant-2
+    band: Ka
+
+userterminals:
+- id: ut-0
+  location:
+    altitude: 0
+    latitude: -39.3
+    longitude: 59
+  class: small
+  connections:
+  - ut-1
+  - ut-3
+  - ut-392
+- id: ut-1
+  location:
+    altitude: 30
+    latitude: 49.3
+    longitude: 159
+  class: large
+  connections:
+  - ut-0
+  - ut-3
+  - ut-392

@@ -4,11 +4,10 @@
 # Author: alberto-ferrero
 
 import os
+from pandas import isna
 
 from ..utils.results import AppResult
-from ..utils.filemanager import makeOutputFolder, saveListDictToCsv, readLocalCsvToDict, readRemoteCsvToDict, getBasePath, saveDictToJson
-from jsonschema import validate
-import json
+from ..utils.filemanager import makeOutputFolder, saveListDictToCsv, readLocalCsvToDict, readRemoteCsvToDict, saveDictToJson
 
 #Define Propagation Data csv file tag
 PROPAGATION_DATA_FILES_MAP = {
@@ -26,34 +25,26 @@ def readCsvPropagationDataFiles(simulationRequest: dict, satId: str) -> list:
     propagationData = {}
     for propagationDataEntry, propgationDataFile in PROPAGATION_DATA_FILES_MAP.items():
         #Build file name as convention /path/satId-stateTag.csv
-        filePath = os.path.join(simulationRequest['flightDynamics']['address'], satId + "_" + propgationDataFile + ".csv")
+        filePath = os.path.join(simulationRequest['modules']['flightDynamics']['address'], satId + "_" + propgationDataFile + ".csv")
         #Read from file
-        if simulationRequest['flightDynamics']['data'] == 'local':
-            orbitData = readLocalCsvToDict(filePath)
+        if simulationRequest['modules']['flightDynamics']['data'] == 'local':
+            orbitDataParsed = readLocalCsvToDict(filePath)
         else:
-            orbitData = readRemoteCsvToDict(filePath)
-        propagationData[propagationDataEntry] = orbitData
+            orbitDataParsed = readRemoteCsvToDict(filePath)
+        propagationData[propagationDataEntry] = orbitDataParsed
+    return propagationData
 
-    #Validate
-    try:
-        #Set validation schema
-        propagationDataSchema = os.path.join('api', 'propagationdata-schema.json')
-        #Validate with schema
-        with open(os.path.join(getBasePath(), propagationDataSchema), "r") as f:
-            validate(instance=propagationData, schema=json.load(f))
-        return propagationData
-    except Exception as e:
-        #Raise error
-        raise Exception('ERROR: validation of Propagation Data for satellite {} failed due to: {}'.format(satId, str(e)))
-    
 def savePropagationData(outputDataFolderPath: str, propagationData: AppResult):
     """ Save to output/data/flightdynamics """
-    outputPath = os.path.join(outputDataFolderPath, 'flightdyanmics')
+    outputPath = os.path.join(outputDataFolderPath, 'flightdynamics')
     makeOutputFolder(outputPath)
     result = propagationData.result
     for satId in result:
         for propagationDataEntry, propgationDataFile in PROPAGATION_DATA_FILES_MAP.items():
+            if propagationDataEntry not in result[satId]:
+                result[satId][propagationDataEntry] = []
             saveListDictToCsv(result[satId][propagationDataEntry], os.path.join(outputPath, satId + "_" + propgationDataFile + ".csv"))
     saveDictToJson(propagationData.request, os.path.join(outputPath, 'propagationrequest.json'))
+    return outputPath
 
 # -*- coding: utf-8 -*-

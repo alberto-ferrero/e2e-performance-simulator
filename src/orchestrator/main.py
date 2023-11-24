@@ -50,47 +50,53 @@ def main(inputFile: str) -> str:
     #Build output folder
     simId = datetime.fromtimestamp(tick).strftime("%Y-%m-%d_%H-%M-%S") + "_" + simulationRequest['id']
     outputPath = makeOutputFolder(os.path.join(getBasePath(), 'output', simId))
+    outputDataFolderPath = os.path.join(outputPath, 'data')
 
     #Call Handlers if requested by the modules
     if 'flightDynamics' in simulationRequest['modules']:
         print(' - Getting Flight Dynamics Data {}'.format(textDataFrom(simulationRequest['modules']['flightDynamics']['data'])))
-        propagationDataRes: AppResult = getFlightDynamicsPropagationData(simulationRequest)
+        flightDynamicsDataOutputPath: str = getFlightDynamicsPropagationData(simulationRequest, outputDataFolderPath)
         print(' - Flight Dynamics Data generated in {:.4f} seconds'.format(time.time() - tick))
         tick = time.time()
     else:
-        propagationDataRes = AppResult (200, {}, {})
+        print(' - Flight Dynamics Data not generated')
+        flightDynamicsDataOutputPath = None
 
     if 'linkBudget' in simulationRequest['modules']:
         print(' - Getting Link Budget Data {}'.format(textDataFrom(simulationRequest['modules']['linkBudget']['data'])))
-        linkDataRes: AppResult = getLinkBudgetData(simulationRequest)
+        linkDataOutputPath: str = getLinkBudgetData(simulationRequest, outputDataFolderPath)
         print(' - Link Budget Data generated in {:.4f} seconds'.format(time.time() - tick))
         tick = time.time()
     else:
-        linkDataRes = AppResult (200, {}, {})
+        print(' - Link Budget Data not generated')
+        linkDataOutputPath = None
 
     if 'regulatoryMap' in simulationRequest['modules']:
         print(' - Getting Regulatory Data {}'.format(textDataFrom(simulationRequest['modules']['regulatoryMap']['data'])))
-        regulatoryDataRes: AppResult = getRegulatoryMapperData(simulationRequest)
+        regulatoryDataOutputPath: str = getRegulatoryMapperData(simulationRequest, outputDataFolderPath)
         print(' - Regulatory Data generated in {:.4f} seconds'.format(time.time() - tick))
         tick = time.time()
     else:
-        regulatoryDataRes = AppResult (200, {}, {})
+        print(' - Regulatory Data not generated')
+        regulatoryDataOutputPath = None
 
     if 'networkTopology' in simulationRequest['modules']:
         print(' - Getting Network Topology Data {}'.format(textDataFrom(simulationRequest['modules']['networkTopology']['data'])))
-        networkDataRes: AppResult = getNetworkTopologyData(simulationRequest)
+        networkDataOutputPath: str = getNetworkTopologyData(simulationRequest, outputDataFolderPath)
         print(' - Network Topology Data generated in {:.4f} seconds'.format(time.time() - tick))
         tick = time.time()
     else:
-        networkDataRes = AppResult (200, {}, {})
+        print(' - Network Topology Data not generated')
+        networkDataOutputPath = None
 
     if 'airInterface' in simulationRequest['modules']:
         print(' - Getting Air Interface Data {}'.format(textDataFrom(simulationRequest['modules']['airInterface']['data'])))
-        airinterfaceDataRes: AppResult = getAirInterfaceAnalysisData(simulationRequest)
+        airinterfaceDataOutputPath: str = getAirInterfaceAnalysisData(simulationRequest, outputDataFolderPath)
         print(' - Air Interface Data generated in {:.4f} seconds'.format(time.time() - tick))
         tick = time.time()
     else:
-        airinterfaceDataRes = AppResult (200, {}, {})
+        print(' - Air Interface Data not generated')
+        airinterfaceDataOutputPath = None
 
     print(' - E2E Simulation run completed in {:.4f} seconds'.format(time.time() - init))
     tick = time.time()
@@ -98,11 +104,11 @@ def main(inputFile: str) -> str:
     #Post Processing and generating perfomance output
     postProcessSimulationData(simulationRequest, 
                 outputPath,
-                propagationDataRes,
-                linkDataRes,
-                regulatoryDataRes,
-                networkDataRes,
-                airinterfaceDataRes)
+                flightDynamicsDataOutputPath,
+                linkDataOutputPath,
+                regulatoryDataOutputPath,
+                networkDataOutputPath,
+                airinterfaceDataOutputPath)
     
     print(' - E2E Simulation post processing completed in in {:.4f} seconds\n'.format(time.time() - init))
 

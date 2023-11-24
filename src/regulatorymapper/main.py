@@ -3,12 +3,10 @@
 # Copyright (C)
 # Author: alberto-ferrero
 
-from ..utils.results import AppResult
-
 """ E2E Performance Simulator Regulatory Mapper Handler """
 
-def getRegulatoryMapperData(simulationRequest: dict) -> dict:
+def getRegulatoryMapperData(simulationRequest: dict, outputDataFolderPath: str) -> str:
     #TODO to implement
-    return AppResult(200, None, None)
+    raise NotImplementedError
 
 # -*- coding: utf-8 -*-

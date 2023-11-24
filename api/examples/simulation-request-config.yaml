@@ -38,6 +38,9 @@ modules:
     - plot-something
     - analysis-somethingelse
 
+analysis:
+- track
+
 satellites:
 - id: rsn-sat-0-0-24
   orbit:
@@ -82,7 +85,7 @@ satellites:
     anotherprop: blabla
   - id: isl-left-back
     anotherprop: blabla
-  TBC-antennas:
+  antennas:
   - id: antenna-Ka
     band: Ka
     orientation:
@@ -144,7 +147,7 @@ satellites:
     anotherprop: blabla
   - id: isl-left-back
     anotherprop: blabla
-  TBC-antennas:
+  antennas:
   - id: antenna-Ka
     band: Ka
     orientation:

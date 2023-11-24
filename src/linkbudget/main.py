@@ -3,12 +3,10 @@
 # Copyright (C)
 # Author: alberto-ferrero
 
-from ..utils.results import AppResult
-
 """ E2E Performance Simulator Link Budget Calculator Handler """
 
-def getLinkBudgetData(simulationRequest: dict) -> dict:
+def getLinkBudgetData(simulationRequest: dict, outputDataFolderPath: str) -> str:
     #TODO to implement
-    return AppResult(200, None, None)
+    raise NotImplementedError
 
 # -*- coding: utf-8 -*-

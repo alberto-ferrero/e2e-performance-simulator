@@ -93,7 +93,7 @@ satellites:
     anotherprop: blabla
   - id: isl-left-back
     anotherprop: blabla
-  TBC-antennas:
+  antennas:
   - id: antenna-Ka
     band: Ka
     orientation:

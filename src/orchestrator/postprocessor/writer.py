@@ -4,6 +4,7 @@
 # Author: alberto-ferrero
 
 import os
+import re
 from datetime import datetime
 
 from ...utils.filemanager import getLogoPath, makeOutputFolder
@@ -12,11 +13,21 @@ from ...utils.filemanager import getLogoPath, makeOutputFolder
 from docx import Document
 from docx.shared import Inches, Pt, Mm
 
+#Import analyis
+from ..postprocessor.analysis import constellationgeom as constgeom
+from ..postprocessor.analysis import gslocation as gsloc
+from ..postprocessor.analysis import utlocation as utloc
+from ..postprocessor.analysis import latency as latency
+
 """ E2E Performance Simulator post processor report writed """
 
 def writeReport(simulationRequest: dict,
                 outputReportFolderPath: str,
-                outputDataFolderPath: str,
+                flightDynamicsDataOutputPath: str,
+                linkDataOutputPath: str,
+                regulatoryDataOutputPath: str,
+                networkDataOutputPath: str,
+                airinterfaceDataOutputPath: str,
                 outputPlotFolderPath: str):
     #Write report based on config request properties
     doc = Document()
@@ -37,10 +48,8 @@ def writeReport(simulationRequest: dict,
         doc.add_paragraph()
     title = 'E2E Performance Simulator Report'
     currentTime = datetime.utcnow().strftime("%Y-%m-%d %H:%M:%S")
-    p = doc.add_paragraph()
-    r = p.add_run(title)
-    r.bold = True
-    r.font.size = Pt(28)
+    p = doc.add_heading(title, 0)
+    p.bold = True
     for i in range(12):
         doc.add_paragraph()
     
@@ -56,7 +65,20 @@ def writeReport(simulationRequest: dict,
     doc.add_page_break()
 
     #Add Section for the E2E Perfomances
-    #TODO
+    analysis: dict = simulationRequest['analysis']
+    for analyisTag in analysis:
+
+        if analyisTag == 'constellation-geometry':
+            constgeom.write(doc, outputPlotFolderPath, flightDynamicsDataOutputPath)
+
+        if analyisTag == 'groundstations-location':
+            gsloc.write(doc, outputPlotFolderPath, simulationRequest)
+
+        if analyisTag == 'userterminals-location':
+            utloc.write(doc, outputPlotFolderPath, simulationRequest)
+        
+        if analyisTag == 'latency':
+            latency.write(doc, outputPlotFolderPath, flightDynamicsDataOutputPath)
     
     #Add Sections for each module
     modules: dict = simulationRequest['modules']
@@ -64,23 +86,24 @@ def writeReport(simulationRequest: dict,
 
         if moduleTag == 'flightDynamics' and 'report' in module:
             #Add Flight Dynamics Results
+            doc.add_heading("Appendinx: Flight Dynamics", 1)
             p = doc.add_paragraph()
-            r = p.add_run("Flight Dynamics")
-            r.bold = True
-            r.font.size = Pt(16)
+            r = p.add_run("The table blow shows intitial orbit information regarding satellites as defined in the Simulation Request.")
 
-            p = doc.add_paragraph()
-            r = p.add_run("Just writing satellites orbits, raw and unreadable from config :()")
-            
+            table = doc.add_table(rows=1, cols=2, style="Table Grid")
+            heading = table.rows[0].cells
+            heading[0].text = "Satellite id"
+            heading[1].text = "Orbit"
+
             # Get for each satellite orbit plot
             for satellite in simulationRequest.get('satellites', []):
-                
-                #Get plot from plot folder
-                #TODO
-                p = doc.add_paragraph()
-                r = p.add_run(satellite['id'] + "\n")
-                r = p.add_run(satellite['orbit'])
-
+                row = table.add_row().cells
+                row[0].text = satellite['id']
+                satellite['orbit'].pop('type')
+                orbit = row[1].add_table(rows=len(satellite['orbit']), cols=2)
+                for i, (k, v) in enumerate(satellite['orbit'].items()):
+                    orbit.rows[i].cells[0].text = " ".join(re.sub('([A-Z][a-z]+)', r' \1', re.sub('([A-Z]+)', r' \1', k)).lower().split())
+                    orbit.rows[i].cells[1].text = str(v)
             doc.add_page_break()
 
         if moduleTag == 'linkBudget' and 'report' in module:

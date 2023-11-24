@@ -33,12 +33,12 @@ def makeOutputFolder(outputFolderPath: str) -> str:
 def saveDictToCsv(data: dict, filePath: str):
     """ Save dictionary to file, as csv """
     df = pd.DataFrame.from_dict(data)
-    df.to_csv(filePath)
+    df.to_csv(filePath, index=False)
 
 def saveListDictToCsv(jsonList: list, filePath: str):
     """ Save dictionary list to file, as csv """
     df = pd.DataFrame(jsonList)
-    df.to_csv(filePath)
+    df.to_csv(filePath, index=False)
 
 def saveDictToJson(data: dict, filePath: str):
     """ Save dictionary to file, as json """
@@ -47,21 +47,25 @@ def saveDictToJson(data: dict, filePath: str):
         json.dump(data, file, indent=2)
     return filePath
 
-def readLocalCsvToDict(filePath: str):
+def readLocalCsvToDict(filePath: str) -> list:
     """ Save dictionary reading csv from local folder """
+    from pandas.errors import EmptyDataError
+
     if os.path.isfile(filePath):
         try:
             df = pd.read_csv(filePath)
-            return df.to_dict(index=False)
+            return df.T.apply(lambda x: x.dropna().to_dict()).tolist()
+        except EmptyDataError:
+            return []
         except Exception as e:
             raise Exception('ERROR: impossible to open file and read as csv: {}, due to {}'.format(filePath, str(e)))
     else:
         raise Exception('ERROR: impossible to open file: {}'.format(filePath))
 
-def readRemoteCsvToDict(filePath: str):
+def readRemoteCsvToDict(filePath: str) -> list:
     """ Save dictionary reading csv from remote folder """ 
     try:
         df = pd.read_csv(filePath)
-        return df.to_dict(index=False)
+        return df.T.apply(lambda x: x.dropna().to_dict()).tolist()
     except Exception as e:
         raise Exception('ERROR: impossible to open file and read as csv: {}, due to {}'.format(filePath, str(e)))

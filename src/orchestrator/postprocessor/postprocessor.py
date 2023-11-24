@@ -7,44 +7,32 @@
 
 import os
 
+from ..postprocessor.plotter import plot
 from ..postprocessor.writer import writeReport
 
-from ...utils.results import AppResult
-
-from ...flightdynamics.filemanager import savePropagationData
-from ...linkbudget.filemanager import saveLinkData
-from ...regulatorymapper.filemanager import saveRegulatorynData
-from ...networktopology.filemanager import saveNetworkData
-from ...airinterface.filemanager import saveAirTrafficData
-
-
 def postProcessSimulationData(simulationRequest: dict,
-                              outputFolderPath: str,
-                              propagationDataRes: AppResult,
-                              linkDataRes: AppResult,
-                              regulatoryDataRes: AppResult,
-                              networkDataRes: AppResult,
-                              airtrafficDataRes: AppResult):
+                              outputPath: str,
+                              flightDynamicsDataOutputPath: str,
+                              linkDataOutputPath: str,
+                              regulatoryDataOutputPath: str,
+                              networkDataOutputPath: str,
+                              airinterfaceDataOutputPath: str):
     """ Global post processor function, based on rules defined in the Simulation Request """
-    # Save raw data for each module
-    outputDataFolderPath = os.path.join(outputFolderPath, 'data')
-    print(' - Saving raw simulations data to output folder: {}'.format(outputDataFolderPath))
-    savePropagationData(outputDataFolderPath, propagationDataRes)
-    saveLinkData(outputDataFolderPath, linkDataRes)
-    saveRegulatorynData(outputDataFolderPath, regulatoryDataRes)
-    saveNetworkData(outputDataFolderPath, networkDataRes)
-    saveAirTrafficData(outputDataFolderPath, airtrafficDataRes)
-
     # Produce plots
-    outputPlotFolderPath = os.path.join(outputFolderPath, 'plot')
+    outputPlotFolderPath = os.path.join(outputPath, 'plot')
     print(' - Writing plots to output folder: {}'.format(outputPlotFolderPath))
+    plot(outputPlotFolderPath)
 
     # Produce reports
-    outputReportFolderPath = os.path.join(outputFolderPath, 'report')
+    outputReportFolderPath = os.path.join(outputPath, 'report')
     print(' - Writing reports to output folder: {}'.format(outputReportFolderPath))
     writeReport(simulationRequest,
                 outputReportFolderPath,
-                outputDataFolderPath,
+                flightDynamicsDataOutputPath,
+                linkDataOutputPath,
+                regulatoryDataOutputPath,
+                networkDataOutputPath,
+                airinterfaceDataOutputPath,
                 outputPlotFolderPath)
 
 ##################################################################################################################

@@ -2,7 +2,8 @@
   "required": [
     "id",
     "simulationWindow",
-    "modules"
+    "modules",
+    "analysis"
   ],
   "type": "object",
   "additionalproperties": false,
@@ -205,6 +206,18 @@
             "address"
           ]
         }
+      }
+    },
+    "analysis": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "constellation-geometry",
+          "userterminals-location",
+          "groundstations-location",
+          "latency"
+        ]
       }
     },
     "satellites": {
@@ -573,7 +586,7 @@
               ]
             }
           },
-          "TBC-antennas": {
+          "antennas": {
             "type": "array",
             "items": {
               "type": "object",

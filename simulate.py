@@ -5,7 +5,7 @@
 
 """ Launch E2E Perfomance Simulation, running from the Simulation Request configuration file """
 
-###############################################################################w
+###############################################################################
 
 if __name__ == "__main__":
     from src.orchestrator.main import main
