@@ -104,6 +104,7 @@ def main(inputFile: str) -> str:
     #Post Processing and generating perfomance output
     postProcessSimulationData(simulationRequest, 
                 outputPath,
+                outputDataFolderPath,
                 flightDynamicsDataOutputPath,
                 linkDataOutputPath,
                 regulatoryDataOutputPath,

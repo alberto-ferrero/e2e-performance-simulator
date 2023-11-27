@@ -10,18 +10,18 @@ from random import randrange
 date = "2026-01-01T00:00:00.00"
 
 # Number of Satellites
-satellitesPerPlane = 4
+satellitesPerPlane = 24
 numberOfPlanes = 3
 
 # Geometry
-dRAAN = 15
-dM = 7.5
+dRAAN = 60
+dM = 15
 
 # Number of groundstaitons (random)
-numberOfGroundStations = 5
+numberOfGroundStations = 1
 
 # Number of userterminals (random)
-numberOfUserTerminals = 50
+numberOfUserTerminals = 5
 
 ###############################################################################################
 
@@ -193,8 +193,8 @@ def getRsnSatellite(identifier: str, date: str, groundContacts: list) -> dict:
         Orbit data defiened by the identifier: #plane-#index.
     """
     #Warning! adding all groundstations and userterminals as contacts
-    #groundContacts = [it['id'] for it in groundstations + userterminals]
-    groundContacts = []
+    groundContacts = [it['id'] for it in groundstations + userterminals]
+    #groundContacts = []
     return {
         "archetype": "satellite",
         "id": f"rsn-sat-{identifier}",
@@ -217,10 +217,10 @@ def getRsnSatellite(identifier: str, date: str, groundContacts: list) -> dict:
 def getOrbit(identifier: str, date: str, sma: float = 7428000, ecc: float = 0, inc: float = 89) -> dict:
     """ Get the orbit definition for the RSN Sat, based on the identifier:
             identifier = #plane-#sat-#satXplane-#planes
-            Considering RAAN +15deg each plane, MA separation base on total satellites per plane
+            Considering RAAN +30deg each plane, MA separation base on total satellites per plane
     """
     plane, index, _, _ = identifier.split("-")
-    deltaM = int(plane) % 2 * dM
+    deltaM = int(plane) % 2 * dM / 2.0
     M = dM * int(index) + deltaM
     return {
         "type": "BLSKEPLERIAN",

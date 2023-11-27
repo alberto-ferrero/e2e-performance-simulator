@@ -78,8 +78,7 @@
           },
           "required": [
             "data",
-            "address",
-            "properties"
+            "address"
           ]
         },
         "linkBudget": {

@@ -7,7 +7,7 @@ import os
 from pandas import isna
 
 from ..utils.results import AppResult
-from ..utils.filemanager import makeOutputFolder, saveListDictToCsv, readLocalCsvToDict, readRemoteCsvToDict, saveDictToJson
+from ..utils.filemanager import makeOutputFolder, saveListDictToCsv, readLocalCsvToDict, readRemoteCsvToDict
 
 #Define Propagation Data csv file tag
 PROPAGATION_DATA_FILES_MAP = {
@@ -44,7 +44,6 @@ def savePropagationData(outputDataFolderPath: str, propagationData: AppResult):
             if propagationDataEntry not in result[satId]:
                 result[satId][propagationDataEntry] = []
             saveListDictToCsv(result[satId][propagationDataEntry], os.path.join(outputPath, satId + "_" + propgationDataFile + ".csv"))
-    saveDictToJson(propagationData.request, os.path.join(outputPath, 'propagationrequest.json'))
     return outputPath
 
 # -*- coding: utf-8 -*-

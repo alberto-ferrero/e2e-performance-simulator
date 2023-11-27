@@ -12,6 +12,7 @@ from ..postprocessor.writer import writeReport
 
 def postProcessSimulationData(simulationRequest: dict,
                               outputPath: str,
+                              outputDataFolderPath: str,
                               flightDynamicsDataOutputPath: str,
                               linkDataOutputPath: str,
                               regulatoryDataOutputPath: str,
@@ -27,6 +28,7 @@ def postProcessSimulationData(simulationRequest: dict,
     outputReportFolderPath = os.path.join(outputPath, 'report')
     print(' - Writing reports to output folder: {}'.format(outputReportFolderPath))
     writeReport(simulationRequest,
+                outputDataFolderPath,
                 outputReportFolderPath,
                 flightDynamicsDataOutputPath,
                 linkDataOutputPath,

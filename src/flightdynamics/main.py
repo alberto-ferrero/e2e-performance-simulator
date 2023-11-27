@@ -10,7 +10,7 @@ import time
 
 from ..utils.results import AppResult
 from ..flightdynamics.filemanager import readCsvPropagationDataFiles, savePropagationData
-from ..utils.filemanager import getBasePath
+from ..utils.filemanager import getBasePath, saveDictToJson
 from ..utils.timeconverter import getTimestampFromDate
 from .request import propagate
 
@@ -19,6 +19,7 @@ from .request import propagate
 def getFlightDynamicsPropagationData(simulationRequest: dict, outputDataFolderPath: str) -> str:
     
     flightDynamicsInfo = simulationRequest['modules']['flightDynamics']
+    propagationRequest = {}
 
     #Define propagation data source
     if flightDynamicsInfo['data'] == 'run':
@@ -30,7 +31,7 @@ def getFlightDynamicsPropagationData(simulationRequest: dict, outputDataFolderPa
             #Get batch of assets
             subPropagationRequest = {}
             subPropagationRequest['scenario'] = propagationRequest['scenario']
-            subPropagationRequest['assets'] = propagationRequest['assets'][idxi:idf]
+            subPropagationRequest['assets'] = propagationRequest['assets'][idxi:idf+1]
             subPropagationRequest['pointsOfInterest'] = propagationRequest['pointsOfInterest']
             return subPropagationRequest
 
@@ -66,7 +67,7 @@ def getFlightDynamicsPropagationData(simulationRequest: dict, outputDataFolderPa
         #Read, validate and return propagation data
         propagationDataRes = extractPropagationDataFromCsv(simulationRequest)
         flightDynamicsDataOutputPath = savePropagationData(outputDataFolderPath, propagationDataRes)
-
+    saveDictToJson(propagationRequest, os.path.join(flightDynamicsDataOutputPath, 'propagationrequest.json'))
     
     print('   - Saved Propagation Data in output folder {}'.format(flightDynamicsDataOutputPath))        
     del propagationDataRes

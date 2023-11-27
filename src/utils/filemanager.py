@@ -30,6 +30,10 @@ def makeOutputFolder(outputFolderPath: str) -> str:
         pass
     return outputFolderPath
 
+def removeFolder(folderPath: str):
+    import shutil
+    shutil.rmtree(folderPath, ignore_errors=True)
+
 def saveDictToCsv(data: dict, filePath: str):
     """ Save dictionary to file, as csv """
     df = pd.DataFrame.from_dict(data)

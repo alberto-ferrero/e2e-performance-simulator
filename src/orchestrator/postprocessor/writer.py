@@ -7,7 +7,7 @@ import os
 import re
 from datetime import datetime
 
-from ...utils.filemanager import getLogoPath, makeOutputFolder
+from ...utils.filemanager import getLogoPath, makeOutputFolder, removeFolder
 
 #Import docx
 from docx import Document
@@ -22,6 +22,7 @@ from ..postprocessor.analysis import latency as latency
 """ E2E Performance Simulator post processor report writed """
 
 def writeReport(simulationRequest: dict,
+                outputDataFolderPath: str,
                 outputReportFolderPath: str,
                 flightDynamicsDataOutputPath: str,
                 linkDataOutputPath: str,
@@ -78,8 +79,8 @@ def writeReport(simulationRequest: dict,
             utloc.write(doc, outputPlotFolderPath, simulationRequest)
         
         if analyisTag == 'latency':
-            latency.write(doc, outputPlotFolderPath, flightDynamicsDataOutputPath)
-    
+            latency.write(doc, outputDataFolderPath, outputPlotFolderPath, flightDynamicsDataOutputPath)
+  
     #Add Sections for each module
     modules: dict = simulationRequest['modules']
     for moduleTag, module in modules.items():
@@ -132,6 +133,7 @@ def writeReport(simulationRequest: dict,
             pass
 
     #Save doc
+    removeFolder(os.path.join(outputPlotFolderPath, 'tmp'))
     makeOutputFolder(outputReportFolderPath)
     doc.save(os.path.join(outputReportFolderPath, "E2E_Performance_Simulator_Report.docx"))
     

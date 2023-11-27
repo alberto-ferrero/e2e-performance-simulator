@@ -55,7 +55,7 @@ def write(doc: Document, outputPlotFolderPath: str, simulationRequest: dict):
         
         doc.add_page_break()
     
-        print(' - Added section on User Terminals Locations in  {:.4f} seconds'.format(time.time() - tick))
+        print('   - Added section on User Terminals Locations in {:.4f} seconds'.format(time.time() - tick))
 
 
 # -*- coding: utf-8 -*-
