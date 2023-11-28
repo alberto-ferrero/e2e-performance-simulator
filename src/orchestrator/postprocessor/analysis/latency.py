@@ -37,14 +37,14 @@ j2000Date = datetime.datetime(2000, 1, 1)
 def write(doc: Document, outputDataFolderPath: str, outputPlotFolderPath: str, flightDynamicsDataOutputPath: str):
     tick = time.time()
     #Read from Flight Dynamics file and extract EME2000 coordinates
-    constDf = {}
+    satsDf = {}
     for fileName in glob.glob(os.path.join(flightDynamicsDataOutputPath, "*_orbit-state.csv")):
         satId = fileName.split(os.sep)[-1].split("_")[0]
         df = pd.read_csv(fileName)
         df = df[['utcTime', 'X', 'Y', 'Z']].iloc[0:1]
-        constDf[satId] = df
+        satsDf[satId] = df
 
-    if constDf == {}:
+    if satsDf == {}:
         return
     
     outputAnalysFolderPath = os.path.join(outputDataFolderPath, 'analysis')
@@ -57,18 +57,18 @@ def write(doc: Document, outputDataFolderPath: str, outputPlotFolderPath: str, f
     doc.add_heading("Signal Latency", 1)
     
     #Iterate considering both meshes
-    lats = np.arange(-90, -70 + deltaAngle / 2.0, deltaAngle)
+    lats = np.arange(-90, 90 + deltaAngle / 2.0, deltaAngle)
     lngs = np.arange(-180, 180 + deltaAngle / 2.0, deltaAngle)
     for getMesh, tag in ((getFlatXConnections, 'Flat X'), (getItalXConnections, 'Ital X')):
         images = []
         #Move around globe from focal point and calculate transmission based on speed of light
-        latitudes = np.arange(80, 95, 5)
+        latitudes = np.arange(0, 95, 5)
         for latitude in latitudes:
             longitude = 0
             firstGeoPoint = getPointFromLatLong(latitude, longitude)
 
             #Get first communication distance
-            firstDistance, firstSatId = getCloserSatelliteDistance(constDf, firstGeoPoint)
+            firstDistance, firstSatId = getCloserSatelliteDistance(satsDf, firstGeoPoint)
             firstDelay = firstDistance / c
 
             #Empty delays
@@ -78,27 +78,22 @@ def write(doc: Document, outputDataFolderPath: str, outputPlotFolderPath: str, f
             for i, lat in enumerate(lats):
                 for j, lng in enumerate(lngs):
                     geoPoint = getPointFromLatLong(lat, lng)
-                    distance, closerSatId = getCloserSatelliteDistance(constDf, geoPoint)
-                    #Go through mesh from first point up to target point
+                    distance, closerSatId = getCloserSatelliteDistance(satsDf, geoPoint)
+                    #Go through mesh from initial geo point up to target point
                     nextSatId = closerSatId
                     contactedSatIds = []
-                    print("\n", lat, lng, "from SAT", closerSatId, "to SAT", firstSatId)
+                    #[DEBUG]print("\n", lat, lng, "from SAT", closerSatId, "to SAT", firstSatId)
                     while True and nextSatId != firstSatId:
-                        #Get mesh satellites, not passing from the onese already contacted
-                        meshSatsIds = getMesh(nextSatId)
-                        meshSatsIds = [satId for satId in meshSatsIds if satId not in contactedSatIds]
-                        subConstDf = getMeshDataframe(constDf, meshSatsIds)
-                        #From the current point, amongh the ones in the mesh, get closer to first point
-                        _, closerSatId = getCloserSatelliteDistance(subConstDf, firstGeoPoint)
-                        print(nextSatId, meshSatsIds, 'closer', closerSatId)
-                        print([getDistance(getSatellitePosition(constDf[satId]), firstGeoPoint) for satId in meshSatsIds])
+                        #From the current point, amongh the ones in the mesh, get closer to initial geo point
+                        closerSatId = getCloserSatelliteDistanceMesh(getMesh, satsDf, firstGeoPoint, contactedSatIds + [nextSatId,])
+                        #[DEBUG]print(nextSatId, [satId for satId in getMesh(nextSatId) if satId not in contactedSatIds], 'closer', closerSatId)
                         contactedSatIds.append(closerSatId)
                         #Add intersatellite distance and go to next
-                        distance += getDistance(getSatellitePosition(constDf[closerSatId]),
-                                                getSatellitePosition(constDf[nextSatId]))
+                        distance += getDistance(getSatellitePosition(satsDf[closerSatId]),
+                                                getSatellitePosition(satsDf[nextSatId]))
                         nextSatId = closerSatId
                     delays[i][j] =  (distance / c + firstDelay) * 1000.0 #to [millis]
-
+            
             #Build heat map
             worldmap = gpd.read_file(gpd.datasets.get_path("naturalearth_lowres"))
             fig, ax = plt.subplots()
@@ -109,8 +104,8 @@ def write(doc: Document, outputDataFolderPath: str, outputPlotFolderPath: str, f
             ax.set_xlabel("Longitude [deg]")
             ax.set_ylabel("Latitude [deg]")
             ax.set(xlim=[lngs[0], lngs[-1]], ylim=[lats[0], lats[-1]])
-            for satId in constDf:
-                lat, lng = getSatelliteLatitudeLongitude(constDf[satId])
+            for satId in satsDf:
+                lat, lng = getSatelliteLatitudeLongitude(satsDf[satId])
                 ax.scatter(lng, lat, s=10, c=['black'], alpha=0.7)
             ax.scatter(longitude, latitude, s=30, c=['red'], alpha=0.9)
             ax.annotate("UT", (longitude, latitude))
@@ -123,7 +118,7 @@ def write(doc: Document, outputDataFolderPath: str, outputPlotFolderPath: str, f
                 p = doc.add_paragraph()
                 r = p.add_run()
                 r.add_picture(figPath)
-            
+
             ax.set_title("Lat = {} deg".format(latitude))
             figTmpPath = os.path.join(tmpPath, "analysis_latency-{}-mesh-{}.jpg".format(tag.replace(" ", ""), latitude))
             fig.savefig(figTmpPath, bbox_inches='tight')
@@ -135,7 +130,6 @@ def write(doc: Document, outputDataFolderPath: str, outputPlotFolderPath: str, f
         frame.save(os.path.join(outputPlotFolderPath, 'analysis_latency-{}-mesh.gif'.format(tag)), 
                     format="GIF", append_images=frames,
                     save_all=True, duration=100, loop=0)
-        
     
     doc.add_page_break()
     print('   - Added section on User Signal Latency in {:.4f} seconds'.format(time.time() - tick))
@@ -149,12 +143,16 @@ def getPointFromLatLong(lat: float, lng: float) -> np.array:
 def getDistance(a, b) -> float:
     return np.linalg.norm(a-b)
 
-def getMeshDataframe(constDf: dict, satIds: list) -> dict:
+def getMeshSatsDataframe(getMesh, satsDf: dict, contactedSatIds: list) -> dict:
+    nextSatId = contactedSatIds[-1]
+    #Get mesh satellites, not passing from the onese already contacted
+    meshSatsIds = getMesh(nextSatId)
+    meshSatsIds = [satId for satId in meshSatsIds if satId not in contactedSatIds]
     meshDf = {}
-    for satId in satIds:
-        if satId not in constDf:
+    for satId in meshSatsIds:
+        if satId not in satsDf:
             raise Exception('ERROR: mesh satellite {} was not propagated, not found in Propagation Data'.format(satId))
-        meshDf[satId] = constDf[satId]
+        meshDf[satId] = satsDf[satId]
     return meshDf
 
 def getSatellitePosition(df) -> np.array:
@@ -164,13 +162,28 @@ def getSatelliteLatitudeLongitude(df) -> (float, float):
     pos: np.array = getSatellitePosition(df)
     return np.degrees(np.arcsin(pos[2] / np.linalg.norm(pos))) , np.degrees(np.arctan2(pos[1], pos[0]))
 
-def getCloserSatelliteDistance(constDf: dict, geoPoint: np.array) -> (float, str):
+def getCloserSatelliteDistanceMesh(getMesh, satsDf: dict, geoPoint: np.array, contactedSatIds: list) -> (float, str):
+    """ Iterate 1 step into mesh, get for each of the connected satellites, the next closer and choose the one with less distance as root point """
+    subSatsDf = getMeshSatsDataframe(getMesh, satsDf, contactedSatIds)
+    #Get distance over mesh
+    distances = {}
+    for satId in subSatsDf:
+        pos = getSatellitePosition(satsDf[satId])
+        d = getDistance(pos, geoPoint)
+        nextSubSatsDf = getMeshSatsDataframe(getMesh, satsDf, contactedSatIds + [satId,])
+        #Get closer in next step and add to distance
+        dd, _ = getCloserSatelliteDistance(nextSubSatsDf, geoPoint)
+        distances[dd+d] = satId
+    #Get closer
+    return distances[min(distances.keys())]
+
+def getCloserSatelliteDistance(satsDf: dict, geoPoint: np.array) -> (float, str):
     """ Iterate over entire list of satellites and get closer """
     from sys import maxsize
     minD = maxsize
     minSatId = ""
-    for satId in constDf.keys():
-        pos = getSatellitePosition(constDf[satId])
+    for satId in satsDf.keys():
+        pos = getSatellitePosition(satsDf[satId])
         d = getDistance(pos, geoPoint)
         if d < minD:
             minSatId = satId
