@@ -17,6 +17,8 @@ from docx.shared import Inches, Pt, Mm
 from ..postprocessor.analysis import constellationgeom as constgeom
 from ..postprocessor.analysis import gslocation as gsloc
 from ..postprocessor.analysis import utlocation as utloc
+from ..postprocessor.analysis import contacts as contacts
+from ..postprocessor.analysis import links as links
 from ..postprocessor.analysis import latency as latency
 
 """ E2E Performance Simulator post processor report writed """
@@ -77,7 +79,13 @@ def writeReport(simulationRequest: dict,
 
         if analyisTag == 'userterminals-location':
             utloc.write(doc, outputPlotFolderPath, simulationRequest)
-        
+  
+        if analyisTag == 'contacts':
+            contacts.write(doc, outputDataFolderPath, outputPlotFolderPath, flightDynamicsDataOutputPath)
+    
+        if analyisTag == 'links':
+            links.write(doc, outputDataFolderPath, outputPlotFolderPath, linkDataOutputPath)
+  
         if analyisTag == 'latency':
             latency.write(doc, outputDataFolderPath, outputPlotFolderPath, flightDynamicsDataOutputPath)
   

@@ -93,6 +93,7 @@ def write(doc: Document, outputPlotFolderPath: str, flightDynamicsDataOutputPath
     r.add_picture(figPath)
     
     doc.add_page_break()
+    
     print('   - Added section on Constellation Geometry in {:.4f} seconds'.format(time.time() - tick))
 
 # -*- coding: utf-8 -*-

@@ -31,9 +31,9 @@ from .postprocessor.postprocessor import postProcessSimulationData
 from ..flightdynamics.main import getFlightDynamicsPropagationData
 from ..linkbudget.main import getLinkBudgetData
 from ..networktopology.main import getNetworkTopologyData
-from ..regulatorymapper.main import getRegulatoryMapperData
+from ..regulatory.main import getRegulatoryMapperData
 from ..airinterface.main import getAirInterfaceAnalysisData
-
+from ..systembudgets.main import exportBudgetsData
     
 def main(inputFile: str) -> str:
     """Main Orchestrator function call"""
@@ -64,7 +64,7 @@ def main(inputFile: str) -> str:
 
     if 'linkBudget' in simulationRequest['modules']:
         print(' - Getting Link Budget Data {}'.format(textDataFrom(simulationRequest['modules']['linkBudget']['data'])))
-        linkDataOutputPath: str = getLinkBudgetData(simulationRequest, outputDataFolderPath)
+        linkDataOutputPath: str = getLinkBudgetData(simulationRequest, outputDataFolderPath, flightDynamicsDataOutputPath)
         print(' - Link Budget Data generated in {:.4f} seconds'.format(time.time() - tick))
         tick = time.time()
     else:
@@ -110,11 +110,21 @@ def main(inputFile: str) -> str:
                 regulatoryDataOutputPath,
                 networkDataOutputPath,
                 airinterfaceDataOutputPath)
-    
+
+    #Export budgets    
+    if 'systeBudgets' in simulationRequest['modules']:
+        print(' - Exporting System Budgets Data {}'.format(textDataFrom(simulationRequest['modules']['systemBudgets']['data'])))
+        airinterfaceDataOutputPath: str = exportBudgetsData(simulationRequest, outputDataFolderPath)
+        print(' - System Budgets Data exported and stored in {:.4f} seconds'.format(time.time() - tick))
+        tick = time.time()
+    else:
+        print(' - System Budgets Data export skipped')
+        airinterfaceDataOutputPath = None
+
+    #Completed
     print(' - E2E Simulation post processing completed in in {:.4f} seconds\n'.format(time.time() - init))
 
     return outputPath
-
 
 ###############################################################################
 

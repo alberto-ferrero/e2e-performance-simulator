@@ -215,6 +215,8 @@
           "constellation-geometry",
           "userterminals-location",
           "groundstations-location",
+          "contacts",
+          "links",
           "latency"
         ]
       }

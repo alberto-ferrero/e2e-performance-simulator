@@ -4,7 +4,6 @@
 # Author: alberto-ferrero
 
 import os
-from pandas import isna
 
 from ..utils.results import AppResult
 from ..utils.filemanager import makeOutputFolder, saveListDictToCsv, readLocalCsvToDict, readRemoteCsvToDict
@@ -20,14 +19,16 @@ PROPAGATION_DATA_FILES_MAP = {
 
 """ E2E Performance Simulator Flight Dynamics Provider Handler File Manager """
 
-def readCsvPropagationDataFiles(simulationRequest: dict, satId: str) -> list:
-    """ Read csv propagation state file and validate """
+def readCsvPropagationDataFiles(flightDynamicsDataPath: str, satId: str, source: str = 'local') -> list:
+    """ Read csv propagation data files and validate
+        source 'local' from local repository, source 'remote' from remote git repository 
+    """
     propagationData = {}
     for propagationDataEntry, propgationDataFile in PROPAGATION_DATA_FILES_MAP.items():
         #Build file name as convention /path/satId-stateTag.csv
-        filePath = os.path.join(simulationRequest['modules']['flightDynamics']['address'], satId + "_" + propgationDataFile + ".csv")
+        filePath = os.path.join(flightDynamicsDataPath, satId + "_" + propgationDataFile + ".csv")
         #Read from file
-        if simulationRequest['modules']['flightDynamics']['data'] == 'local':
+        if source == 'local':
             orbitDataParsed = readLocalCsvToDict(filePath)
         else:
             orbitDataParsed = readRemoteCsvToDict(filePath)

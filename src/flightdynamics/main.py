@@ -172,11 +172,13 @@ def extractPropagationDataFromCsv(simulationRequest: dict) -> dict:
     satIds = [sat['id'] for sat in simulationRequest['satellites']]
     
     #Build Propagation Data object reading from stored files
+    flightDynamicsDataPath = simulationRequest['modules']['flightDynamics']['address']
+    source = simulationRequest['modules']['flightDynamics']['data']
     propagationData: dict = {}
     for satellite in simulationRequest['satellites']:
         satId = satellite['id']
         propagationData[satId]: dict = {}
-        propagationData[satId] = readCsvPropagationDataFiles(simulationRequest, satId)
+        propagationData[satId] = readCsvPropagationDataFiles(flightDynamicsDataPath, satId, source)
 
         #Validate content
         for orbitDataTag, orbitData in propagationData[satId].items():

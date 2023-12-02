@@ -21,7 +21,7 @@ def getTimestampFromDate(date: str) -> int:
         if len(dateList[-1]) > 4:
             dateList[-1] = dateList[-1][:4] 
         date = ".".join(dateList) + "Z"
-        return int(datetime.strptime(date, "%Y-%m-%dT%H:%M:%S.%fZ").replace(tzinfo=timezone.utc).timestamp() * 1000)
+        return int(datetime.strptime(date, "%Y-%m-%dT%H:%M:%S.%fZ").replace(tzinfo=UTC).timestamp() * 1000)
 
 def getDateFromTimestamp(ts: int) -> str:
         """ Convert utctimestamp [millis] to date """
@@ -36,6 +36,6 @@ def getDatetimeFromDate(date: str) -> datetime:
         if len(dateList[-1]) > 4:
             dateList[-1] = dateList[-1][:4] 
         date = ".".join(dateList) + "Z"
-        return datetime.strptime(date, "%Y-%m-%dT%H:%M:%S.%fZ").replace(tzinfo=timezone.utc)
+        return datetime.strptime(date, "%Y-%m-%dT%H:%M:%S.%fZ").replace(tzinfo=UTC)
 
 # -*- coding: utf-8 -*-

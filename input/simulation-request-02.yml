@@ -11,11 +11,7 @@ modules:
       - plot-something
 
 analysis:
-- constellation-geometry
-- userterminals-location
-- groundstations-location
 - latency
-
 
 groundstations:
 - antennas:

@@ -10,12 +10,12 @@ from random import randrange
 date = "2026-01-01T00:00:00.00"
 
 # Number of Satellites
-satellitesPerPlane = 24
+satellitesPerPlane = 6
 numberOfPlanes = 3
 
 # Geometry
 dRAAN = 60
-dM = 15
+dM = 60
 
 # Number of groundstaitons (random)
 numberOfGroundStations = 1
