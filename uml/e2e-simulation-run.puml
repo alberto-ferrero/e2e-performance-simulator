@@ -26,7 +26,7 @@ activate pst
 pst -> pst: raw data
 pst -> pst: plot
 pst -> pst: write report
-pst -> ou: save\n/YYYYMMDD-HHMMSS-simId
+pst -> ou: save\n/YYYYMMDD-HHMMSS_simId
 deactivate pst
 
 

@@ -10,12 +10,12 @@ from random import randrange
 date = "2026-01-01T00:00:00.00"
 
 # Number of Satellites
-satellitesPerPlane = 6
-numberOfPlanes = 3
+satellitesPerPlane = 24
+numberOfPlanes = 12
 
 # Geometry
-dRAAN = 60
-dM = 60
+dRAAN = 180 / numberOfPlanes
+dM = 360 / satellitesPerPlane
 
 # Number of groundstaitons (random)
 numberOfGroundStations = 1
@@ -172,7 +172,6 @@ def getGss(n: int) -> list:
         )
     return gss
 
-
 def getRsnSatellites(date: str,
                      nPlanes: int,
                      nSatsPerPlane: int,
@@ -182,7 +181,7 @@ def getRsnSatellites(date: str,
     satellites = []
     for idPlane in range(nPlanes):
         for idSat in range(nSatsPerPlane):
-            identifier = f"{idPlane}-{idSat}-{nSatsPerPlane}-{nPlanes}"
+            identifier = f"P{str(idPlane).zfill(2)}-{str(idSat).zfill(2)}"
             satellites.append(getRsnSatellite(
                 identifier, date, groundContacts))
 
@@ -197,8 +196,8 @@ def getRsnSatellite(identifier: str, date: str, groundContacts: list) -> dict:
     #groundContacts = []
     return {
         "archetype": "satellite",
-        "id": f"rsn-sat-{identifier}",
-        "name": f"RSN Sat-{identifier}",
+        "id": f"rsn-A-{identifier}",
+        "name": f"RSN Sat A {identifier}",
         "orbit": getOrbit(identifier, date),
         "mass": 510,  # TBC no info from TO
         "reflectionCoefficient": 1.8,
@@ -216,10 +215,11 @@ def getRsnSatellite(identifier: str, date: str, groundContacts: list) -> dict:
 
 def getOrbit(identifier: str, date: str, sma: float = 7428000, ecc: float = 0, inc: float = 89) -> dict:
     """ Get the orbit definition for the RSN Sat, based on the identifier:
-            identifier = #plane-#sat-#satXplane-#planes
-            Considering RAAN +30deg each plane, MA separation base on total satellites per plane
+            identifier = P#Plane-#sat
+            Considering RAAN +X deg each plane, MA separation base on total satellites per plane
     """
-    plane, index, _, _ = identifier.split("-")
+    plane, index = identifier.split("-")
+    plane = plane.replace('P', '')
     deltaM = int(plane) % 2 * dM / 2.0
     M = dM * int(index) + deltaM
     return {

@@ -3,7 +3,7 @@
 # Copyright (C)
 # Author: alberto-ferrero
 
-""" E2E Performance Simulator Flight Dynamics Provider Handler REST API Requests """
+""" E2E Performance Simulator Flight Dynamics Provider Handler: REST API Requests """
 
 from ..utils.results import AppResult
 import requests

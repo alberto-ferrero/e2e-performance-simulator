@@ -5,7 +5,7 @@
 
 from ..utils.results import AppResult
 
-""" E2E Performance Simulator Network Topology Handler File Manager """
+""" E2E Performance Simulator Network Topology Handler: File Manager """
 
 def saveNetworkData(outputDataFolderPath: str, networkData: AppResult):
     pass

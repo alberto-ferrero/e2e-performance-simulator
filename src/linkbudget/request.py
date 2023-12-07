@@ -3,7 +3,7 @@
 # Copyright (C)
 # Author: alberto-ferrero
 
-""" E2E Performance Simulator Link Budget Calculator Handler REST API Requests """
+""" E2E Performance Simulator Link Budget Calculator Handler: REST API Requests """
 
 from ..utils.results import AppResult
 import requests

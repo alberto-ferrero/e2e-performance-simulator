@@ -1,0 +1,28 @@
+@startuml
+hide footbox
+!pragma teoz true
+
+entity "User" as u
+
+box "E2E Simulator Orchestrator" #LightBlue
+participant "Orchestrator\nEngine" as orch
+database output as ou
+participant "Budgets\nExporter" as hndl
+end box
+
+database "System Budgets\nDatabase" as srv
+
+u -> orch: run -i /input/scenario.yml
+activate orch
+...
+orch -> orch: run
+...
+orch -> orch: post-process
+orch -> ou: save\n/YYYYMMDD-HHMMSS_simId
+deactivate orch
+hndl <-> ou: extract data
+activate hndl
+hndl -> srv: budgetsData
+deactivate hndl
+
+@enduml

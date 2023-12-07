@@ -8,9 +8,7 @@ import glob
 import time
 
 import pandas as pd
-import numpy as np
 import matplotlib.pyplot as plt
-import matplotlib.dates as md
 
 from ....utils.filemanager import makeOutputFolder
 

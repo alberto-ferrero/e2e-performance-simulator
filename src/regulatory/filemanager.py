@@ -5,9 +5,9 @@
 
 from ..utils.results import AppResult
 
-""" E2E Performance Simulator Regulatory Mapper Handler File Manager """
+""" E2E Performance Simulator Regulatory Mapper Handler: File Manager """
 
-def saveRegulatorynData(outputDataFolderPath: str, regulatoryData: AppResult):
+def saveRegulatoryData(outputDataFolderPath: str, regulatoryData: AppResult):
     pass
 
 # -*- coding: utf-8 -*-

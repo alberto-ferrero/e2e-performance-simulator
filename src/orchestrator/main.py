@@ -48,7 +48,7 @@ def main(inputFile: str) -> str:
     simulationRequest: dict = preProcessSimulationRequest(inputFileAbsPath)
 
     #Build output folder
-    simId = datetime.fromtimestamp(tick).strftime("%Y-%m-%d_%H-%M-%S") + "_" + simulationRequest['id']
+    simId = datetime.fromtimestamp(tick).strftime("%Y%m%d-%H%M%S") + "_" + simulationRequest['id']
     outputPath = makeOutputFolder(os.path.join(getBasePath(), 'output', simId))
     outputDataFolderPath = os.path.join(outputPath, 'data')
 

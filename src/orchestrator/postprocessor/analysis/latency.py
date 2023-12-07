@@ -30,9 +30,10 @@ from ....utils.timeconverter import getDatetimeFromDate
 from docx import Document
 
 #Constants
-Re = 6371000     #[m]
-c = 299792458    #[m/s]
-deltaAngle = 5   #[deg]
+Re = 6371000       #[m]
+c = 299792458      #[m/s]
+deltaAngle = 5     #[deg]
+limPlotDelay = 150 #[ms]
 
 """ E2E Performance Simulator Analysis: Latency """
 
@@ -40,16 +41,24 @@ def write(doc: Document, outputDataFolderPath: str, outputPlotFolderPath: str, f
     tick = time.time()
     #Read from Flight Dynamics file and extract EME2000 coordinates
     satsDf = {}
+    totSats = 0
+    totPlanes = 0
     for fileName in glob.glob(os.path.join(flightDynamicsDataOutputPath, "*_orbit-state.csv")):
         satId = fileName.split(os.sep)[-1].split("_")[0]
         df = pd.read_csv(fileName)
         df = df[['utcTime', 'X', 'Y', 'Z']].iloc[0:1]
         satsDf[satId] = df
         t = getDatetimeFromDate(df.iloc[0]['utcTime'])
+        totSats = int(satId.split("-")[-1]) if int(satId.split("-")[-1]) > totSats else totSats
+        totPlanes = int(satId.split("-")[-2].replace('P','')) if int(totPlanes.split("-")[-1].replace('P','')) > totPlanes else totPlanes 
 
     if satsDf == {}:
         return
     
+    #From index to lenght
+    totSats += 1
+    totPlanes += 1
+        
     outputAnalysFolderPath = os.path.join(outputDataFolderPath, 'analysis')
     makeOutputFolder(outputAnalysFolderPath)
 
@@ -60,7 +69,7 @@ def write(doc: Document, outputDataFolderPath: str, outputPlotFolderPath: str, f
     doc.add_heading("Signal Latency", 1)
 
     #Fixed levels for delay (HACK! should not be more than XX ms delay)
-    levels = np.linspace(0.0, 450, 11)
+    levels = np.linspace(0.0, int(limPlotDelay*(1+(300-len(fileName))/300)), 11)
 
     #Iterate considering both meshes
     lats = np.arange(-90, 90 + deltaAngle / 2.0, deltaAngle)
@@ -116,7 +125,7 @@ def write(doc: Document, outputDataFolderPath: str, outputPlotFolderPath: str, f
             for satId in satsDf:
                 lat, lng = getSatelliteLatitudeLongitude(satsDf[satId])
                 ax.scatter(lng, lat, s=10, c=['black'], alpha=0.7)
-                #[DEBUG]ax.annotate(satId, (lng, lat), fontsize=7)
+                ax.annotate(satId, (lng, lat), fontsize=7)
             ax.scatter(longitude, latitude, s=30, c=['red'], alpha=0.9)
             ax.annotate("UT", (longitude, latitude))
             #Save initial figure

@@ -10,12 +10,12 @@ from ....utils.timeconverter import getDatetimeFromDate
 
 """ E2E Performance Simulator Analysis: utilty methods """
 
-def getItalXConnections(satId: str) -> list:
-    """ Get Ital X connection, based on satellite id rsn-sat-#plane-#sat-#satXplane-#planes"""
-    rsn, satId, plane, sat, totSats, totPlanes = satId.split("-")
+def getItalXConnections(satId: str, totPlanes: int, totSats: int) -> list:
+    """ Get Ital X connection, based on satellite id rsn-P#plane-#sat """
+    rsn, plane, sat = satId.split("-")
 
-    planeM = str(int(plane) - 1 if int(plane) - 1 >= 0 else int(totPlanes) - 1)
-    planeP = str(int(plane) + 1 if int(plane) + 1 < int(totPlanes) else 0)
+    planeM = str(int(plane.replace('P', '')) - 1 if int(plane.replace('P', '')) - 1 >= 0 else int(totPlanes) - 1)
+    planeP = str(int(plane.replace('P', '')) + 1 if int(plane.replace('P', '')) + 1 < int(totPlanes) else 0)
 
     satM = str(int(sat) - 1 if int(sat) - 1 >= 0 else int(totSats) - 1)
     satP = str(int(sat) + 1 if int(sat) + 1 < int(totSats) else 0)
@@ -23,9 +23,9 @@ def getItalXConnections(satId: str) -> list:
     satPP = sat
     
     #Check border connections between upstream/downstream
-    if int(plane) == int(totPlanes) - 1:
+    if int(plane.replace('P', '')) == int(totPlanes) - 1:
         satPP = str(int(int(totSats) / 2) - int(sat) if int(int(totSats) / 2) - int(sat) >= 0 else int(int(totSats) / 2) - int(sat) + int(totSats))
-    elif int(plane) == 0:
+    elif int(plane.replace('P', '')) == 0:
         satMM = str(int(int(totSats) / 2) - int(sat) if int(int(totSats) / 2) - int(sat) >= 0 else int(int(totSats) / 2) - int(sat) + int(totSats))
     
     return ("-".join([rsn, satId, plane,  satP,  totSats, totPlanes]),
@@ -33,13 +33,12 @@ def getItalXConnections(satId: str) -> list:
             "-".join([rsn, satId, planeM, satMM, totSats, totPlanes]),
             "-".join([rsn, satId, planeP, satPP, totSats, totPlanes]))
 
-def getFlatXConnections(satId: str) -> list:
-    """ Get Flat X connection, based on satellite id rsn-sat-#plane-#sat-#satXplane-#planes"""
-    # print(satId)
-    rsn, satId, plane, sat, totSats, totPlanes = satId.split("-")
-    
-    planeM = str(int(plane) - 1 if int(plane) - 1 >= 0 else int(totPlanes) - 1)
-    planeP = str(int(plane) + 1 if int(plane) + 1 < int(totPlanes) else 0)
+def getFlatXConnections(satId: str, totPlanes: int, totSats: int) -> list:
+    """ Get Flat X connection, based on satellite id rsn-P#plane-#sat """
+    rsn, plane, sat = satId.split("-")
+        
+    planeM = str(int(plane.replace('P', '')) - 1 if int(plane.replace('P', '')) - 1 >= 0 else int(totPlanes) - 1)
+    planeP = str(int(plane.replace('P', '')) + 1 if int(plane.replace('P', '')) + 1 < int(totPlanes) else 0)
     
     satPP = str(int(sat) + 1 if int(sat) + 1 < int(totSats) else 0)
     satMP = str(int(sat) - 1 if int(sat) - 1 >= 0 else int(totSats) - 1)
@@ -47,10 +46,10 @@ def getFlatXConnections(satId: str) -> list:
     satP = sat
 
     #Check border connections between upstream/downstream
-    if int(plane) == int(totPlanes) - 1:
+    if int(plane.replace('P', '')) == int(totPlanes) - 1:
         satPP = str(int(int(totSats) / 2) - 1 - int(sat) if int(int(totSats) / 2) - 1 - int(sat) >= 0 else int(int(totSats) / 2) - 1 - int(sat) + int(totSats))
         satP = str(int(int(totSats) / 2) - int(sat) if int(int(totSats) / 2) - int(sat) >= 0 else int(int(totSats) / 2) - int(sat) + int(totSats))
-    elif int(plane) == 0:
+    elif int(plane.replace('P', '')) == 0:
         satMP = str(int(int(totSats) / 2) - 1 - int(sat) if int(int(totSats) / 2) - 1 - int(sat) >= 0 else int(int(totSats) / 2) - 1 - int(sat) + int(totSats))
         satM = str(int(int(totSats) / 2) - int(sat) if int(int(totSats) / 2) - int(sat) >= 0 else int(int(totSats) / 2) - int(sat) + int(totSats))
 

@@ -17,7 +17,7 @@ PROPAGATION_DATA_FILES_MAP = {
     "tles": "tles"
 }
 
-""" E2E Performance Simulator Flight Dynamics Provider Handler File Manager """
+""" E2E Performance Simulator Flight Dynamics Provider Handler: File Manager """
 
 def readCsvPropagationDataFiles(flightDynamicsDataPath: str, satId: str, source: str = 'local') -> list:
     """ Read csv propagation data files and validate

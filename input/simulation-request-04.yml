@@ -21,6 +21,7 @@ analysis:
 - userterminals-location
 - groundstations-location
 - contacts
+- latency
 - links
 
 groundstations:
@@ -79,9 +80,9 @@ groundstations:
     id: ant-0
   id: gs-0
   location:
-    altitude: 744
-    latitude: 11
-    longitude: 166
+    altitude: 7261
+    latitude: 24
+    longitude: -168
 satellites:
 - antennas:
   - band: S
@@ -118,16 +119,16 @@ satellites:
   - ut-2
   - ut-3
   - ut-4
-  id: rsn-sat-0-0-6-3
+  id: rsn-A-P00-00
   mass: 510
-  name: RSN Sat-0-0-6-3
+  name: RSN Sat A P00-00
   orbit:
     argumentPeriapsis: 0
     eccentricity: 0
     inclination: 89
     meanAnomaly: 0.0
     referenceFrame: EME2000
-    rightAscensionAscendingNode: 0
+    rightAscensionAscendingNode: 0.0
     semiMajorAxis: 7428000
     type: BLSKEPLERIAN
     utcTime: '2026-01-01T00:00:00.00'
@@ -182,16 +183,16 @@ satellites:
   - ut-2
   - ut-3
   - ut-4
-  id: rsn-sat-0-1-6-3
+  id: rsn-A-P00-01
   mass: 510
-  name: RSN Sat-0-1-6-3
+  name: RSN Sat A P00-01
   orbit:
     argumentPeriapsis: 0
     eccentricity: 0
     inclination: 89
     meanAnomaly: 60.0
     referenceFrame: EME2000
-    rightAscensionAscendingNode: 0
+    rightAscensionAscendingNode: 0.0
     semiMajorAxis: 7428000
     type: BLSKEPLERIAN
     utcTime: '2026-01-01T00:00:00.00'
@@ -246,16 +247,16 @@ satellites:
   - ut-2
   - ut-3
   - ut-4
-  id: rsn-sat-0-2-6-3
+  id: rsn-A-P00-02
   mass: 510
-  name: RSN Sat-0-2-6-3
+  name: RSN Sat A P00-02
   orbit:
     argumentPeriapsis: 0
     eccentricity: 0
     inclination: 89
     meanAnomaly: 120.0
     referenceFrame: EME2000
-    rightAscensionAscendingNode: 0
+    rightAscensionAscendingNode: 0.0
     semiMajorAxis: 7428000
     type: BLSKEPLERIAN
     utcTime: '2026-01-01T00:00:00.00'
@@ -310,16 +311,16 @@ satellites:
   - ut-2
   - ut-3
   - ut-4
-  id: rsn-sat-0-3-6-3
+  id: rsn-A-P00-03
   mass: 510
-  name: RSN Sat-0-3-6-3
+  name: RSN Sat A P00-03
   orbit:
     argumentPeriapsis: 0
     eccentricity: 0
     inclination: 89
     meanAnomaly: 180.0
     referenceFrame: EME2000
-    rightAscensionAscendingNode: 0
+    rightAscensionAscendingNode: 0.0
     semiMajorAxis: 7428000
     type: BLSKEPLERIAN
     utcTime: '2026-01-01T00:00:00.00'
@@ -374,16 +375,16 @@ satellites:
   - ut-2
   - ut-3
   - ut-4
-  id: rsn-sat-0-4-6-3
+  id: rsn-A-P00-04
   mass: 510
-  name: RSN Sat-0-4-6-3
+  name: RSN Sat A P00-04
   orbit:
     argumentPeriapsis: 0
     eccentricity: 0
     inclination: 89
     meanAnomaly: 240.0
     referenceFrame: EME2000
-    rightAscensionAscendingNode: 0
+    rightAscensionAscendingNode: 0.0
     semiMajorAxis: 7428000
     type: BLSKEPLERIAN
     utcTime: '2026-01-01T00:00:00.00'
@@ -438,16 +439,16 @@ satellites:
   - ut-2
   - ut-3
   - ut-4
-  id: rsn-sat-0-5-6-3
+  id: rsn-A-P00-05
   mass: 510
-  name: RSN Sat-0-5-6-3
+  name: RSN Sat A P00-05
   orbit:
     argumentPeriapsis: 0
     eccentricity: 0
     inclination: 89
     meanAnomaly: 300.0
     referenceFrame: EME2000
-    rightAscensionAscendingNode: 0
+    rightAscensionAscendingNode: 0.0
     semiMajorAxis: 7428000
     type: BLSKEPLERIAN
     utcTime: '2026-01-01T00:00:00.00'
@@ -502,16 +503,16 @@ satellites:
   - ut-2
   - ut-3
   - ut-4
-  id: rsn-sat-1-0-6-3
+  id: rsn-A-P01-00
   mass: 510
-  name: RSN Sat-1-0-6-3
+  name: RSN Sat A P01-00
   orbit:
     argumentPeriapsis: 0
     eccentricity: 0
     inclination: 89
     meanAnomaly: 30.0
     referenceFrame: EME2000
-    rightAscensionAscendingNode: 60
+    rightAscensionAscendingNode: 60.0
     semiMajorAxis: 7428000
     type: BLSKEPLERIAN
     utcTime: '2026-01-01T00:00:00.00'
@@ -566,16 +567,16 @@ satellites:
   - ut-2
   - ut-3
   - ut-4
-  id: rsn-sat-1-1-6-3
+  id: rsn-A-P01-01
   mass: 510
-  name: RSN Sat-1-1-6-3
+  name: RSN Sat A P01-01
   orbit:
     argumentPeriapsis: 0
     eccentricity: 0
     inclination: 89
     meanAnomaly: 90.0
     referenceFrame: EME2000
-    rightAscensionAscendingNode: 60
+    rightAscensionAscendingNode: 60.0
     semiMajorAxis: 7428000
     type: BLSKEPLERIAN
     utcTime: '2026-01-01T00:00:00.00'
@@ -630,16 +631,16 @@ satellites:
   - ut-2
   - ut-3
   - ut-4
-  id: rsn-sat-1-2-6-3
+  id: rsn-A-P01-02
   mass: 510
-  name: RSN Sat-1-2-6-3
+  name: RSN Sat A P01-02
   orbit:
     argumentPeriapsis: 0
     eccentricity: 0
     inclination: 89
     meanAnomaly: 150.0
     referenceFrame: EME2000
-    rightAscensionAscendingNode: 60
+    rightAscensionAscendingNode: 60.0
     semiMajorAxis: 7428000
     type: BLSKEPLERIAN
     utcTime: '2026-01-01T00:00:00.00'
@@ -694,16 +695,16 @@ satellites:
   - ut-2
   - ut-3
   - ut-4
-  id: rsn-sat-1-3-6-3
+  id: rsn-A-P01-03
   mass: 510
-  name: RSN Sat-1-3-6-3
+  name: RSN Sat A P01-03
   orbit:
     argumentPeriapsis: 0
     eccentricity: 0
     inclination: 89
     meanAnomaly: 210.0
     referenceFrame: EME2000
-    rightAscensionAscendingNode: 60
+    rightAscensionAscendingNode: 60.0
     semiMajorAxis: 7428000
     type: BLSKEPLERIAN
     utcTime: '2026-01-01T00:00:00.00'
@@ -758,16 +759,16 @@ satellites:
   - ut-2
   - ut-3
   - ut-4
-  id: rsn-sat-1-4-6-3
+  id: rsn-A-P01-04
   mass: 510
-  name: RSN Sat-1-4-6-3
+  name: RSN Sat A P01-04
   orbit:
     argumentPeriapsis: 0
     eccentricity: 0
     inclination: 89
     meanAnomaly: 270.0
     referenceFrame: EME2000
-    rightAscensionAscendingNode: 60
+    rightAscensionAscendingNode: 60.0
     semiMajorAxis: 7428000
     type: BLSKEPLERIAN
     utcTime: '2026-01-01T00:00:00.00'
@@ -822,16 +823,16 @@ satellites:
   - ut-2
   - ut-3
   - ut-4
-  id: rsn-sat-1-5-6-3
+  id: rsn-A-P01-05
   mass: 510
-  name: RSN Sat-1-5-6-3
+  name: RSN Sat A P01-05
   orbit:
     argumentPeriapsis: 0
     eccentricity: 0
     inclination: 89
     meanAnomaly: 330.0
     referenceFrame: EME2000
-    rightAscensionAscendingNode: 60
+    rightAscensionAscendingNode: 60.0
     semiMajorAxis: 7428000
     type: BLSKEPLERIAN
     utcTime: '2026-01-01T00:00:00.00'
@@ -886,16 +887,16 @@ satellites:
   - ut-2
   - ut-3
   - ut-4
-  id: rsn-sat-2-0-6-3
+  id: rsn-A-P02-00
   mass: 510
-  name: RSN Sat-2-0-6-3
+  name: RSN Sat A P02-00
   orbit:
     argumentPeriapsis: 0
     eccentricity: 0
     inclination: 89
     meanAnomaly: 0.0
     referenceFrame: EME2000
-    rightAscensionAscendingNode: 120
+    rightAscensionAscendingNode: 120.0
     semiMajorAxis: 7428000
     type: BLSKEPLERIAN
     utcTime: '2026-01-01T00:00:00.00'
@@ -950,16 +951,16 @@ satellites:
   - ut-2
   - ut-3
   - ut-4
-  id: rsn-sat-2-1-6-3
+  id: rsn-A-P02-01
   mass: 510
-  name: RSN Sat-2-1-6-3
+  name: RSN Sat A P02-01
   orbit:
     argumentPeriapsis: 0
     eccentricity: 0
     inclination: 89
     meanAnomaly: 60.0
     referenceFrame: EME2000
-    rightAscensionAscendingNode: 120
+    rightAscensionAscendingNode: 120.0
     semiMajorAxis: 7428000
     type: BLSKEPLERIAN
     utcTime: '2026-01-01T00:00:00.00'
@@ -1014,16 +1015,16 @@ satellites:
   - ut-2
   - ut-3
   - ut-4
-  id: rsn-sat-2-2-6-3
+  id: rsn-A-P02-02
   mass: 510
-  name: RSN Sat-2-2-6-3
+  name: RSN Sat A P02-02
   orbit:
     argumentPeriapsis: 0
     eccentricity: 0
     inclination: 89
     meanAnomaly: 120.0
     referenceFrame: EME2000
-    rightAscensionAscendingNode: 120
+    rightAscensionAscendingNode: 120.0
     semiMajorAxis: 7428000
     type: BLSKEPLERIAN
     utcTime: '2026-01-01T00:00:00.00'
@@ -1078,16 +1079,16 @@ satellites:
   - ut-2
   - ut-3
   - ut-4
-  id: rsn-sat-2-3-6-3
+  id: rsn-A-P02-03
   mass: 510
-  name: RSN Sat-2-3-6-3
+  name: RSN Sat A P02-03
   orbit:
     argumentPeriapsis: 0
     eccentricity: 0
     inclination: 89
     meanAnomaly: 180.0
     referenceFrame: EME2000
-    rightAscensionAscendingNode: 120
+    rightAscensionAscendingNode: 120.0
     semiMajorAxis: 7428000
     type: BLSKEPLERIAN
     utcTime: '2026-01-01T00:00:00.00'
@@ -1142,16 +1143,16 @@ satellites:
   - ut-2
   - ut-3
   - ut-4
-  id: rsn-sat-2-4-6-3
+  id: rsn-A-P02-04
   mass: 510
-  name: RSN Sat-2-4-6-3
+  name: RSN Sat A P02-04
   orbit:
     argumentPeriapsis: 0
     eccentricity: 0
     inclination: 89
     meanAnomaly: 240.0
     referenceFrame: EME2000
-    rightAscensionAscendingNode: 120
+    rightAscensionAscendingNode: 120.0
     semiMajorAxis: 7428000
     type: BLSKEPLERIAN
     utcTime: '2026-01-01T00:00:00.00'
@@ -1206,16 +1207,16 @@ satellites:
   - ut-2
   - ut-3
   - ut-4
-  id: rsn-sat-2-5-6-3
+  id: rsn-A-P02-05
   mass: 510
-  name: RSN Sat-2-5-6-3
+  name: RSN Sat A P02-05
   orbit:
     argumentPeriapsis: 0
     eccentricity: 0
     inclination: 89
     meanAnomaly: 300.0
     referenceFrame: EME2000
-    rightAscensionAscendingNode: 120
+    rightAscensionAscendingNode: 120.0
     semiMajorAxis: 7428000
     type: BLSKEPLERIAN
     utcTime: '2026-01-01T00:00:00.00'
@@ -1236,38 +1237,38 @@ satellites:
       q3: 0.0
     surface: 2
 userterminals:
-- class: medium
+- class: large
   connections: []
   id: ut-0
   location:
-    altitude: 9910
-    latitude: -13
-    longitude: 107
-- class: large
+    altitude: 5519
+    latitude: -6
+    longitude: -108
+- class: small
   connections: []
   id: ut-1
   location:
-    altitude: 6215
-    latitude: 11
-    longitude: 165
-- class: small
+    altitude: 1004
+    latitude: 84
+    longitude: 83
+- class: large
   connections: []
   id: ut-2
   location:
-    altitude: 8100
-    latitude: -7
-    longitude: -147
-- class: medium
+    altitude: 2554
+    latitude: 15
+    longitude: 22
+- class: large
   connections: []
   id: ut-3
   location:
-    altitude: 5689
-    latitude: -84
-    longitude: 63
-- class: medium
+    altitude: 8091
+    latitude: -88
+    longitude: -28
+- class: small
   connections: []
   id: ut-4
   location:
-    altitude: 845
-    latitude: 13
-    longitude: -63
+    altitude: 8558
+    latitude: 68
+    longitude: 17

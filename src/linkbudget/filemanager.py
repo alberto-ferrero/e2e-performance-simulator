@@ -5,10 +5,9 @@
 
 import os
 
-from ..utils.results import AppResult
 from ..utils.filemanager import makeOutputFolder, saveListDictToCsv
 
-""" E2E Performance Simulator Link Budget Calculator Handler File Manager """
+""" E2E Performance Simulator Link Budget Calculator Handler: File Manager """
 
 def extractLinkDataFromCsv(simulationRequest: dict) -> dict:
     """ Read from repository required csv files and parse back to link data """

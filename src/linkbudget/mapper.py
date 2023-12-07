@@ -16,7 +16,6 @@ def getSatelliteAntennaProperties(satBand: str):
             "uplinkBandwidth": 100.0 * 1e6, #[Hz]
             "downlinkBandwidth": 8000.0 * 1e6 , #[Hz]
             "txPower": 20, #[W]
-            "efficiency": 0.6 #[-]
         }
     else:
         return {
@@ -27,7 +26,6 @@ def getSatelliteAntennaProperties(satBand: str):
             "uplinkBandwidth": 100.0 * 1e6, #[Hz]
             "downlinkBandwidth": 8000.0 * 1e6 , #[Hz]
             "txPower": 20, #[W]
-            "efficiency": 0.6 #[-]
         }
  
 def getUserTerminalAntennaProperties(utClass: str):
