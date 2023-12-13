@@ -1,0 +1,28 @@
+@startuml
+hide footbox
+!pragma teoz true
+
+entity "User" as u
+
+box "E2E Simulator Orchestrator" #LightBlue
+participant "Orchestrator\nEngine" as orch
+participant "Space Link Budget\nHandler" as hndl
+end box
+
+database "git\nSpace Link Budget\nDatabase" as srv
+
+u -> orch: run -i /input/scenario.yml
+activate orch
+orch -> orch: parse(scenario)
+...
+orch -> hndl: run Space Link Budget
+activate hndl
+hndl <-> srv: git pull
+hndl -> hndl: parse(file)
+hndl -> orch: linkData
+deactivate hndl
+...
+orch -> orch: post-process
+
+
+@enduml

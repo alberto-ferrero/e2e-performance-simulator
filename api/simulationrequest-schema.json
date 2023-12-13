@@ -81,7 +81,38 @@
             "address"
           ]
         },
-        "linkBudget": {
+        "airLinkBudget": {
+          "type": "object",
+          "additionalproperties": false,
+          "properties": {
+            "data": {
+              "type": "string",
+              "enum": [
+                "local",
+                "remote",
+                "run"
+              ]
+            },
+            "address": {
+              "type": "string"
+            },
+            "report": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": [
+                  "plot-something",
+                  "analysis-somethingelse"
+                ]
+              }
+            }
+          },
+          "required": [
+            "data",
+            "address"
+          ]
+        },
+        "spaceLinkBudget": {
           "type": "object",
           "additionalproperties": false,
           "properties": {
@@ -144,37 +175,6 @@
           ]
         },
         "networkTopology": {
-          "type": "object",
-          "additionalproperties": false,
-          "properties": {
-            "data": {
-              "type": "string",
-              "enum": [
-                "local",
-                "remote",
-                "run"
-              ]
-            },
-            "address": {
-              "type": "string"
-            },
-            "report": {
-              "type": "array",
-              "items": {
-                "type": "string",
-                "enum": [
-                  "plot-something",
-                  "analysis-somethingelse"
-                ]
-              }
-            }
-          },
-          "required": [
-            "data",
-            "address"
-          ]
-        },
-        "airInterface": {
           "type": "object",
           "additionalproperties": false,
           "properties": {
@@ -638,8 +638,7 @@
               },
               "required": [
                 "id",
-                "band",
-                "orientation"
+                "band"
               ]
             }
           },

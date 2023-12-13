@@ -14,10 +14,10 @@ def postProcessSimulationData(simulationRequest: dict,
                               outputPath: str,
                               outputDataFolderPath: str,
                               flightDynamicsDataOutputPath: str,
-                              linkDataOutputPath: str,
                               regulatoryDataOutputPath: str,
-                              networkDataOutputPath: str,
-                              airinterfaceDataOutputPath: str):
+                              airLinkDataOutputPath: str,
+                              spaceLinkDataOutputPath: str,
+                              networkDataOutputPath: str):
     """ Global post processor function, based on rules defined in the Simulation Request """
     # Produce plots
     outputPlotFolderPath = os.path.join(outputPath, 'plot')
@@ -31,10 +31,10 @@ def postProcessSimulationData(simulationRequest: dict,
                 outputDataFolderPath,
                 outputReportFolderPath,
                 flightDynamicsDataOutputPath,
-                linkDataOutputPath,
                 regulatoryDataOutputPath,
+                airLinkDataOutputPath,
+                spaceLinkDataOutputPath,
                 networkDataOutputPath,
-                airinterfaceDataOutputPath,
                 outputPlotFolderPath)
 
 ##################################################################################################################

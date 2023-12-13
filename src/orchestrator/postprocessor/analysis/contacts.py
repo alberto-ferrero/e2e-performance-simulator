@@ -77,7 +77,7 @@ def write(doc: Document, outputDataFolderPath: str, outputPlotFolderPath: str, f
         
         maxContacts: list = []
         dates: list = []
-        fileName = 'analysis-' + t + '-sat-visibility'
+        fileName = 'analysis_' + t + '-sat-visibility'
         for idx, (poiId, df) in enumerate(d.items()):
             
             ###############################################################
@@ -100,7 +100,7 @@ def write(doc: Document, outputDataFolderPath: str, outputPlotFolderPath: str, f
 
         #Resize and set tags
         maxContacts = max(maxContacts)
-        yTicks = np.arange(0, maxContacts + 1, 2).tolist()
+        yTicks = np.arange(0, maxContacts + 1, int(maxContacts / 3)).tolist()
         minDate = min(dates)
         maxDate = max(dates)
         for idx, id in enumerate(d.keys()):
@@ -113,6 +113,7 @@ def write(doc: Document, outputDataFolderPath: str, outputPlotFolderPath: str, f
 
         #Save
         figPath = os.path.join(outputPlotFolderPath, fileName + '.png')
+        fig.tight_layout()
         fig.savefig(figPath, bbox_inches='tight')
         
         doc.add_paragraph('The picture below shows {} contacts, depicting the number of satellites in visibility'.format(descr))

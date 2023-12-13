@@ -29,10 +29,10 @@ from .postprocessor.postprocessor import postProcessSimulationData
 
 #Import Handlers
 from ..flightdynamics.main import getFlightDynamicsPropagationData
-from ..linkbudget.main import getLinkBudgetData
+from ..airlink.main import getAirLinkBudgetData
+from ..spacelink.main import getSpaceLinkBudgetData
 from ..networktopology.main import getNetworkTopologyData
 from ..regulatory.main import getRegulatoryMapperData
-from ..airinterface.main import getAirInterfaceAnalysisData
 from ..systembudgets.main import exportBudgetsData
     
 def main(inputFile: str) -> str:
@@ -61,16 +61,7 @@ def main(inputFile: str) -> str:
     else:
         print(' - Flight Dynamics Data not generated')
         flightDynamicsDataOutputPath = None
-
-    if 'linkBudget' in simulationRequest['modules']:
-        print(' - Getting Link Budget Data {}'.format(textDataFrom(simulationRequest['modules']['linkBudget']['data'])))
-        linkDataOutputPath: str = getLinkBudgetData(simulationRequest, outputDataFolderPath, flightDynamicsDataOutputPath)
-        print(' - Link Budget Data generated in {:.4f} seconds'.format(time.time() - tick))
-        tick = time.time()
-    else:
-        print(' - Link Budget Data not generated')
-        linkDataOutputPath = None
-
+    
     if 'regulatoryMap' in simulationRequest['modules']:
         print(' - Getting Regulatory Data {}'.format(textDataFrom(simulationRequest['modules']['regulatoryMap']['data'])))
         regulatoryDataOutputPath: str = getRegulatoryMapperData(simulationRequest, outputDataFolderPath)
@@ -79,6 +70,24 @@ def main(inputFile: str) -> str:
     else:
         print(' - Regulatory Data not generated')
         regulatoryDataOutputPath = None
+
+    if 'airLinkBudget' in simulationRequest['modules']:
+        print(' - Getting Air Link Budget Data {}'.format(textDataFrom(simulationRequest['modules']['airLinkBudget']['data'])))
+        airLinkDataOutputPath: str = getAirLinkBudgetData(simulationRequest, outputDataFolderPath, flightDynamicsDataOutputPath)
+        print(' - Air Link Budget Data generated in {:.4f} seconds'.format(time.time() - tick))
+        tick = time.time()
+    else:
+        print(' - Air Link Budget Data not generated')
+        airLinkDataOutputPath = None
+
+    if 'spaceLinkBudget' in simulationRequest['modules']:
+        print(' - Getting Space Link Budget Data {}'.format(textDataFrom(simulationRequest['modules']['spaceLinkBudget']['data'])))
+        spaceLinkDataOutputPath: str = getSpaceLinkBudgetData(simulationRequest, outputDataFolderPath, flightDynamicsDataOutputPath)
+        print(' - Space Link Budget Data generated in {:.4f} seconds'.format(time.time() - tick))
+        tick = time.time()
+    else:
+        print(' - Space Link Budget Data not generated')
+        spaceLinkDataOutputPath = None
 
     if 'networkTopology' in simulationRequest['modules']:
         print(' - Getting Network Topology Data {}'.format(textDataFrom(simulationRequest['modules']['networkTopology']['data'])))
@@ -89,15 +98,6 @@ def main(inputFile: str) -> str:
         print(' - Network Topology Data not generated')
         networkDataOutputPath = None
 
-    if 'airInterface' in simulationRequest['modules']:
-        print(' - Getting Air Interface Data {}'.format(textDataFrom(simulationRequest['modules']['airInterface']['data'])))
-        airinterfaceDataOutputPath: str = getAirInterfaceAnalysisData(simulationRequest, outputDataFolderPath)
-        print(' - Air Interface Data generated in {:.4f} seconds'.format(time.time() - tick))
-        tick = time.time()
-    else:
-        print(' - Air Interface Data not generated')
-        airinterfaceDataOutputPath = None
-
     print(' - E2E Simulation run completed in {:.4f} seconds'.format(time.time() - init))
     tick = time.time()
 
@@ -106,20 +106,20 @@ def main(inputFile: str) -> str:
                 outputPath,
                 outputDataFolderPath,
                 flightDynamicsDataOutputPath,
-                linkDataOutputPath,
                 regulatoryDataOutputPath,
-                networkDataOutputPath,
-                airinterfaceDataOutputPath)
+                airLinkDataOutputPath,
+                spaceLinkDataOutputPath,
+                networkDataOutputPath)
 
     #Export budgets    
     if 'systeBudgets' in simulationRequest['modules']:
         print(' - Exporting System Budgets Data {}'.format(textDataFrom(simulationRequest['modules']['systemBudgets']['data'])))
-        airinterfaceDataOutputPath: str = exportBudgetsData(simulationRequest, outputDataFolderPath)
+        budgetsDataOutputPath: str = exportBudgetsData(simulationRequest, outputDataFolderPath)
         print(' - System Budgets Data exported and stored in {:.4f} seconds'.format(time.time() - tick))
         tick = time.time()
     else:
         print(' - System Budgets Data export skipped')
-        airinterfaceDataOutputPath = None
+        budgetsDataOutputPath = None
 
     #Completed
     print(' - E2E Simulation post processing completed in in {:.4f} seconds\n'.format(time.time() - init))

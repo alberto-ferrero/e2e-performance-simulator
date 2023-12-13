@@ -11,10 +11,7 @@ from ..utils.filemanager import makeOutputFolder, saveListDictToCsv, readLocalCs
 #Define Propagation Data csv file tag
 PROPAGATION_DATA_FILES_MAP = {
     "orbitStateList": "orbit-state",
-    "keplerianStateList": "keplerian-state",
-    "blsKeplerianStateList": "bls-keplerian-state",
-    "contactList": "contacts",
-    "tles": "tles"
+    "contactList": "contacts"
 }
 
 """ E2E Performance Simulator Flight Dynamics Provider Handler: File Manager """

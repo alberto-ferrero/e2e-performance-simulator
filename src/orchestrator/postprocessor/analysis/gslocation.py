@@ -33,8 +33,9 @@ def write(doc: Document, outputPlotFolderPath: str, simulationRequest: dict):
 
         #Build image
         worldmap = gpd.read_file(gpd.datasets.get_path("naturalearth_lowres"))
-        fig, ax = plt.subplots()
+        fig, ax = plt.subplots(figsize=(8, 8))
         worldmap.plot(color="lightgrey", ax=ax)
+        ax.set(xlim=[-180, 180], ylim=[-90, 90])
         for gs in gss:
           lat = gs['latitude']
           lng = gs['longitude']
@@ -43,6 +44,7 @@ def write(doc: Document, outputPlotFolderPath: str, simulationRequest: dict):
         ax.set_xlabel("Longitude [deg]")
         ax.set_ylabel("Latitude [deg]")
         figPath = os.path.join(outputPlotFolderPath, "analysis_groundstations-location.png")
+        fig.tight_layout()
         fig.savefig(figPath,
                     bbox_inches='tight')
 

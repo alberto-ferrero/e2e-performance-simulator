@@ -27,10 +27,10 @@ def writeReport(simulationRequest: dict,
                 outputDataFolderPath: str,
                 outputReportFolderPath: str,
                 flightDynamicsDataOutputPath: str,
-                linkDataOutputPath: str,
                 regulatoryDataOutputPath: str,
+                airLinkDataOutputPath: str,
+                spaceLinkDataOutputPath: str,
                 networkDataOutputPath: str,
-                airinterfaceDataOutputPath: str,
                 outputPlotFolderPath: str):
     #Write report based on config request properties
     doc = Document()
@@ -72,7 +72,7 @@ def writeReport(simulationRequest: dict,
     for analyisTag in analysis:
 
         if analyisTag == 'constellation-geometry':
-            constgeom.write(doc, outputPlotFolderPath, flightDynamicsDataOutputPath)
+            constgeom.write(doc, simulationRequest, outputPlotFolderPath, flightDynamicsDataOutputPath)
 
         if analyisTag == 'groundstations-location':
             gsloc.write(doc, outputPlotFolderPath, simulationRequest)
@@ -84,7 +84,7 @@ def writeReport(simulationRequest: dict,
             contacts.write(doc, outputDataFolderPath, outputPlotFolderPath, flightDynamicsDataOutputPath)
     
         if analyisTag == 'links':
-            links.write(doc, outputDataFolderPath, outputPlotFolderPath, linkDataOutputPath)
+            links.write(doc, outputDataFolderPath, outputPlotFolderPath, airLinkDataOutputPath)
   
         if analyisTag == 'latency':
             latency.write(doc, outputDataFolderPath, outputPlotFolderPath, flightDynamicsDataOutputPath)
@@ -115,33 +115,27 @@ def writeReport(simulationRequest: dict,
                     orbit.rows[i].cells[1].text = str(v)
             doc.add_page_break()
 
-        if moduleTag == 'linkBudget' and 'report' in module:
-            #Add Link Budget Results
-            #TODO
-            pass
-
         if moduleTag == 'regulatorMap' and 'report' in module:
             #Add Regulatory Mapper Results
             #TODO
             pass
 
-        if moduleTag == 'networkTopology' and 'report' in module:
-            #Add Network Topology Results
+        if moduleTag == 'airLinkBudget' and 'report' in module:
+            #Add Air Link Budget Results
+            #TODO
+            pass
+
+        if moduleTag == 'spaceLinkBudget' and 'report' in module:
+            #Add Space Link Budget Results
             #TODO
             pass
 
         if moduleTag == 'networkTopology' and 'report' in module:
             #Add Network Topology Results
-            #TODO
-            pass
-
-        if moduleTag == 'airInterface' and 'report' in module:
-            #Add Air Interface Results
             #TODO
             pass
 
     #Save doc
-    removeFolder(os.path.join(outputPlotFolderPath, 'tmp'))
     makeOutputFolder(outputReportFolderPath)
     doc.save(os.path.join(outputReportFolderPath, "E2E_Performance_Simulator_Report.docx"))
     

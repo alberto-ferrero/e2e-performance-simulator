@@ -12,51 +12,113 @@ from ....utils.timeconverter import getDatetimeFromDate
 
 def getItalXConnections(satId: str, totPlanes: int, totSats: int) -> list:
     """ Get Ital X connection, based on satellite id rsn-P#plane-#sat """
-    rsn, plane, sat = satId.split("-")
+    rsn, constellation, plane, index = satId.split("-")
 
-    planeM = str(int(plane.replace('P', '')) - 1 if int(plane.replace('P', '')) - 1 >= 0 else int(totPlanes) - 1)
-    planeP = str(int(plane.replace('P', '')) + 1 if int(plane.replace('P', '')) + 1 < int(totPlanes) else 0)
+    plane = int(plane.replace('P', ''))
+    index = int(index)
 
-    satM = str(int(sat) - 1 if int(sat) - 1 >= 0 else int(totSats) - 1)
-    satP = str(int(sat) + 1 if int(sat) + 1 < int(totSats) else 0)
-    satMM = sat
-    satPP = sat
-    
-    #Check border connections between upstream/downstream
-    if int(plane.replace('P', '')) == int(totPlanes) - 1:
-        satPP = str(int(int(totSats) / 2) - int(sat) if int(int(totSats) / 2) - int(sat) >= 0 else int(int(totSats) / 2) - int(sat) + int(totSats))
-    elif int(plane.replace('P', '')) == 0:
-        satMM = str(int(int(totSats) / 2) - int(sat) if int(int(totSats) / 2) - int(sat) >= 0 else int(int(totSats) / 2) - int(sat) + int(totSats))
-    
-    return ("-".join([rsn, satId, plane,  satP,  totSats, totPlanes]),
-            "-".join([rsn, satId, plane,  satM,  totSats, totPlanes]),
-            "-".join([rsn, satId, planeM, satMM, totSats, totPlanes]),
-            "-".join([rsn, satId, planeP, satPP, totSats, totPlanes]))
+    planeL = str(plane - 1 if plane - 1 > 0 else int(totPlanes))
+    planeR = str(plane + 1 if plane + 1 <= int(totPlanes) else 1)
+
+    #Even plane
+    indexLU = getPlusIndex(index, totSats)
+    indexRU = getSameIndex(index, totSats)
+    indexLL = getSameIndex(index, totSats)
+    indexRL = getMinusIndex(index, totSats)
+    from pygeodesy.ellipsoidalVincenty import LatLon
+    Lat
+    #Even plane
+    if int(plane) % 2 == 0:
+        if plane == totPlanes:
+            indexRU = getPlusIndex(index, totSats, True, -1)
+    #Odd plane
+    else:
+        if plane == totPlanes:
+            indexRU = getPlusIndex(index, totSats, True, +1)
+        elif plane == 1:
+            indexLL = getPlusIndex(index, totSats, True, +2)
+
+    #To string
+    plane = str(int(plane))
+    index = str(int(index))
+    indexLU = str(int(indexLU))
+    indexRU = str(int(indexRU))
+    indexLL = str(int(indexLL))
+    indexRL = str(int(indexRL))
+
+    return ("-".join([rsn, constellation, 'P' + plane.replace('P', '').zfill(2),  indexLU.zfill(2)]),
+            "-".join([rsn, constellation, 'P' + plane.replace('P', '').zfill(2),  indexRL.zfill(2)]),
+            "-".join([rsn, constellation, 'P' + planeL.zfill(2), indexLL.zfill(2)]),
+            "-".join([rsn, constellation, 'P' + planeR.zfill(2), indexRU.zfill(2)]))
 
 def getFlatXConnections(satId: str, totPlanes: int, totSats: int) -> list:
     """ Get Flat X connection, based on satellite id rsn-P#plane-#sat """
-    rsn, plane, sat = satId.split("-")
-        
-    planeM = str(int(plane.replace('P', '')) - 1 if int(plane.replace('P', '')) - 1 >= 0 else int(totPlanes) - 1)
-    planeP = str(int(plane.replace('P', '')) + 1 if int(plane.replace('P', '')) + 1 < int(totPlanes) else 0)
+    rsn, constellation, plane, index = satId.split("-")
+
+    plane = int(plane.replace('P', ''))
+    index = int(index)
+
+    planeL = str(plane - 1 if plane - 1 > 0 else int(totPlanes))
+    planeR = str(plane + 1 if plane + 1 <= int(totPlanes) else 1)
+
+    #Even plane
+    if int(plane) % 2 == 0:
+        indexLU = getPlusIndex(index, totSats)
+        indexRU = getPlusIndex(index, totSats)
+        indexLL = getSameIndex(index, totSats)
+        indexRL = getSameIndex(index, totSats)
+
+        if plane == totPlanes:
+            indexRL = getMinusIndex(index, totSats, True, -2)
+            indexRU = getMinusIndex(index, totSats, True, -1)
+
+    #Odd plane
+    else:
+        indexLU = getSameIndex(index, totSats)
+        indexRU = getSameIndex(index, totSats)
+        indexLL = getMinusIndex(index, totSats)
+        indexRL = getMinusIndex(index, totSats)
+
+        if plane == totPlanes:
+            indexRL = getSameIndex(index, totSats, True, -1)
+            indexRU = getPlusIndex(index, totSats, True, -1)
+        elif plane == 1:
+            indexLL = getSameIndex(index, totSats, True, -2)
+            indexLU = getPlusIndex(index, totSats, True, -2)
+
+    #To string
+    plane = str(int(plane))
+    index = str(int(index))
+    indexLU = str(int(indexLU))
+    indexRU = str(int(indexRU))
+    indexLL = str(int(indexLL))
+    indexRL = str(int(indexRL))
+
+    return ("-".join([rsn, constellation, 'P' + planeL.zfill(2), indexLU.zfill(2)]),
+            "-".join([rsn, constellation, 'P' + planeL.zfill(2), indexLL.zfill(2)]),
+            "-".join([rsn, constellation, 'P' + planeR.zfill(2), indexRU.zfill(2)]),
+            "-".join([rsn, constellation, 'P' + planeR.zfill(2), indexRL.zfill(2)]))
+
+def getPlusIndex(index: int, totSats: int, reversed = False, deltaIndex = 0) -> int:
+    if reversed:
+        index += deltaIndex
+        return totSats / 2 - index + 1 if totSats / 2 - index + 1 > 0 else totSats / 2 - index + 1 + totSats
+    else:
+        return index + 1 if index + 1 <= totSats else 1
     
-    satPP = str(int(sat) + 1 if int(sat) + 1 < int(totSats) else 0)
-    satMP = str(int(sat) - 1 if int(sat) - 1 >= 0 else int(totSats) - 1)
-    satM = sat
-    satP = sat
-
-    #Check border connections between upstream/downstream
-    if int(plane.replace('P', '')) == int(totPlanes) - 1:
-        satPP = str(int(int(totSats) / 2) - 1 - int(sat) if int(int(totSats) / 2) - 1 - int(sat) >= 0 else int(int(totSats) / 2) - 1 - int(sat) + int(totSats))
-        satP = str(int(int(totSats) / 2) - int(sat) if int(int(totSats) / 2) - int(sat) >= 0 else int(int(totSats) / 2) - int(sat) + int(totSats))
-    elif int(plane.replace('P', '')) == 0:
-        satMP = str(int(int(totSats) / 2) - 1 - int(sat) if int(int(totSats) / 2) - 1 - int(sat) >= 0 else int(int(totSats) / 2) - 1 - int(sat) + int(totSats))
-        satM = str(int(int(totSats) / 2) - int(sat) if int(int(totSats) / 2) - int(sat) >= 0 else int(int(totSats) / 2) - int(sat) + int(totSats))
-
-    return ("-".join([rsn, satId, planeM, satM,  totSats, totPlanes]),
-            "-".join([rsn, satId, planeM, satMP, totSats, totPlanes]),
-            "-".join([rsn, satId, planeP, satP,  totSats, totPlanes]),
-            "-".join([rsn, satId, planeP, satPP, totSats, totPlanes]))
+def getMinusIndex(index: int, totSats: int, reversed = False, deltaIndex = 0) -> int:
+    if reversed:
+        index += deltaIndex
+        return totSats / 2 - index - 1 if totSats / 2 - index - 1 > 0 else totSats / 2 - index - 1 + totSats
+    else:
+        return index - 1 if index - 1 > 0 else totSats
+    
+def getSameIndex(index: int, totSats: int, reversed = False, deltaIndex = 0) -> int:
+    if reversed:
+       index += deltaIndex
+       return totSats / 2 - index if totSats / 2 - index > 0 else totSats / 2 - index + totSats
+    else:
+        return index
 
 def getPointFromLatLong(lat: float, lng: float, time) -> np.array:
     """ From lat and lng ([deg]) get geo point, considering perfect sphere, alt 0     
@@ -67,29 +129,32 @@ def getPointFromLatLong(lat: float, lng: float, time) -> np.array:
 def getDistance(a, b) -> float:
     return np.linalg.norm(a-b)
 
-def getMeshSatsDataframe(getMesh, satsDf: dict, contactedSatIds: list) -> dict:
-    nextSatId = contactedSatIds[-1]
+def getMeshSatsDataframe(getMesh, totPlanes: int, totSats: int, satsDf: dict, contactedSatIds: list) -> dict:
+    satId = contactedSatIds[-1]
     #Get mesh satellites, not passing from the onese already contacted
-    meshSatsIds = getMesh(nextSatId)
+    meshSatsIds = getMesh(satId, totPlanes, totSats)
     meshSatsIds = [satId for satId in meshSatsIds if satId not in contactedSatIds]
     meshDf = {}
-    for satId in meshSatsIds:
-        if satId not in satsDf:
-            raise Exception('ERROR: mesh satellite {} was not propagated, not found in Propagation Data'.format(satId))
-        meshDf[satId] = satsDf[satId]
+    for meshSatId in meshSatsIds:
+        if meshSatId not in satsDf:
+            raise Exception('ERROR: for satellite {}, mesh satellite {} was not propagated, not found in Propagation Data'.format(satId, meshSatId))
+        meshDf[meshSatId] = satsDf[meshSatId]
     return meshDf
 
-def getSatellitePosition(df) -> np.array:
-    return np.array((df.iloc[0]['X'], df.iloc[0]['Y'], df.iloc[0]['Z']))
+def getSatellitePosition(df, index=0) -> np.array:
+    return np.array((df.iloc[index]['X'], df.iloc[index]['Y'], df.iloc[index]['Z']))
 
-def getSatelliteLatitudeLongitude(df) -> (float, float):
-    pos: np.array = getSatellitePosition(df)
-    lla = pm.eci2geodetic(pos[0], pos[1], pos[2], getDatetimeFromDate(df.iloc[0]['utcTime']))
+def getSatellitePositionVelocity(df, index) -> np.array:
+    return np.array((df.iloc[index]['X'], df.iloc[index]['Y'], df.iloc[index]['Z'], df.iloc[index]['Vx'], df.iloc[index]['Vy'], df.iloc[index]['Vz']))
+
+def getSatelliteLatitudeLongitude(df, index = 0) -> (float, float):
+    pos: np.array = getSatellitePosition(df, index)
+    lla = pm.eci2geodetic(pos[0], pos[1], pos[2], getDatetimeFromDate(df.iloc[index]['utcTime']))
     return lla[0], lla[1]
 
-def getCloserSatelliteDistanceMesh(getMesh, satsDf: dict, geoPoint: np.array, contactedSatIds: list, firstSatId: str) -> (float, str):
+def getCloserSatelliteDistanceMesh(getMesh, totPlanes: int, totSats: int, satsDf: dict, geoPoint: np.array, contactedSatIds: list, firstSatId: str) -> (float, str):
     """ Iterate 1 step into mesh, get for each of the connected satellites, the next closer and choose the one with less distance as root point """
-    subSatsDf = getMeshSatsDataframe(getMesh, satsDf, contactedSatIds)
+    subSatsDf = getMeshSatsDataframe(getMesh, totPlanes, totSats, satsDf, contactedSatIds)
     if firstSatId in subSatsDf:
         return firstSatId
     #Get distance over mesh
@@ -97,7 +162,7 @@ def getCloserSatelliteDistanceMesh(getMesh, satsDf: dict, geoPoint: np.array, co
     for satId in subSatsDf:
         pos = getSatellitePosition(satsDf[satId])
         d = getDistance(pos, geoPoint)
-        nextSubSatsDf = getMeshSatsDataframe(getMesh, satsDf, contactedSatIds + [satId,])
+        nextSubSatsDf = getMeshSatsDataframe(getMesh, totPlanes, totSats, satsDf, contactedSatIds + [satId,])
         #Get closer in next step and add to distance
         dd, _ = getCloserSatelliteDistance(nextSubSatsDf, geoPoint)
         distances[dd+d] = satId

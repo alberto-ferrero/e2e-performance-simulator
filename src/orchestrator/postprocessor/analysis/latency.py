@@ -6,7 +6,6 @@
 import os
 import glob
 import time
-import datetime
 
 import geopandas as gpd
 import matplotlib.pyplot as plt
@@ -33,7 +32,6 @@ from docx import Document
 Re = 6371000       #[m]
 c = 299792458      #[m/s]
 deltaAngle = 5     #[deg]
-limPlotDelay = 150 #[ms]
 
 """ E2E Performance Simulator Analysis: Latency """
 
@@ -50,15 +48,11 @@ def write(doc: Document, outputDataFolderPath: str, outputPlotFolderPath: str, f
         satsDf[satId] = df
         t = getDatetimeFromDate(df.iloc[0]['utcTime'])
         totSats = int(satId.split("-")[-1]) if int(satId.split("-")[-1]) > totSats else totSats
-        totPlanes = int(satId.split("-")[-2].replace('P','')) if int(totPlanes.split("-")[-1].replace('P','')) > totPlanes else totPlanes 
+        totPlanes = int(satId.split("-")[-2].replace('P','')) if int(satId.split("-")[-2].replace('P','')) > totPlanes else totPlanes 
 
     if satsDf == {}:
         return
     
-    #From index to lenght
-    totSats += 1
-    totPlanes += 1
-        
     outputAnalysFolderPath = os.path.join(outputDataFolderPath, 'analysis')
     makeOutputFolder(outputAnalysFolderPath)
 
@@ -68,15 +62,16 @@ def write(doc: Document, outputDataFolderPath: str, outputPlotFolderPath: str, f
     #Write section       
     doc.add_heading("Signal Latency", 1)
 
-    #Fixed levels for delay (HACK! should not be more than XX ms delay)
-    levels = np.linspace(0.0, int(limPlotDelay*(1+(300-len(fileName))/300)), 11)
-
     #Iterate considering both meshes
     lats = np.arange(-90, 90 + deltaAngle / 2.0, deltaAngle)
     lngs = np.arange(-180, 180 + deltaAngle / 2.0, deltaAngle)
     for getMesh, tag in ((getFlatXConnections, 'Flat X'), (getItalXConnections, 'Ital X')):
         #Move around globe from focal point and calculate transmission based on speed of light
         latitudes = np.arange(0, 95, 5)
+        #Save mesh
+        with open(os.path.join(outputAnalysFolderPath, "analysis_connections-{}-mesh-time-0.txt".format(tag.replace(" ", ""))), "w") as f:
+            for satId in satsDf:
+                f.write("{} {}\n".format(satId, getMesh(satId, totPlanes, totSats)))
         images = []
         for latitude in latitudes:
             longitude = 0
@@ -99,7 +94,7 @@ def write(doc: Document, outputDataFolderPath: str, outputPlotFolderPath: str, f
                     #[DEBUG]print("\n", lat, lng, "from SAT", closerSatId, "to SAT", firstSatId)
                     while nextSatId != firstSatId:
                         #From the current point, amongh the ones in the mesh, get closer to initial geo point
-                        closerSatId = getCloserSatelliteDistanceMesh(getMesh, satsDf, firstGeoPoint, contactedSatIds + [nextSatId,], firstSatId)
+                        closerSatId = getCloserSatelliteDistanceMesh(getMesh, totPlanes, totSats, satsDf, firstGeoPoint, contactedSatIds + [nextSatId,], firstSatId)
                         #[DEBUG]print(nextSatId, [satId for satId in getMesh(nextSatId) if satId not in contactedSatIds], 'closer', closerSatId)
                         contactedSatIds.append(closerSatId)
                         #Add intersatellite distance and go to next
@@ -116,7 +111,7 @@ def write(doc: Document, outputDataFolderPath: str, outputPlotFolderPath: str, f
             worldmap = gpd.read_file(gpd.datasets.get_path("naturalearth_lowres"))
             fig, ax = plt.subplots(figsize=(8, 8))
             worldmap.plot(color="darkgrey", ax=ax)
-            cs = ax.contourf(lngs, lats, delays, levels=levels, alpha=0.3)
+            cs = ax.contourf(lngs, lats, delays, alpha=0.3)
             cf = fig.colorbar(cs, fraction=0.046, pad=0.04)
             cf.ax.set_ylabel("Latency [millis]", loc='center')
             ax.set_xlabel("Longitude [deg]")
@@ -125,20 +120,22 @@ def write(doc: Document, outputDataFolderPath: str, outputPlotFolderPath: str, f
             for satId in satsDf:
                 lat, lng = getSatelliteLatitudeLongitude(satsDf[satId])
                 ax.scatter(lng, lat, s=10, c=['black'], alpha=0.7)
-                ax.annotate(satId, (lng, lat), fontsize=7)
+                #[DEBUG]ax.annotate(satId, (lng, lat), fontsize=7)
             ax.scatter(longitude, latitude, s=30, c=['red'], alpha=0.9)
             ax.annotate("UT", (longitude, latitude))
             #Save initial figure
             if latitude == 0:
-                pd.DataFrame(delays, columns=lngs, index=lats).to_csv(os.path.join(outputAnalysFolderPath, 'analysis_latency-{}-mesh.csv'.format(tag)))
                 figPath = os.path.join(outputPlotFolderPath, "analysis_latency-{}-mesh.jpg".format(tag.replace(" ", "")))
+                fig.tight_layout()
                 fig.savefig(figPath, bbox_inches='tight')
                 doc.add_paragraph('The picture below shows signal delay in milliseconds, from an user terminal set at Latitude {} deg, Longitude {} deg, for {} mesh geometry'.format(latitude, longitude, tag))
                 p = doc.add_paragraph()
                 r = p.add_run()
                 r.add_picture(figPath)
             ax.set_title("Lat = {} deg".format(latitude))
+            pd.DataFrame(delays, columns=lngs, index=lats).to_csv(os.path.join(outputAnalysFolderPath, 'analysis_latency-{}-mesh-{}.csv'.format(tag.replace(" ", ""), latitude)))
             figTmpPath = os.path.join(tmpPath, "analysis_latency-{}-mesh-{}.jpg".format(tag.replace(" ", ""), latitude))
+            fig.tight_layout()
             fig.savefig(figTmpPath, bbox_inches='tight')
             images.append(figTmpPath)
         #Save gif

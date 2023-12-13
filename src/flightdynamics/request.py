@@ -14,7 +14,6 @@ def propagate(url: str, propagationRequest: dict) -> dict:
     payload = json.dumps(propagationRequest)
     response = requests.request("POST", url,
                                 headers={'Content-Type': 'application/json'},
-                                params={'format': 'FULL'},
                                 data=payload).json()
     if 'status' in response:
         return AppResult(response['status'], propagationRequest, response['error'])

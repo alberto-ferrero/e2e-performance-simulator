@@ -10,8 +10,8 @@ from random import randrange
 date = "2026-01-01T00:00:00.00"
 
 # Number of Satellites
-satellitesPerPlane = 24
-numberOfPlanes = 12
+satellitesPerPlane = 6
+numberOfPlanes = 3
 
 # Geometry
 dRAAN = 180 / numberOfPlanes
@@ -25,6 +25,7 @@ numberOfUserTerminals = 5
 
 ###############################################################################################
 
+
 def getBasePath() -> str:
     """ Get base path """
     currentPath = os.path.dirname(os.path.abspath(__file__))
@@ -32,8 +33,10 @@ def getBasePath() -> str:
     cpList.pop()
     return os.sep.join(cpList)
 
+
 def getLogoPath() -> str:
     return os.path.join(getBasePath(), "src", "orchestrator", "postprocessor", "logo")
+
 
 def makeOutputFolder(outputFolderPath: str) -> str:
     """ Make output folder """
@@ -45,6 +48,7 @@ def makeOutputFolder(outputFolderPath: str) -> str:
     return outputFolderPath
 
 ###############################################################################################
+
 
 def getUts(n: int) -> list:
     """ Get list of User Terminal, random location
@@ -66,28 +70,16 @@ def getUts(n: int) -> list:
         )
     return uts
 
+
 def getGss(n: int) -> list:
     """ Get list of Ground Stations, random location and LEOP stations
     """
     gss = [
         {
-            "id": "gs-svalbard",
+            "id": "gs-ssc-kiruna",
             "location": {
-                "latitude": 78.15,
-                "longitude": 16.03,
-                "altitude": 300,
-            }, "antennas": [
-                {
-                    "id": "ant-1",
-                    "band": "S"
-                }
-            ]
-        },
-        {
-            "id": "gs-chile",
-            "location": {
-                "latitude": -53.08,
-                "longitude": -70.88,
+                "latitude": 67.89,
+                "longitude": 21.05,
                 "altitude": 0,
             }, "antennas": [
                 {
@@ -97,10 +89,10 @@ def getGss(n: int) -> list:
             ]
         },
         {
-            "id": "gs-cape-town",
+            "id": "gs-ssc-yatharagga",
             "location": {
-                "latitude": -33.98,
-                "longitude": 18.81,
+                "latitude": -29.04,
+                "longitude": 115.35,
                 "altitude": 0,
             }, "antennas": [
                 {
@@ -110,11 +102,11 @@ def getGss(n: int) -> list:
             ]
         },
         {
-            "id": "gs-hartebeesthoek",
+            "id": "gs-ssc-alaska",
             "location": {
-                "latitude": -25.67,
-                "longitude": 28.05,
-                "altitude": 39,
+                "latitude": 64.80,
+                "longitude": -147.50,
+                "altitude": 0,
             }, "antennas": [
                 {
                     "id": "ant-1",
@@ -123,11 +115,11 @@ def getGss(n: int) -> list:
             ]
         },
         {
-            "id": "gs-wellington",
+            "id": "gs-ssc-inuvik",
             "location": {
-                "latitude": -41.3133,
-                "longitude": 174.74,
-                "altitude": 139,
+                "latitude": 68.32,
+                "longitude": -133.55,
+                "altitude": 0,
             }, "antennas": [
                 {
                     "id": "ant-1",
@@ -136,11 +128,37 @@ def getGss(n: int) -> list:
             ]
         },
         {
-            "id": "gs-peterborough",
+            "id": "gs-ksat-hartebeesthoek",
             "location": {
-                "latitude": -32.9004,
-                "longitude": 138.93,
-                "altitude": 4.3,
+                "latitude": -25.90,
+                "longitude": 27.69,
+                "altitude": 0,
+            }, "antennas": [
+                {
+                    "id": "ant-1",
+                    "band": "S"
+                }
+            ]
+        },
+        {
+            "id": "gs-scc-santiago",
+            "location": {
+                "latitude": -33.15,
+                "longitude": -70.67,
+                "altitude": 0,
+            }, "antennas": [
+                {
+                    "id": "ant-1",
+                    "band": "S"
+                }
+            ]
+        },
+        {
+            "id": "gs-ksat-svalbard",
+            "location": {
+                "latitude": 78.22,
+                "longitude": 15.40,
+                "altitude": 0,
             }, "antennas": [
                 {
                     "id": "ant-1",
@@ -172,6 +190,7 @@ def getGss(n: int) -> list:
         )
     return gss
 
+
 def getRsnSatellites(date: str,
                      nPlanes: int,
                      nSatsPerPlane: int,
@@ -179,39 +198,41 @@ def getRsnSatellites(date: str,
     """ Get list of satellites """
     # Generate satellites
     satellites = []
-    for idPlane in range(nPlanes):
-        for idSat in range(nSatsPerPlane):
+    for idPlane in range(1, nPlanes+1):
+        for idSat in range(1, nSatsPerPlane+1):
             identifier = f"P{str(idPlane).zfill(2)}-{str(idSat).zfill(2)}"
             satellites.append(getRsnSatellite(
                 identifier, date, groundContacts))
 
     return satellites
 
+
 def getRsnSatellite(identifier: str, date: str, groundContacts: list) -> dict:
     """ Get asset satellite, with RSN Sat properties.
         Orbit data defiened by the identifier: #plane-#index.
     """
-    #Warning! adding all groundstations and userterminals as contacts
+    # Warning! adding all groundstations and userterminals as contacts
     groundContacts = [it['id'] for it in groundstations + userterminals]
-    #groundContacts = []
+    # groundContacts = []
     return {
-        "archetype": "satellite",
+        # "archetype": "satellite",
         "id": f"rsn-A-{identifier}",
         "name": f"RSN Sat A {identifier}",
         "orbit": getOrbit(identifier, date),
-        "mass": 510,  # TBC no info from TO
-        "reflectionCoefficient": 1.8,
-        "dragCoefficient": 2.2,
-        "geometry": {
-            "shape": "parallelepiped",
-            "dimX": 1,  # TBC no info from TO
-            "dimY": 0.25,  # TBC no info from TO
-            "dimZ": 0.5  # TBC no info from TO
-        },
-        "solarArrays": getSolarArrays(),
+        # "mass": 510,  # TBC no info from TO
+        # "reflectionCoefficient": 1.8,
+        # "dragCoefficient": 2.2,
+        # "geometry": {
+        #     "shape": "parallelepiped",
+        #     "dimX": 1,  # TBC no info from TO
+        #     "dimY": 0.25,  # TBC no info from TO
+        #     "dimZ": 0.5  # TBC no info from TO
+        # },
+        # "solarArrays": getSolarArrays(),
         "antennas": getAntennas(),
         "groundContacts": groundContacts
     }
+
 
 def getOrbit(identifier: str, date: str, sma: float = 7428000, ecc: float = 0, inc: float = 89) -> dict:
     """ Get the orbit definition for the RSN Sat, based on the identifier:
@@ -219,9 +240,9 @@ def getOrbit(identifier: str, date: str, sma: float = 7428000, ecc: float = 0, i
             Considering RAAN +X deg each plane, MA separation base on total satellites per plane
     """
     plane, index = identifier.split("-")
-    plane = plane.replace('P', '')
-    deltaM = int(plane) % 2 * dM / 2.0
-    M = dM * int(index) + deltaM
+    plane = int(plane.replace('P', '')) - 1
+    index = int(index) - 1
+    M = dM * int(index) + 7.5 * (int(plane) % 2)
     return {
         "type": "BLSKEPLERIAN",
         "referenceFrame": "EME2000",
@@ -234,6 +255,7 @@ def getOrbit(identifier: str, date: str, sma: float = 7428000, ecc: float = 0, i
         "meanAnomaly": M - 360 if M > 360 else M
     }
 
+
 def getSolarArrays() -> list:
     """ Get standard solar arrays """
     sa1 = {
@@ -243,7 +265,7 @@ def getSolarArrays() -> list:
               "q0": 0.7071068,
               "q1": 0.0,
               "q2": -0.7071068,
-            "q3": 0.0
+              "q3": 0.0
         }
     }
     sa2 = {
@@ -253,37 +275,39 @@ def getSolarArrays() -> list:
               "q0": 0.7071068,
               "q1": 0.0,
               "q2": -0.7071068,
-            "q3": 0.0
+              "q3": 0.0
         }
     }
     return [sa1, sa2]
+
 
 def getAntennas() -> list:
     """ Get standard antennas """
     antS = {
         "id": "antenna-S",
         "band": "S",
-        "orientation": {
-              "q0": 1,
-              "q1": 0.0,
-              "q2": 0,
-            "q3": 0.0
-        }
+        # "orientation": {
+        #       "q0": 1,
+        #       "q1": 0.0,
+        #       "q2": 0,
+        #     "q3": 0.0
+        # }
     }
     antKa = {
         "id": "antenna-Ka",
         "band": "Ka",
-        "orientation": {
-              "q0": 1,
-              "q1": 0.0,
-              "q2": 0,
-              "q3": 0.0
-        }
+        # "orientation": {
+        #       "q0": 1,
+        #       "q1": 0.0,
+        #       "q2": 0,
+        #       "q3": 0.0
+        # }
     }
     return [antS, antKa]
 
 ###################################################################################################
 # MAIN
+
 
 # Write to output/tmp
 outputTmpPath = os.path.join(getBasePath(), 'output', 'tmp')

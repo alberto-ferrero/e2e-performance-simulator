@@ -89,6 +89,8 @@ def extractFlightDynamicsScenario(simulationRequest: dict) -> dict:
             orbitObj.pop('utcTime', None)
             return orbitObj
 
+    from ..flightdynamics import satellite as rsnsat
+
     propagationRequest = {}
 
     #Build scenario info
@@ -102,17 +104,18 @@ def extractFlightDynamicsScenario(simulationRequest: dict) -> dict:
         }
     }
 
-    #Build satellites
+    #Build satellites, considering default properties
     propagationRequest['assets'] = propagationRequest['assets'] = [
         {
             'id': sat['id'],
             'archetype': 'satellite',
             'orbit': mapSatelliteOrbit(sat['orbit']),
-            'mass': sat.get('mass', None),
-            'reflectionCoefficient': sat.get('reflectionCoefficient', None),
-            'dragCoefficient': sat.get('dragCoefficient', None),
-            'geometry': sat.get('geometry', None),
-            'solarArrays': sat.get('solarArrays', []),
+            'mass': sat.get('mass', rsnsat.mass),
+            'reflectionCoefficient': sat.get('reflectionCoefficient', rsnsat.Cr),
+            'dragCoefficient': sat.get('dragCoefficient', rsnsat.Cd),
+            'geometry': sat.get('geometry', rsnsat.getGeometry()),
+            'solarArrays': sat.get('solarArrays', rsnsat.getSolarArrays()),
+            'thrusters': sat.get('thrusters', rsnsat.getPropulsionSystem()),
             'groundContacts': sat.get('groundContacts', []),
             'spaceContacts': sat.get('spaceContacts', [])
         }
