@@ -10,6 +10,7 @@ import time
 
 from ..utils.results import AppResult
 from ..flightdynamics.filemanager import readCsvPropagationDataFiles, savePropagationData
+from ..orchestrator.preprocessor.preprocessor import readSatellites, readUserTerminals, readGroundStations
 from ..utils.filemanager import getBasePath, saveDictToJson
 from ..utils.timeconverter import getTimestampFromDate
 from .request import propagate
@@ -17,7 +18,6 @@ from .request import propagate
 """ E2E Performance Simulator Flight Dynamics Provider Handler """
 
 def getFlightDynamicsPropagationData(simulationRequest: dict, outputDataFolderPath: str) -> str:
-    
     flightDynamicsInfo = simulationRequest['modules']['flightDynamics']
     propagationRequest = {}
 
@@ -40,7 +40,9 @@ def getFlightDynamicsPropagationData(simulationRequest: dict, outputDataFolderPa
         
         #Get proagation request
         propagationRequest: dict = extractFlightDynamicsScenario(simulationRequest)
-        print('   - Launch propagation of {} satellites, {} ground stations, {} user terminals'.format(len(simulationRequest['satellites']), len(simulationRequest['groundstations']), len(simulationRequest['userterminals'])))
+        groundText = 'capturing ground contacts with {} points, '.format(len(propagationRequest['pointsOfInterest'])) if simulationRequest['satellites']['groundcontacts'] else 'no ground contacts, '
+        spaceText = 'capturing ground contacts between stellites' if simulationRequest['satellites']['spacecontacts'] else 'no space contacts'
+        print('   - Launch propagation of {} satellites, '.format(len(propagationRequest['assets'])) + groundText + spaceText)
         print('   - Propagating orbit from {} to {} ...'.format(simulationRequest['simulationWindow']['start'].replace("T", " at ").replace("Z", ""), simulationRequest['simulationWindow']['end'].replace("T", " at ").replace("Z", "")))
         
         url = flightDynamicsInfo['address']
@@ -98,13 +100,30 @@ def extractFlightDynamicsScenario(simulationRequest: dict) -> dict:
         'id': 'fd-' + simulationRequest['id'],
         "startTimestamp": getTimestampFromDate(simulationRequest['simulationWindow']['start']),
         "endTimestamp": getTimestampFromDate(simulationRequest['simulationWindow']['end']),
-        "periodicUpdate": simulationRequest['modules']['flightDynamics']['properties']['periodicUpdate'],
+        "periodicUpdate": simulationRequest['modules']['flightDynamics']['properties'].get('periodicUpdate', 0),
         "propagator": {
             "type": simulationRequest['modules']['flightDynamics']['properties']['propagator']
         }
     }
 
+    #Build points of interest, if capture ground contacts
+    propagationRequest['pointsOfInterest'] = []
+    if simulationRequest['satellites'].get('groundcontacts', False):
+        userterminals = readUserTerminals(simulationRequest)
+        groundstations = readGroundStations(simulationRequest)
+        propagationRequest['pointsOfInterest'] = [
+            {
+                'id': poi['id'],
+                'altitude': poi['location']['altitude'],
+                'latitude': poi['location']['latitude'],
+                'longitude': poi['location']['longitude']
+            }
+        for poi in  userterminals + groundstations
+        ]
+    poiIds = [poi['id'] for poi in propagationRequest['pointsOfInterest']]
+    
     #Build satellites, considering default properties
+    satellites = readSatellites(simulationRequest)
     propagationRequest['assets'] = propagationRequest['assets'] = [
         {
             'id': sat['id'],
@@ -119,83 +138,32 @@ def extractFlightDynamicsScenario(simulationRequest: dict) -> dict:
             'groundContacts': sat.get('groundContacts', []),
             'spaceContacts': sat.get('spaceContacts', [])
         }
-      for sat in simulationRequest.get('satellites', [])
+      for sat in satellites
     ]
+    satIds = [sat['id'] for sat in propagationRequest['assets']]
 
-    #Build points of interest
-    propagationRequest['pointsOfInterest'] = [
-        {
-            'id': poi['id'],
-            'altitude': poi['location']['altitude'],
-            'latitude': poi['location']['latitude'],
-            'longitude': poi['location']['longitude']
-        }
-      for poi in simulationRequest.get('groundstations', []) + simulationRequest.get('userterminals', [])
-    ]
+    #Validate contacts
+    for sat in propagationRequest['assets']:
+        for groundContactId in sat['groundContacts']:
+            if groundContactId not in poiIds:
+                raise Exception("ERROR: for satellite {}, contact with ground point {} not possible as ground point not defined as ground station nor user terminal".format(sat['id'], groundContactId))
+        if simulationRequest['satellites'].get('spacecontacts', False):
+            for spaceContactId in sat['spaceContacts']:
+                if spaceContactId not in satIds:
+                    raise Exception("ERROR: for satellite {}, contact with satellite {} not possible as ground point not defined as ground station nor user terminal".format(sat['id'], spaceContactId))
+        else:
+            sat['spaceContacts'] = []
 
     # TODO to add area of interest and angles crossing
-
     return propagationRequest
 
 def extractPropagationDataFromCsv(simulationRequest: dict) -> dict:
     """ Read from repository required csv files and parse back to propagation data """
-     
-    def validateStateTime(orbitData: list, startTimestamp: int, endTimestamp: int, satId: str, stateTag: str):
-        if getTimestampFromDate(orbitData[0]['utcTime']) != startTimestamp:
-            raise Exception('ERROR: incopatible start propagation time {} in file containing {} for satellite {}'.format(orbitData[0]['utcTime'], stateTag, satId))
-        if getTimestampFromDate(orbitData[-1]['utcTime']) != endTimestamp:
-            raise Exception('ERROR: incopatible end propagation time {} in file containing {} for satellite {}'.format(orbitData[-1]['utcTime'], stateTag, satId))
-    
-    def validateContacts(contactsData: list, startTimestamp: int, endTimestamp: int, satId: str, argOfInterestIds: list, stateTag: str):
-        if contactsData:
-            for contact in contactsData:
-                #Check time
-                if 'utcTime' in contact and getTimestampFromDate(contact['utcTime']) < startTimestamp:
-                    raise Exception('ERROR: incopatible contact as prior start propagation time {} in file containing {} for satellite {}'.format(contact['utcTime'], stateTag, satId))
-                elif 'startUtcTime' in contact and getTimestampFromDate(contact['startUtcTime']) < startTimestamp:
-                    raise Exception('ERROR: incopatible contact as prior start propagation time {} in file containing {} for satellite {}'.format(contact['startUtcTime'], stateTag, satId))
-                if 'utcTime' in contact and getTimestampFromDate(contact['utcTime']) > endTimestamp:
-                    raise Exception('ERROR: incopatible contact as after end propagation time {} in file containing {} for satellite {}'.format(contact['utcTime'], stateTag, satId))
-                elif 'endUtcTime' in contact and getTimestampFromDate(contact['startUtcTime']) > endTimestamp:
-                    raise Exception('ERROR: incopatible contact as after end propagation time {} in file containing {} for satellite {}'.format(contact['endUtcTime'], stateTag, satId))
-                #Compatible argument of interest
-                if contact['argumentOfInterestId'] not in argOfInterestIds:
-                    raise Exception('ERROR: incopatible contact as not supported argument of interest id {} in file containing {} for satellite {}'.format(contact['argumentOfInterestId'], stateTag, satId))
-
-    def validateSatelliteIds(propagationData: dict, satIds: list):
-        propSatIds = set([satId for satId in propagationData])
-        if propSatIds != set(satIds):
-            raise Exception('ERROR: requested satellites from Simulation Request ({}) are not matching the propagated data from files ({})'.format(set(satIds), propSatIds))
-
-    #Get simulation time
-    startTimestamp = getTimestampFromDate(simulationRequest['simulationWindow']['start'])
-    endTimestamp = getTimestampFromDate(simulationRequest['simulationWindow']['end'])
-
-    #Get list of assets
-    satIds = [sat['id'] for sat in simulationRequest['satellites']]
-    
     #Build Propagation Data object reading from stored files
     flightDynamicsDataPath = simulationRequest['modules']['flightDynamics']['address']
     source = simulationRequest['modules']['flightDynamics']['data']
     propagationData: dict = {}
-    for satellite in simulationRequest['satellites']:
-        satId = satellite['id']
-        propagationData[satId]: dict = {}
-        propagationData[satId] = readCsvPropagationDataFiles(flightDynamicsDataPath, satId, source)
-
-        #Validate content
-        for orbitDataTag, orbitData in propagationData[satId].items():
-            if 'State' in orbitDataTag:
-                validateStateTime(orbitData, startTimestamp, endTimestamp, satId, orbitDataTag)
-            if 'contact' in orbitDataTag:
-                #Get arguments of interest for satellite
-                groundContacts = satellite.get('groundContacts', [])
-                spaceContacts = satellite.get('spaceContacts', [])
-                validateContacts(orbitData, startTimestamp, endTimestamp, satId, set(groundContacts + spaceContacts), orbitDataTag)
-            
-    #Validate satellites
-    validateSatelliteIds(propagationData, satIds)
-
+    propagationData = readCsvPropagationDataFiles(flightDynamicsDataPath, source)
     #Validate format
     try:
         #Set validation schema

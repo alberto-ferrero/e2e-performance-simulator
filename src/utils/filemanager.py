@@ -9,6 +9,8 @@ Collection of methods to manage files and folders.
 
 import os
 import pandas as pd
+import yaml
+import re
 
 def getBasePath() -> str:
     """ Get base path """
@@ -73,3 +75,34 @@ def readRemoteCsvToDict(filePath: str) -> list:
         return df.T.apply(lambda x: x.dropna().to_dict()).tolist()
     except Exception as e:
         raise Exception('ERROR: impossible to open file and read as csv: {}, due to {}'.format(filePath, str(e)))
+    
+def readInputYmlFile(inputFilePath: str) -> dict:
+    # Try to open as yaml
+    try:
+        with open(inputFilePath) as scenarioYaml:
+
+            def add_bool(self, node):
+                """Custom FullLoader for yaml files, overwriting the bolean conversion"""
+                value: str = self.construct_scalar(node)
+                if value.lower() in ['true', 'false']:
+                    return self.bool_values[value.lower()]
+                else:
+                    return value
+
+            loader = yaml.FullLoader
+            loader.add_constructor(u'tag:yaml.org,2002:bool', add_bool)
+            loader.add_implicit_resolver(
+                    u'tag:yaml.org,2002:float',
+                    re.compile(u'''^(?:
+                        [-+]?(?:[0-9][0-9_]*)\\.[0-9_]*(?:[eE][-+]?[0-9]+)?
+                    |[-+]?(?:[0-9][0-9_]*)(?:[eE][-+]?[0-9]+)
+                    |\\.[0-9_]+(?:[eE][-+][0-9]+)?
+                    |[-+]?[0-9][0-9_]*(?::[0-5]?[0-9])+\\.[0-9_]*
+                    |[-+]?\\.(?:inf|Inf|INF)
+                    |\\.(?:nan|NaN|NAN))$''', re.X),
+                    list(u'-+0123456789.'))
+            return yaml.load(scenarioYaml, Loader=loader)
+
+    except Exception as e:
+        #Raise error
+        raise Exception('ERROR: not possible to parse input yaml file due to: {}'.format(str(e)))

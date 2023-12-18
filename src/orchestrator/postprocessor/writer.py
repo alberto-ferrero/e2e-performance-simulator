@@ -7,7 +7,8 @@ import os
 import re
 from datetime import datetime
 
-from ...utils.filemanager import getLogoPath, makeOutputFolder, removeFolder
+from ...utils.filemanager import getLogoPath, makeOutputFolder
+from ..preprocessor.preprocessor import readSatellites
 
 #Import docx
 from docx import Document
@@ -105,7 +106,8 @@ def writeReport(simulationRequest: dict,
             heading[1].text = "Orbit"
 
             # Get for each satellite orbit plot
-            for satellite in simulationRequest.get('satellites', []):
+            satellites = readSatellites(simulationRequest)
+            for satellite in satellites:
                 row = table.add_row().cells
                 row[0].text = satellite['id']
                 satellite['orbit'].pop('type')

@@ -83,6 +83,8 @@ def write(doc: Document, outputDataFolderPath: str, outputPlotFolderPath: str, f
 
             #Empty delays
             delays = np.empty(shape=(len(lats), len(lngs)))
+            worstDelay = 0
+            worstLatLng = []
             #Get closer satellite distance and calculate delay as d * c
             for i, lat in enumerate(lats):
                 for j, lng in enumerate(lngs):
@@ -105,7 +107,11 @@ def write(doc: Document, outputDataFolderPath: str, outputPlotFolderPath: str, f
                         #[DEBUG]print('Delay:', (distance / c + firstDelay) * 1000.0)
                         #[DEBUG]print(lat, lng, "from SAT", contactedSatIds[0], "to SAT", firstSatId, "\n")
                         #[DEBUG]print(contactedSatIds + [nextSatId,])
-                    delays[i][j] =  (distance / c + firstDelay) * 1000.0 #to [millis]
+                    delay = (distance / c + firstDelay) * 1000.0 #to [millis]
+                    delays[i][j] = delay
+                    if delay > worstDelay:
+                        worstDelay = delay
+                        worstLatLng = [lat, lng]
 
             #Build heat map
             worldmap = gpd.read_file(gpd.datasets.get_path("naturalearth_lowres"))
@@ -121,8 +127,10 @@ def write(doc: Document, outputDataFolderPath: str, outputPlotFolderPath: str, f
                 lat, lng = getSatelliteLatitudeLongitude(satsDf[satId])
                 ax.scatter(lng, lat, s=10, c=['black'], alpha=0.7)
                 #[DEBUG]ax.annotate(satId, (lng, lat), fontsize=7)
-            ax.scatter(longitude, latitude, s=30, c=['red'], alpha=0.9)
+            ax.scatter(longitude, latitude, s=30, c=['black'], alpha=0.9)
             ax.annotate("UT", (longitude, latitude))
+            ax.scatter(worstLatLng[1], worstLatLng[0], s=30, c=['red'], alpha=0.9, marker="*")
+            ax.annotate("WUL", (worstLatLng[1], worstLatLng[0]))
             #Save initial figure
             if latitude == 0:
                 figPath = os.path.join(outputPlotFolderPath, "analysis_latency-{}-mesh.jpg".format(tag.replace(" ", "")))
@@ -132,12 +140,23 @@ def write(doc: Document, outputDataFolderPath: str, outputPlotFolderPath: str, f
                 p = doc.add_paragraph()
                 r = p.add_run()
                 r.add_picture(figPath)
+                doc.add_paragraph('The table below summarizes position of WUL, Worst User Location, considering transmission delay from UT at different latitudes')
+                table = doc.add_table(rows=1, cols=2, style="Table Grid")
+                heading = table.rows[0].cells
+                heading[0].text = "UT Coordinates"
+                heading[1].text = "WUL Coordinates"
             ax.set_title("Lat = {} deg".format(latitude))
-            pd.DataFrame(delays, columns=lngs, index=lats).to_csv(os.path.join(outputAnalysFolderPath, 'analysis_latency-{}-mesh-{}.csv'.format(tag.replace(" ", ""), latitude)))
+            pd.DataFrame(delays, columns=lngs, index=lats).to_csv(os.path.join(outputAnalysFolderPath, 'analysis_latency-{}-mesh-{}.csv'.format(tag.replace(" ", ""), latitude)), index=False)
+            # Set value of worst condition
+            cells = table.add_row().cells
+            cells[0].text = "Lng = 00 deg\nLat = {} deg".format(str(int(latitude)).zfill(2))
+            cells[1].text = "Lng = {} deg\nLat = {} deg\nDelay = {} ms".format(str(int(worstLatLng[1])).zfill(2), str(int(worstLatLng[0])).zfill(2), str(int(worstDelay)).zfill(3))
+
             figTmpPath = os.path.join(tmpPath, "analysis_latency-{}-mesh-{}.jpg".format(tag.replace(" ", ""), latitude))
             fig.tight_layout()
             fig.savefig(figTmpPath, bbox_inches='tight')
             images.append(figTmpPath)
+
         #Save gif
         frames = [Image.open(image) for image in images]
         frame = frames[0]

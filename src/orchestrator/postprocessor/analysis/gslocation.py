@@ -8,6 +8,8 @@ import time
 import geopandas as gpd
 import matplotlib.pyplot as plt
 
+from ....orchestrator.preprocessor.preprocessor import readGroundStations
+
 #Import docx
 from docx import Document
 
@@ -22,7 +24,7 @@ def write(doc: Document, outputPlotFolderPath: str, simulationRequest: dict):
     tick = time.time()
     #Read from Simulation Request, the input ground-stations
     gss = []
-    for gs in simulationRequest['groundstations']:
+    for gs in readGroundStations(simulationRequest):
         gss.append({
             "id": gs['id'],
             "latitude": gs['location']['latitude'],

@@ -3,19 +3,21 @@
 # Copyright (C)
 # Author: alberto-ferrero
 
-from ...utils.filemanager import getBasePath
+import pandas as pd
+
+from ...utils.filemanager import getBasePath, readInputYmlFile
 from jsonschema import validate
-import yaml
 import json
-import re
 import os
 
 """ E2E Performance Simulator pre processor """
 
+NOT_DEFINED = "NOT_DEFINED"
+
 def preProcessSimulationRequest(inputFilePath: str) -> dict:
     """ Read input file and extrac Simulation Request as dictionary """
     #Read file
-    simulationRequest = readSimulationRequest(inputFilePath)
+    simulationRequest = readInputYmlFile(inputFilePath)
 
     #Validate structure
     simulationRequest = validateSimulationRequest(simulationRequest)
@@ -25,37 +27,6 @@ def preProcessSimulationRequest(inputFilePath: str) -> dict:
 
 ################################################################################################
 
-def readSimulationRequest(inputFilePath: str) -> dict:
-    # Try to open as yaml
-    try:
-        with open(inputFilePath) as scenarioYaml:
-
-            def add_bool(self, node):
-                """Custom FullLoader for yaml files, overwriting the bolean conversion"""
-                value: str = self.construct_scalar(node)
-                if value.lower() in ['true', 'false']:
-                    return self.bool_values[value.lower()]
-                else:
-                    return value
-
-            loader = yaml.FullLoader
-            loader.add_constructor(u'tag:yaml.org,2002:bool', add_bool)
-            loader.add_implicit_resolver(
-                    u'tag:yaml.org,2002:float',
-                    re.compile(u'''^(?:
-                        [-+]?(?:[0-9][0-9_]*)\\.[0-9_]*(?:[eE][-+]?[0-9]+)?
-                    |[-+]?(?:[0-9][0-9_]*)(?:[eE][-+]?[0-9]+)
-                    |\\.[0-9_]+(?:[eE][-+][0-9]+)?
-                    |[-+]?[0-9][0-9_]*(?::[0-5]?[0-9])+\\.[0-9_]*
-                    |[-+]?\\.(?:inf|Inf|INF)
-                    |\\.(?:nan|NaN|NAN))$''', re.X),
-                    list(u'-+0123456789.'))
-            return yaml.load(scenarioYaml, Loader=loader)
-
-    except Exception as e:
-        #Raise error
-        raise Exception('ERROR: not possible to parse input Simulation Request due to: {}'.format(str(e)))
-
 def validateSimulationRequest(simulationRequest: dict) -> dict:
     try:
         #Set validation schema
@@ -63,25 +34,88 @@ def validateSimulationRequest(simulationRequest: dict) -> dict:
         #Validate with schema
         with open(os.path.join(getBasePath(), simulationRequestSchema), "r") as f: 
             validate(instance=simulationRequest, schema=json.load(f))
-
-        #Additional validation, check compatibility of arguments
-        sats = simulationRequest.get('satellites', [])
-        gss = simulationRequest.get('groundstations', [])
-        uts = simulationRequest.get('userterminals', [])
-        satIds = set([sat['id'] for sat in sats])
-        groundIds = set([i['id'] for i in uts + gss])
-        for satellite in sats:
-            groundContacts = set(satellite.get('groundContacts', []))
-            spaceContacts = set(satellite.get('spaceContacts', []))
-            if not groundContacts.issubset(groundIds):
-                raise Exception('for satellite {}, ground contacts ({}) are referring to not existent ground asset ({})'.format(satellite['id'], groundContacts, groundIds))
-            if not spaceContacts.issubset(satIds):
-                raise Exception('for satellite {}, space contacts ({}) are referring to not existent satellite ({})'.format(satellite['id'], groundContacts, groundIds))
-            
         return simulationRequest
     
     except Exception as e:
         #Raise error
         raise Exception('ERROR: validation of Simulation Request failed due to: {}'.format(str(e)))
+
+################################################################################################
+
+def readSatellites(simulationRequest: dict) -> list:
+    """ Read satellites file and return validated list """
+    fileName = simulationRequest['satellites']['file']
+    satellitesFilePath = os.path.join(getBasePath(), 'data', 'satellites', fileName)
+    satellites = readInputYmlFile(satellitesFilePath)
+    #Validate format
+    try:
+        #Set validation schema
+        propagationDataSchema = os.path.join('api', 'satellites-schema.json')
+        #Validate with schema
+        with open(os.path.join(getBasePath(), propagationDataSchema), "r") as f:
+            validate(instance=satellites, schema=json.load(f))
+            return satellites['satellites']
+    except Exception as e:
+        #Raise error
+        raise Exception('ERROR: validation of Satellties list from file {} failed due to: {}'.format(satellitesFilePath, str(e)))
+
+def readGroundStations(simulationRequest: dict) -> list:
+    """ Read ground stations file and return validated list """
+    groundstationsRequest: dict = simulationRequest.get('groundstations', {})
+    fileName: str = groundstationsRequest.get('file', NOT_DEFINED)
+    if fileName == NOT_DEFINED:
+        return []
+    groundstationsFilePath = os.path.join(getBasePath(), 'data', 'groundstations', fileName)
+    groundstations = readInputYmlFile(groundstationsFilePath)
+    #Validate format
+    try:
+        #Set validation schema
+        propagationDataSchema = os.path.join('api', 'groundstations-schema.json')
+        #Validate with schema
+        with open(os.path.join(getBasePath(), propagationDataSchema), "r") as f:
+            validate(instance=groundstations, schema=json.load(f))
+            return groundstations['groundstations']
+    except Exception as e:
+        #Raise error
+        raise Exception('ERROR: validation of Ground Stations list from file {} failed due to: {}'.format(groundstationsFilePath, str(e)))
+
+def readUserTerminals(simulationRequest: dict, all: bool = False) -> list:
+    """ Read user terminals file and return validated list """
+    uts: dict = simulationRequest.get('userterminals', [])
+    if uts == []:
+        return []
+    userTerminals = []
+    import random
+    for ut in uts:
+        fileName = ut['file']
+        usage = ut['usage']
+        userterminalsFilePath = os.path.join(getBasePath(), 'data', 'userterminals', fileName)
+        df = pd.read_csv(userterminalsFilePath, delimiter=r"\s+")
+        id = "ut-" + fileName.split("_")[0]
+        n = len(df)
+        indexes = random.sample(range(n), int(usage * n)) if not all else range(n)
+        for i in indexes:
+            userTerminals.append({'id' : id + str(int(df.iloc[i]['utIndex'])),
+                                'location': {
+                                    'latitude': df.iloc[i]['utLat'],
+                                    'longitude': df.iloc[i]['utLon'],
+                                    'altitude': 0
+                                }
+                             }
+                            )
+    # TODO validation
+    # #Validate format
+    # try:
+    #     #Set validation schema
+    #     propagationDataSchema = os.path.join('api', 'groundstations-schema.json')
+    #     #Validate with schema
+    #     with open(os.path.join(getBasePath(), propagationDataSchema), "r") as f:
+    #         validate(instance=userterminals, schema=json.load(f))
+    #         return userterminals['userterminals']
+    # except Exception as e:
+    #     #Raise error
+    #     raise Exception('ERROR: validation of User Terminals list from file {} failed due to: {}'.format(userterminalsFilePath, str(e)))
+    return userTerminals
+
 
 # -*- coding: utf-8 -*-

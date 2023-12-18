@@ -3,7 +3,8 @@
     "id",
     "simulationWindow",
     "modules",
-    "analysis"
+    "analysis",
+    "satellites"
   ],
   "type": "object",
   "additionalproperties": false,
@@ -31,54 +32,93 @@
     },
     "modules": {
       "type": "object",
+      "required": [
+        "flightDynamics"
+      ],
       "additionalproperties": false,
       "properties": {
         "flightDynamics": {
-          "type": "object",
-          "additionalproperties": false,
-          "properties": {
-            "data": {
-              "type": "string",
-              "enum": [
-                "local",
-                "remote",
-                "run"
-              ]
-            },
-            "address": {
-              "type": "string"
-            },
-            "report": {
-              "type": "array",
-              "items": {
-                "type": "string",
-                "enum": [
-                  "plot-something",
-                  "analysis-somethingelse"
-                ]
-              }
-            },
-            "properties": {
+          "oneOf": [
+            {
               "type": "object",
               "additionalproperties": false,
+              "required": [
+                "data",
+                "address",
+                "properties"
+              ],
               "properties": {
-                "propagator": {
+                "data": {
                   "type": "string",
                   "enum": [
-                    "SGP4",
-                    "KEPLERIAN",
-                    "NUMERICAL"
+                    "run"
                   ]
                 },
-                "periodicUpdate": {
-                  "type": "integer"
+                "address": {
+                  "type": "string"
+                },
+                "report": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "enum": [
+                      "plot-something",
+                      "analysis-somethingelse"
+                    ]
+                  }
+                },
+                "properties": {
+                  "type": "object",
+                  "additionalproperties": false,
+                  "required": [
+                    "propagator"
+                  ],
+                  "properties": {
+                    "propagator": {
+                      "type": "string",
+                      "enum": [
+                        "SGP4",
+                        "KEPLERIAN",
+                        "NUMERICAL"
+                      ]
+                    },
+                    "periodicUpdate": {
+                      "type": "integer"
+                    }
+                  }
+                }
+              }
+            },
+            {
+              "type": "object",
+              "additionalproperties": false,
+              "required": [
+                "data",
+                "address"
+              ],
+              "properties": {
+                "data": {
+                  "type": "string",
+                  "enum": [
+                    "local",
+                    "remote"
+                  ]
+                },
+                "address": {
+                  "type": "string"
+                },
+                "report": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "enum": [
+                      "plot-something",
+                      "analysis-somethingelse"
+                    ]
+                  }
                 }
               }
             }
-          },
-          "required": [
-            "data",
-            "address"
           ]
         },
         "airLinkBudget": {
@@ -220,565 +260,58 @@
           "latency"
         ]
       }
-    },
-    "satellites": {
-      "type": "array",
-      "items": {
-        "type": "object",
-        "additionalproperties": false,
-        "properties": {
-          "id": {
-            "type": "string"
-          },
-          "geometry": {
-            "type": "object",
-            "required": [
-              "shape"
-            ],
-            "oneOf": [
-              {
-                "type": "object",
-                "required": [
-                  "shape",
-                  "latus"
-                ],
-                "properties": {
-                  "shape": {
-                    "type": "string",
-                    "enum": [
-                      "cube"
-                    ]
-                  },
-                  "latus": {
-                    "type": "number",
-                    "minimum": 0
-                  }
-                }
-              },
-              {
-                "type": "object",
-                "required": [
-                  "shape",
-                  "radius"
-                ],
-                "properties": {
-                  "shape": {
-                    "type": "string",
-                    "enum": [
-                      "sphere"
-                    ]
-                  },
-                  "radius": {
-                    "type": "number",
-                    "minimum": 0
-                  }
-                }
-              },
-              {
-                "type": "object",
-                "required": [
-                  "shape",
-                  "dimX",
-                  "dimY",
-                  "dimZ"
-                ],
-                "properties": {
-                  "shape": {
-                    "type": "string",
-                    "enum": [
-                      "parallelepiped"
-                    ]
-                  },
-                  "dimX": {
-                    "type": "number",
-                    "minimum": 0
-                  },
-                  "dimY": {
-                    "type": "number",
-                    "minimum": 0
-                  },
-                  "dimZ": {
-                    "type": "number",
-                    "minimum": 0
-                  }
-                }
-              }
-            ]
-          },
-          "orbit": {
-            "type": "object",
-            "required": [
-              "type"
-            ],
-            "oneOf": [
-              {
-                "type": "object",
-                "required": [
-                  "type",
-                  "line1",
-                  "line2"
-                ],
-                "properties": {
-                  "type": {
-                    "type": "string",
-                    "enum": [
-                      "TLE"
-                    ]
-                  },
-                  "line1": {
-                    "type": "string"
-                  },
-                  "line2": {
-                    "type": "string"
-                  }
-                }
-              },
-              {
-                "type": "object",
-                "required": [
-                  "type",
-                  "referenceFrame",
-                  "utcTime",
-                  "X",
-                  "Y",
-                  "Z",
-                  "Vx",
-                  "Vy",
-                  "Vz"
-                ],
-                "properties": {
-                  "type": {
-                    "type": "string",
-                    "enum": [
-                      "CARTESIAN"
-                    ]
-                  },
-                  "X": {
-                    "type": "number"
-                  },
-                  "Y": {
-                    "type": "number"
-                  },
-                  "Z": {
-                    "type": "number"
-                  },
-                  "Vx": {
-                    "type": "number"
-                  },
-                  "Vy": {
-                    "type": "number"
-                  },
-                  "Vz": {
-                    "type": "number"
-                  },
-                  "referenceFrame": {
-                    "type": "string",
-                    "enum": [
-                      "EME2000",
-                      "ITRF"
-                    ]
-                  },
-                  "utcTime": {
-                    "type": "string",
-                    "format": "date"
-                  }
-                }
-              },
-              {
-                "type": "object",
-                "required": [
-                  "type",
-                  "referenceFrame",
-                  "utcTime",
-                  "semiMajorAxis",
-                  "eccentricity",
-                  "inclination",
-                  "rightAscensionAscendingNode",
-                  "argumentPeriapsis",
-                  "trueAnomaly"
-                ],
-                "properties": {
-                  "type": {
-                    "type": "string",
-                    "enum": [
-                      "KEPLERIAN"
-                    ]
-                  },
-                  "semiMajorAxis": {
-                    "type": "number",
-                    "minimum": 0
-                  },
-                  "eccentricity": {
-                    "type": "number",
-                    "minimum": 0,
-                    "maximum": 1
-                  },
-                  "inclination": {
-                    "type": "number"
-                  },
-                  "rightAscensionAscendingNode": {
-                    "type": "number",
-                    "minimum": 0,
-                    "maximum": 360
-                  },
-                  "argumentPeriapsis": {
-                    "type": "number",
-                    "minimum": 0,
-                    "maximum": 360
-                  },
-                  "trueAnomaly": {
-                    "type": "number",
-                    "minimum": 0,
-                    "maximum": 360
-                  },
-                  "referenceFrame": {
-                    "type": "string",
-                    "enum": [
-                      "EME2000",
-                      "ITRF"
-                    ]
-                  },
-                  "utcTime": {
-                    "type": "string",
-                    "format": "date"
-                  }
-                }
-              },
-              {
-                "type": "object",
-                "required": [
-                  "type",
-                  "referenceFrame",
-                  "utcTime",
-                  "semiMajorAxis",
-                  "eccentricity",
-                  "inclination",
-                  "rightAscensionAscendingNode",
-                  "argumentPeriapsis",
-                  "meanAnomaly"
-                ],
-                "properties": {
-                  "type": {
-                    "type": "string",
-                    "enum": [
-                      "BLSKEPLERIAN"
-                    ]
-                  },
-                  "semiMajorAxis": {
-                    "type": "number",
-                    "minimum": 0
-                  },
-                  "eccentricity": {
-                    "type": "number",
-                    "minimum": 0,
-                    "maximum": 1
-                  },
-                  "inclination": {
-                    "type": "number"
-                  },
-                  "rightAscensionAscendingNode": {
-                    "type": "number",
-                    "minimum": 0,
-                    "maximum": 360
-                  },
-                  "argumentPeriapsis": {
-                    "type": "number",
-                    "minimum": 0,
-                    "maximum": 360
-                  },
-                  "meanAnomaly": {
-                    "type": "number",
-                    "minimum": 0,
-                    "maximum": 360
-                  },
-                  "referenceFrame": {
-                    "type": "string",
-                    "enum": [
-                      "EME2000",
-                      "ITRF"
-                    ]
-                  },
-                  "utcTime": {
-                    "type": "string",
-                    "format": "date"
-                  }
-                }
-              }
-            ]
-          },
-          "mass": {
-            "type": "number",
-            "minimum": 0
-          },
-          "reflectionCoefficient": {
-            "type": "number"
-          },
-          "dragCoefficient": {
-            "type": "number"
-          },
-          "solarArrays": {
-            "type": "array",
-            "items": {
-              "type": "object",
-              "additionalproperties": false,
-              "properties": {
-                "id": {
-                  "type": "string"
-                },
-                "surface": {
-                  "type": "number"
-                },
-                "orientation": {
-                  "type": "object",
-                  "additionalproperties": false,
-                  "properties": {
-                    "q0": {
-                      "type": "number",
-                      "minimum": -1,
-                      "maximum": 1
-                    },
-                    "q1": {
-                      "type": "number",
-                      "minimum": -1,
-                      "maximum": 1
-                    },
-                    "q2": {
-                      "type": "number",
-                      "minimum": -1,
-                      "maximum": 1
-                    },
-                    "q3": {
-                      "type": "number",
-                      "minimum": -1,
-                      "maximum": 1
-                    }
-                  },
-                  "required": [
-                    "q0",
-                    "q1",
-                    "q2",
-                    "q3"
-                  ]
-                }
-              },
-              "required": [
-                "id",
-                "surface",
-                "orientation"
-              ]
-            }
-          },
-          "TBC-isls": {
-            "type": "array",
-            "items": {
-              "type": "object",
-              "additionalproperties": false,
-              "properties": {
-                "id": {
-                  "type": "string"
-                },
-                "anotherprop": {
-                  "type": "string"
-                }
-              },
-              "required": [
-                "id",
-                "anotherprop"
-              ]
-            }
-          },
-          "antennas": {
-            "type": "array",
-            "items": {
-              "type": "object",
-              "additionalproperties": false,
-              "properties": {
-                "id": {
-                  "type": "string"
-                },
-                "band": {
-                  "type": "string",
-                  "enum": [
-                    "Ka",
-                    "S"
-                  ]
-                },
-                "orientation": {
-                  "type": "object",
-                  "additionalproperties": false,
-                  "properties": {
-                    "q0": {
-                      "type": "number",
-                      "minimum": -1,
-                      "maximum": 1
-                    },
-                    "q1": {
-                      "type": "number",
-                      "minimum": -1,
-                      "maximum": 1
-                    },
-                    "q2": {
-                      "type": "number",
-                      "minimum": -1,
-                      "maximum": 1
-                    },
-                    "q3": {
-                      "type": "number",
-                      "minimum": -1,
-                      "maximum": 1
-                    }
-                  },
-                  "required": [
-                    "q0",
-                    "q1",
-                    "q2",
-                    "q3"
-                  ]
-                }
-              },
-              "required": [
-                "id",
-                "band"
-              ]
-            }
-          },
-          "groundContacts": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            }
-          },
-          "spaceContacts": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            }
-          }
-        },
-        "required": [
-          "id",
-          "orbit"
-        ]
+    }
+  },
+  "satellites": {
+    "required": [
+      "file",
+      "groundcontacts",
+      "spacecontacts"
+    ],
+    "type": "object",
+    "additionalproperties": false,
+    "properties": {
+      "file": {
+        "type": "string"
+      },
+      "groundcontacts": {
+        "type": "boolean"
+      },
+      "spacecontacts": {
+        "type": "boolean"
       }
-    },
-    "groundstations": {
-      "type": "array",
-      "items": {
-        "type": "object",
-        "additionalproperties": false,
-        "properties": {
-          "id": {
-            "type": "string"
-          },
-          "location": {
-            "type": "object",
-            "additionalproperties": false,
-            "properties": {
-              "altitude": {
-                "type": "number"
-              },
-              "latitude": {
-                "type": "number",
-                "minimum": -90,
-                "maximum": 90
-              },
-              "longitude": {
-                "type": "number",
-                "minimum": -180,
-                "maximum": 180
-              }
-            },
-            "required": [
-              "altitude",
-              "latitude",
-              "longitude"
-            ]
-          },
-          "antennas": {
-            "type": "array",
-            "items": {
-              "type": "object",
-              "additionalproperties": false,
-              "properties": {
-                "id": {
-                  "type": "string"
-                },
-                "band": {
-                  "type": "string",
-                  "enum": [
-                    "Ka",
-                    "S"
-                  ]
-                }
-              },
-              "required": [
-                "id",
-                "band"
-              ]
-            }
-          }
-        },
-        "required": [
-          "id",
-          "location",
-          "antennas"
-        ]
+    }
+  },
+  "groundstations": {
+    "required": [
+      "file"
+    ],
+    "type": "object",
+    "additionalproperties": false,
+    "properties": {
+      "file": {
+        "type": "string"
       }
-    },
-    "userterminals": {
-      "type": "array",
-      "items": {
-        "type": "object",
-        "additionalproperties": false,
-        "properties": {
-          "id": {
-            "type": "string"
-          },
-          "location": {
-            "type": "object",
-            "additionalproperties": false,
-            "properties": {
-              "altitude": {
-                "type": "number"
-              },
-              "latitude": {
-                "type": "number",
-                "minimum": -90,
-                "maximum": 90
-              },
-              "longitude": {
-                "type": "number",
-                "minimum": -180,
-                "maximum": 180
-              }
-            },
-            "required": [
-              "altitude",
-              "latitude",
-              "longitude"
-            ]
-          },
-          "class": {
-            "type": "string",
-            "enum": [
-              "small",
-              "medium",
-              "large"
-            ]
-          },
-          "connections": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            }
-          }
+    }
+  },
+  "userterminals": {
+    "type": "array",
+    "items": {
+      "required": [
+        "file",
+        "usage"
+      ],
+      "type": "object",
+      "additionalproperties": false,
+      "properties": {
+        "file": {
+          "type": "string"
         },
-        "required": [
-          "id",
-          "location",
-          "class",
-          "connections"
-        ]
+        "usage": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        }
       }
     }
   }

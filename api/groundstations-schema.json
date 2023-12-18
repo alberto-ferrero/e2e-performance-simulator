@@ -1,0 +1,69 @@
+{
+  "required": [
+    "groundstations"
+  ],
+  "groundstations": {
+    "type": "array",
+    "items": {
+      "type": "object",
+      "additionalproperties": false,
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "location": {
+          "type": "object",
+          "additionalproperties": false,
+          "properties": {
+            "altitude": {
+              "type": "number"
+            },
+            "latitude": {
+              "type": "number",
+              "minimum": -90,
+              "maximum": 90
+            },
+            "longitude": {
+              "type": "number",
+              "minimum": -180,
+              "maximum": 180
+            }
+          },
+          "required": [
+            "altitude",
+            "latitude",
+            "longitude"
+          ]
+        },
+        "antennas": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalproperties": false,
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "band": {
+                "type": "string",
+                "enum": [
+                  "Ka",
+                  "S"
+                ]
+              }
+            },
+            "required": [
+              "id",
+              "band"
+            ]
+          }
+        }
+      },
+      "required": [
+        "id",
+        "location",
+        "antennas"
+      ]
+    }
+  }
+}

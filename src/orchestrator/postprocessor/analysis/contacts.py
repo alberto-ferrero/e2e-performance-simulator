@@ -12,6 +12,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib.dates as md
 
+from ....orchestrator.preprocessor.preprocessor import readGroundStations
 from ....utils.filemanager import makeOutputFolder
 from ....utils.timeconverter import getDatetimeFromDate
 
@@ -82,10 +83,10 @@ def write(doc: Document, outputDataFolderPath: str, outputPlotFolderPath: str, f
             
             ###############################################################
             #Extract number of contacts
-            startTimeDf: pd.DataFrame = df[['startUtcTime']].copy()
+            startTimeDf: pd.DataFrame = df[['satId', 'startUtcTime']].copy()
             startTimeDf.rename(columns={"startUtcTime": "time"}, inplace=True)
             startTimeDf['contact'] = 1
-            endTimeDf: pd.DataFrame = df[['endUtcTime']].copy()
+            endTimeDf: pd.DataFrame = df[['satId', 'endUtcTime']].copy()
             endTimeDf.rename(columns={"endUtcTime": "time"}, inplace=True)
             endTimeDf['contact'] = -1
             contactTimeDf = pd.concat([startTimeDf, endTimeDf], ignore_index=True)
@@ -115,7 +116,7 @@ def write(doc: Document, outputDataFolderPath: str, outputPlotFolderPath: str, f
         figPath = os.path.join(outputPlotFolderPath, fileName + '.png')
         fig.tight_layout()
         fig.savefig(figPath, bbox_inches='tight')
-        
+
         doc.add_paragraph('The picture below shows {} contacts, depicting the number of satellites in visibility'.format(descr))
         p = doc.add_paragraph()
         r = p.add_run()
@@ -124,5 +125,12 @@ def write(doc: Document, outputDataFolderPath: str, outputPlotFolderPath: str, f
     plt.close('all')
     print('   - Added section on Ground Stations and User Terminals Contacts in {:.4f} seconds'.format(time.time() - tick))
 
+def getGroundPoint(simulationRequest: dict, poiId: str):
+    """ Get from the Simulation Request, the object (GS or UT) based on the id """
+    pois = simulationRequest.get('userterminals', []) + simulationRequest.get('groundstations', [])
+    for poi in pois:
+        if poi['id'] == poiId:
+            return poi
+    raise Exception('ERROR: ground point with id {} is not defined in Simulation Request, but found in propagation data'.format(poiId))
 
 # -*- coding: utf-8 -*-

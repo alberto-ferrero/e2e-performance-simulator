@@ -25,8 +25,7 @@ def getItalXConnections(satId: str, totPlanes: int, totSats: int) -> list:
     indexRU = getSameIndex(index, totSats)
     indexLL = getSameIndex(index, totSats)
     indexRL = getMinusIndex(index, totSats)
-    from pygeodesy.ellipsoidalVincenty import LatLon
-    Lat
+
     #Even plane
     if int(plane) % 2 == 0:
         if plane == totPlanes:

@@ -10,8 +10,8 @@ from random import randrange
 date = "2026-01-01T00:00:00.00"
 
 # Number of Satellites
-satellitesPerPlane = 6
-numberOfPlanes = 3
+satellitesPerPlane = 24
+numberOfPlanes = 12
 
 # Geometry
 dRAAN = 180 / numberOfPlanes
@@ -21,7 +21,7 @@ dM = 360 / satellitesPerPlane
 numberOfGroundStations = 1
 
 # Number of userterminals (random)
-numberOfUserTerminals = 5
+numberOfUserTerminals = 0
 
 ###############################################################################################
 
@@ -193,8 +193,7 @@ def getGss(n: int) -> list:
 
 def getRsnSatellites(date: str,
                      nPlanes: int,
-                     nSatsPerPlane: int,
-                     groundContacts: list) -> list:
+                     nSatsPerPlane: int) -> list:
     """ Get list of satellites """
     # Generate satellites
     satellites = []
@@ -202,18 +201,15 @@ def getRsnSatellites(date: str,
         for idSat in range(1, nSatsPerPlane+1):
             identifier = f"P{str(idPlane).zfill(2)}-{str(idSat).zfill(2)}"
             satellites.append(getRsnSatellite(
-                identifier, date, groundContacts))
+                identifier, date))
 
     return satellites
 
 
-def getRsnSatellite(identifier: str, date: str, groundContacts: list) -> dict:
+def getRsnSatellite(identifier: str, date: str) -> dict:
     """ Get asset satellite, with RSN Sat properties.
         Orbit data defiened by the identifier: #plane-#index.
     """
-    # Warning! adding all groundstations and userterminals as contacts
-    groundContacts = [it['id'] for it in groundstations + userterminals]
-    # groundContacts = []
     return {
         # "archetype": "satellite",
         "id": f"rsn-A-{identifier}",
@@ -229,8 +225,7 @@ def getRsnSatellite(identifier: str, date: str, groundContacts: list) -> dict:
         #     "dimZ": 0.5  # TBC no info from TO
         # },
         # "solarArrays": getSolarArrays(),
-        "antennas": getAntennas(),
-        "groundContacts": groundContacts
+        "antennas": getAntennas()
     }
 
 
@@ -321,7 +316,6 @@ userterminals = getUts(numberOfUserTerminals)
 
 # Generate satellites
 satellites = getRsnSatellites(date=date,
-                              groundContacts=groundstations + userterminals,
                               nPlanes=numberOfPlanes,
                               nSatsPerPlane=satellitesPerPlane)
 

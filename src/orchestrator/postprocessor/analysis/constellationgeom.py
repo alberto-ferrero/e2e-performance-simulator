@@ -55,7 +55,7 @@ def write(doc: Document, simulationRequest: dict, outputPlotFolderPath: str, fli
         kepl = pyorb.cart_to_kep(getSatellitePositionVelocity(constDf[satId], index=0)).tolist()
         raan.append(kepl[4] * 180.0 / pi)
         la.append((kepl[3] + kepl[5]) * 180.0 / pi)
-        la[-1] = la[-1] if la[-1] < 359.99 else la[-1] - 359.99
+        la[-1] = la[-1] if la[-1] < 355 else 0
 
     #Get list of timestamps
     [set(utcTimestamps)].sort()

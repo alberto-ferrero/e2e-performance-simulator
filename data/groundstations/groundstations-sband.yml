@@ -1,0 +1,67 @@
+groundstations:
+- antennas:
+  - band: S
+    id: ant-1
+  id: gs-ssc-kiruna
+  location:
+    altitude: 0
+    latitude: 67.89
+    longitude: 21.05
+- antennas:
+  - band: S
+    id: ant-1
+  id: gs-ssc-yatharagga
+  location:
+    altitude: 0
+    latitude: -29.04
+    longitude: 115.35
+- antennas:
+  - band: S
+    id: ant-1
+  id: gs-ssc-alaska
+  location:
+    altitude: 0
+    latitude: 64.8
+    longitude: -147.5
+- antennas:
+  - band: S
+    id: ant-1
+  id: gs-ssc-inuvik
+  location:
+    altitude: 0
+    latitude: 68.32
+    longitude: -133.55
+- antennas:
+  - band: S
+    id: ant-1
+  id: gs-ksat-hartebeesthoek
+  location:
+    altitude: 0
+    latitude: -25.9
+    longitude: 27.69
+- antennas:
+  - band: S
+    id: ant-1
+  id: gs-scc-santiago
+  location:
+    altitude: 0
+    latitude: -33.15
+    longitude: -70.67
+- antennas:
+  - band: S
+    id: ant-1
+  id: gs-ksat-svalbard
+  location:
+    altitude: 0
+    latitude: 78.22
+    longitude: 15.4
+- antennas:
+  - band: S
+    id: ant-1
+  - band: Ka
+    id: ant-0
+  id: gs-0
+  location:
+    altitude: 2900
+    latitude: -17
+    longitude: -88
