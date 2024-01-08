@@ -10,8 +10,8 @@ from random import randrange
 date = "2026-01-01T00:00:00.00"
 
 # Number of Satellites
-satellitesPerPlane = 24
-numberOfPlanes = 12
+satellitesPerPlane = 6
+numberOfPlanes = 3
 
 # Geometry
 dRAAN = 180 / numberOfPlanes
@@ -24,7 +24,6 @@ numberOfGroundStations = 1
 numberOfUserTerminals = 0
 
 ###############################################################################################
-
 
 def getBasePath() -> str:
     """ Get base path """
@@ -49,6 +48,80 @@ def makeOutputFolder(outputFolderPath: str) -> str:
 
 ###############################################################################################
 
+def getMeshContacts(identifier: str, mesh: str) -> list:
+    """ Get list of connected satellites
+    """
+    def getPlusIndex(index: int) -> int:
+        return index + 1 if index + 1 <= satellitesPerPlane else 1
+        
+    def getMinusIndex(index: int) -> int:
+        return index - 1 if index - 1 > 0 else satellitesPerPlane
+        
+    def getSameIndex(index: int) -> int:
+        return index
+    
+    plane, index = identifier.split("-")
+    plane = int(plane.replace('P', ''))
+    index = int(index)
+
+    spaceContacts = []
+    planeL = str(plane - 1 if plane - 1 > 0 else int(numberOfPlanes))
+    planeR = str(plane + 1 if plane + 1 <= int(numberOfPlanes) else 1)
+
+    if mesh == 'flatX':
+        #Even plane
+        if int(plane) % 2 == 0:
+            indexLU = getPlusIndex(index)
+            indexRU = getPlusIndex(index)
+            indexLL = getSameIndex(index)
+            indexRL = getSameIndex(index)
+        #Odd plane
+        else:
+            indexLU = getSameIndex(index)
+            indexRU = getSameIndex(index)
+            indexLL = getMinusIndex(index)
+            indexRL = getMinusIndex(index)
+        #To string
+        index = str(int(index))
+        indexLU = str(int(indexLU))
+        indexRU = str(int(indexRU))
+        indexLL = str(int(indexLL))
+        indexRL = str(int(indexRL))
+        spaceContacts= ["-".join(["rsn-A", 'P' + planeL.zfill(2), indexLU.zfill(2)]),
+                        "-".join(["rsn-A", 'P' + planeR.zfill(2), indexRL.zfill(2)]),
+                        "-".join(["rsn-A", 'P' + planeL.zfill(2), indexLL.zfill(2)]),
+                        "-".join(["rsn-A", 'P' + planeR.zfill(2), indexRU.zfill(2)])]
+    elif mesh == 'italX':
+        indexLU = getPlusIndex(index)
+        indexRU = getSameIndex(index)
+        indexLL = getSameIndex(index)
+        indexRL = getMinusIndex(index)
+        #To string
+        plane = str(int(plane))
+        index = str(int(index))
+        indexLU = str(int(indexLU))
+        indexRU = str(int(indexRU))
+        indexLL = str(int(indexLL))
+        indexRL = str(int(indexRL))
+        spaceContacts= ["-".join(["rsn-A", 'P' + planeL.zfill(2), indexLU.zfill(2)]),
+                        "-".join(["rsn-A", 'P' + plane.zfill(2),  indexLL.zfill(2)]),
+                        "-".join(["rsn-A", 'P' + plane.zfill(2),  indexRU.zfill(2)]),
+                        "-".join(["rsn-A", 'P' + planeR.zfill(2), indexRL.zfill(2)])]
+    else:
+        return Exception("ERROR: not recognized mesh tag")
+    
+    #Add extra for border conditions
+    if plane == 1:
+        p = str(numberOfPlanes).zfill(2)
+        for i in range(1,satellitesPerPlane+1):
+            spaceContacts.append(f"rsn-A-P{p}-{str(i).zfill(2)}")
+    elif plane == numberOfPlanes:
+        p = str(1).zfill(2)
+        for i in range(1,satellitesPerPlane+1):
+            spaceContacts.append(f"rsn-A-P{p}-{str(i).zfill(2)}")
+    spaceContacts: list = list(set(spaceContacts))
+    spaceContacts.sort()
+    return spaceContacts
 
 def getUts(n: int) -> list:
     """ Get list of User Terminal, random location
@@ -74,6 +147,7 @@ def getUts(n: int) -> list:
 def getGss(n: int) -> list:
     """ Get list of Ground Stations, random location and LEOP stations
     """
+    gss = []
     gss = [
         {
             "id": "gs-ssc-kiruna",
@@ -167,33 +241,50 @@ def getGss(n: int) -> list:
             ]
         }
     ]
-    for index in range(n):
-        gss.append(
-            {
-                "id": f"gs-{index}",
-                "location": {
-                    "latitude": randrange(-90, 91),
-                    "longitude": randrange(-180, 181),
-                    "altitude": randrange(0, 10000),
-                },
-                "antennas": [
-                    {
-                        "id": "ant-1",
-                        "band": "S"
-                    },
-                    {
-                        "id": "ant-0",
-                        "band": "Ka"
-                    }
-                ]
-            }
-        )
+    # for index in range(n):
+        # gss.append(
+        #     {
+        #         "id": f"gs-{index}",
+        #         "location": {
+        #             "latitude": randrange(-90, 91),
+        #             "longitude": randrange(-180, 181),
+        #             "altitude": randrange(0, 10000),
+        #         },
+        #         "antennas": [
+        #             {
+        #                 "id": "ant-1",
+        #                 "band": "S"
+        #             },
+        #             {
+        #                 "id": "ant-0",
+        #                 "band": "Ka"
+        #             }
+        #         ]
+        #     }
+        # )
+    # import numpy as np
+    # lats = np.arange(0, 90 + 2 / 2.0, 2)
+    # for lat in lats:
+    #     gss.append({
+    #         "id": "gs-lat-{}".format(float(lat)),
+    #         "location": {
+    #             "latitude": float(lat),
+    #             "longitude": 0,
+    #             "altitude": 0,
+    #         }, "antennas": [
+    #             {
+    #                 "id": "ant-1",
+    #                 "band": "S"
+    #             }
+    #         ]
+    #     }
+    #     )
     return gss
-
 
 def getRsnSatellites(date: str,
                      nPlanes: int,
-                     nSatsPerPlane: int) -> list:
+                     nSatsPerPlane: int,
+                     gss: list) -> list:
     """ Get list of satellites """
     # Generate satellites
     satellites = []
@@ -201,12 +292,12 @@ def getRsnSatellites(date: str,
         for idSat in range(1, nSatsPerPlane+1):
             identifier = f"P{str(idPlane).zfill(2)}-{str(idSat).zfill(2)}"
             satellites.append(getRsnSatellite(
-                identifier, date))
+                identifier, date, gss))
 
     return satellites
 
 
-def getRsnSatellite(identifier: str, date: str) -> dict:
+def getRsnSatellite(identifier: str, date: str, gss: list = []) -> dict:
     """ Get asset satellite, with RSN Sat properties.
         Orbit data defiened by the identifier: #plane-#index.
     """
@@ -220,12 +311,14 @@ def getRsnSatellite(identifier: str, date: str) -> dict:
         # "dragCoefficient": 2.2,
         # "geometry": {
         #     "shape": "parallelepiped",
-        #     "dimX": 1,  # TBC no info from TO
-        #     "dimY": 0.25,  # TBC no info from TO
-        #     "dimZ": 0.5  # TBC no info from TO
+        #     "dimX": 2.10,  #TBC no info from TO
+        #     "dimY": 0.5,   #TBC no info from TO
+        #     "dimZ": 1.57   #TBC no info from TO
         # },
         # "solarArrays": getSolarArrays(),
-        "antennas": getAntennas()
+        "antennas": getAntennas(),
+        "groundContacts": [gs['id'] for gs in gss],
+        "spaceContacts": getMeshContacts(identifier, 'flatX')
     }
 
 
@@ -255,7 +348,7 @@ def getSolarArrays() -> list:
     """ Get standard solar arrays """
     sa1 = {
         "id": "solar-array-left",
-        "surface": 2,
+        "surface": 12,
         "orientation": {
               "q0": 0.7071068,
               "q1": 0.0,
@@ -265,7 +358,7 @@ def getSolarArrays() -> list:
     }
     sa2 = {
         "id": "solar-array-right",
-        "surface": 2,
+        "surface": 12,
         "orientation": {
               "q0": 0.7071068,
               "q1": 0.0,
@@ -317,7 +410,8 @@ userterminals = getUts(numberOfUserTerminals)
 # Generate satellites
 satellites = getRsnSatellites(date=date,
                               nPlanes=numberOfPlanes,
-                              nSatsPerPlane=satellitesPerPlane)
+                              nSatsPerPlane=satellitesPerPlane,
+                              gss=groundstations)
 
 # All assets
 assets = {

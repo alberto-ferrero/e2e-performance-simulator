@@ -8,22 +8,22 @@ modules:
     data: run
     address: http://localhost:8081/flight-dynamics/api/v1/propagation-data
     properties:
-      propagator: NUMERICAL
-      periodicUpdate: 500000
+      propagator: KEPLERIAN
+      periodicUpdate: 100000
     report:
     - plot-something
 
 analysis:
+- network
 - constellation-geometry
-- userterminals-location
-- groundstations-location
+- contacts
 
 groundstations:
   file: groundstations-sband.yml
 satellites:
-  file: rsn-018-constellation.yml
+  file: rsn-072-constellation-w-sat-contacts.yml
   groundcontacts: true
-  spacecontacts: false
+  spacecontacts: true
 userterminals:
 - file: 01R_Gov_Defense.txt
   usage: 0.6

@@ -1,0 +1,3217 @@
+satellites:
+- antennas:
+  - band: S
+    id: antenna-S
+  - band: Ka
+    id: antenna-Ka
+  groundContacts:
+  - gs-ssc-kiruna
+  - gs-ssc-yatharagga
+  - gs-ssc-alaska
+  - gs-ssc-inuvik
+  - gs-ksat-hartebeesthoek
+  - gs-scc-santiago
+  - gs-ksat-svalbard
+  id: rsn-A-P01-01
+  name: RSN Sat A P01-01
+  orbit:
+    argumentPeriapsis: 0
+    eccentricity: 0
+    inclination: 89
+    meanAnomaly: 0.0
+    referenceFrame: EME2000
+    rightAscensionAscendingNode: 0.0
+    semiMajorAxis: 7428000
+    type: BLSKEPLERIAN
+    utcTime: '2026-01-01T00:00:00.00'
+  spaceContacts:
+  - rsn-A-P02-01
+  - rsn-A-P02-24
+  - rsn-A-P03-01
+  - rsn-A-P03-02
+  - rsn-A-P03-03
+  - rsn-A-P03-04
+  - rsn-A-P03-05
+  - rsn-A-P03-06
+  - rsn-A-P03-07
+  - rsn-A-P03-08
+  - rsn-A-P03-09
+  - rsn-A-P03-10
+  - rsn-A-P03-11
+  - rsn-A-P03-12
+  - rsn-A-P03-13
+  - rsn-A-P03-14
+  - rsn-A-P03-15
+  - rsn-A-P03-16
+  - rsn-A-P03-17
+  - rsn-A-P03-18
+  - rsn-A-P03-19
+  - rsn-A-P03-20
+  - rsn-A-P03-21
+  - rsn-A-P03-22
+  - rsn-A-P03-23
+  - rsn-A-P03-24
+- antennas:
+  - band: S
+    id: antenna-S
+  - band: Ka
+    id: antenna-Ka
+  groundContacts:
+  - gs-ssc-kiruna
+  - gs-ssc-yatharagga
+  - gs-ssc-alaska
+  - gs-ssc-inuvik
+  - gs-ksat-hartebeesthoek
+  - gs-scc-santiago
+  - gs-ksat-svalbard
+  id: rsn-A-P01-02
+  name: RSN Sat A P01-02
+  orbit:
+    argumentPeriapsis: 0
+    eccentricity: 0
+    inclination: 89
+    meanAnomaly: 15.0
+    referenceFrame: EME2000
+    rightAscensionAscendingNode: 0.0
+    semiMajorAxis: 7428000
+    type: BLSKEPLERIAN
+    utcTime: '2026-01-01T00:00:00.00'
+  spaceContacts:
+  - rsn-A-P02-01
+  - rsn-A-P02-02
+  - rsn-A-P03-01
+  - rsn-A-P03-02
+  - rsn-A-P03-03
+  - rsn-A-P03-04
+  - rsn-A-P03-05
+  - rsn-A-P03-06
+  - rsn-A-P03-07
+  - rsn-A-P03-08
+  - rsn-A-P03-09
+  - rsn-A-P03-10
+  - rsn-A-P03-11
+  - rsn-A-P03-12
+  - rsn-A-P03-13
+  - rsn-A-P03-14
+  - rsn-A-P03-15
+  - rsn-A-P03-16
+  - rsn-A-P03-17
+  - rsn-A-P03-18
+  - rsn-A-P03-19
+  - rsn-A-P03-20
+  - rsn-A-P03-21
+  - rsn-A-P03-22
+  - rsn-A-P03-23
+  - rsn-A-P03-24
+- antennas:
+  - band: S
+    id: antenna-S
+  - band: Ka
+    id: antenna-Ka
+  groundContacts:
+  - gs-ssc-kiruna
+  - gs-ssc-yatharagga
+  - gs-ssc-alaska
+  - gs-ssc-inuvik
+  - gs-ksat-hartebeesthoek
+  - gs-scc-santiago
+  - gs-ksat-svalbard
+  id: rsn-A-P01-03
+  name: RSN Sat A P01-03
+  orbit:
+    argumentPeriapsis: 0
+    eccentricity: 0
+    inclination: 89
+    meanAnomaly: 30.0
+    referenceFrame: EME2000
+    rightAscensionAscendingNode: 0.0
+    semiMajorAxis: 7428000
+    type: BLSKEPLERIAN
+    utcTime: '2026-01-01T00:00:00.00'
+  spaceContacts:
+  - rsn-A-P02-02
+  - rsn-A-P02-03
+  - rsn-A-P03-01
+  - rsn-A-P03-02
+  - rsn-A-P03-03
+  - rsn-A-P03-04
+  - rsn-A-P03-05
+  - rsn-A-P03-06
+  - rsn-A-P03-07
+  - rsn-A-P03-08
+  - rsn-A-P03-09
+  - rsn-A-P03-10
+  - rsn-A-P03-11
+  - rsn-A-P03-12
+  - rsn-A-P03-13
+  - rsn-A-P03-14
+  - rsn-A-P03-15
+  - rsn-A-P03-16
+  - rsn-A-P03-17
+  - rsn-A-P03-18
+  - rsn-A-P03-19
+  - rsn-A-P03-20
+  - rsn-A-P03-21
+  - rsn-A-P03-22
+  - rsn-A-P03-23
+  - rsn-A-P03-24
+- antennas:
+  - band: S
+    id: antenna-S
+  - band: Ka
+    id: antenna-Ka
+  groundContacts:
+  - gs-ssc-kiruna
+  - gs-ssc-yatharagga
+  - gs-ssc-alaska
+  - gs-ssc-inuvik
+  - gs-ksat-hartebeesthoek
+  - gs-scc-santiago
+  - gs-ksat-svalbard
+  id: rsn-A-P01-04
+  name: RSN Sat A P01-04
+  orbit:
+    argumentPeriapsis: 0
+    eccentricity: 0
+    inclination: 89
+    meanAnomaly: 45.0
+    referenceFrame: EME2000
+    rightAscensionAscendingNode: 0.0
+    semiMajorAxis: 7428000
+    type: BLSKEPLERIAN
+    utcTime: '2026-01-01T00:00:00.00'
+  spaceContacts:
+  - rsn-A-P02-03
+  - rsn-A-P02-04
+  - rsn-A-P03-01
+  - rsn-A-P03-02
+  - rsn-A-P03-03
+  - rsn-A-P03-04
+  - rsn-A-P03-05
+  - rsn-A-P03-06
+  - rsn-A-P03-07
+  - rsn-A-P03-08
+  - rsn-A-P03-09
+  - rsn-A-P03-10
+  - rsn-A-P03-11
+  - rsn-A-P03-12
+  - rsn-A-P03-13
+  - rsn-A-P03-14
+  - rsn-A-P03-15
+  - rsn-A-P03-16
+  - rsn-A-P03-17
+  - rsn-A-P03-18
+  - rsn-A-P03-19
+  - rsn-A-P03-20
+  - rsn-A-P03-21
+  - rsn-A-P03-22
+  - rsn-A-P03-23
+  - rsn-A-P03-24
+- antennas:
+  - band: S
+    id: antenna-S
+  - band: Ka
+    id: antenna-Ka
+  groundContacts:
+  - gs-ssc-kiruna
+  - gs-ssc-yatharagga
+  - gs-ssc-alaska
+  - gs-ssc-inuvik
+  - gs-ksat-hartebeesthoek
+  - gs-scc-santiago
+  - gs-ksat-svalbard
+  id: rsn-A-P01-05
+  name: RSN Sat A P01-05
+  orbit:
+    argumentPeriapsis: 0
+    eccentricity: 0
+    inclination: 89
+    meanAnomaly: 60.0
+    referenceFrame: EME2000
+    rightAscensionAscendingNode: 0.0
+    semiMajorAxis: 7428000
+    type: BLSKEPLERIAN
+    utcTime: '2026-01-01T00:00:00.00'
+  spaceContacts:
+  - rsn-A-P02-04
+  - rsn-A-P02-05
+  - rsn-A-P03-01
+  - rsn-A-P03-02
+  - rsn-A-P03-03
+  - rsn-A-P03-04
+  - rsn-A-P03-05
+  - rsn-A-P03-06
+  - rsn-A-P03-07
+  - rsn-A-P03-08
+  - rsn-A-P03-09
+  - rsn-A-P03-10
+  - rsn-A-P03-11
+  - rsn-A-P03-12
+  - rsn-A-P03-13
+  - rsn-A-P03-14
+  - rsn-A-P03-15
+  - rsn-A-P03-16
+  - rsn-A-P03-17
+  - rsn-A-P03-18
+  - rsn-A-P03-19
+  - rsn-A-P03-20
+  - rsn-A-P03-21
+  - rsn-A-P03-22
+  - rsn-A-P03-23
+  - rsn-A-P03-24
+- antennas:
+  - band: S
+    id: antenna-S
+  - band: Ka
+    id: antenna-Ka
+  groundContacts:
+  - gs-ssc-kiruna
+  - gs-ssc-yatharagga
+  - gs-ssc-alaska
+  - gs-ssc-inuvik
+  - gs-ksat-hartebeesthoek
+  - gs-scc-santiago
+  - gs-ksat-svalbard
+  id: rsn-A-P01-06
+  name: RSN Sat A P01-06
+  orbit:
+    argumentPeriapsis: 0
+    eccentricity: 0
+    inclination: 89
+    meanAnomaly: 75.0
+    referenceFrame: EME2000
+    rightAscensionAscendingNode: 0.0
+    semiMajorAxis: 7428000
+    type: BLSKEPLERIAN
+    utcTime: '2026-01-01T00:00:00.00'
+  spaceContacts:
+  - rsn-A-P02-05
+  - rsn-A-P02-06
+  - rsn-A-P03-01
+  - rsn-A-P03-02
+  - rsn-A-P03-03
+  - rsn-A-P03-04
+  - rsn-A-P03-05
+  - rsn-A-P03-06
+  - rsn-A-P03-07
+  - rsn-A-P03-08
+  - rsn-A-P03-09
+  - rsn-A-P03-10
+  - rsn-A-P03-11
+  - rsn-A-P03-12
+  - rsn-A-P03-13
+  - rsn-A-P03-14
+  - rsn-A-P03-15
+  - rsn-A-P03-16
+  - rsn-A-P03-17
+  - rsn-A-P03-18
+  - rsn-A-P03-19
+  - rsn-A-P03-20
+  - rsn-A-P03-21
+  - rsn-A-P03-22
+  - rsn-A-P03-23
+  - rsn-A-P03-24
+- antennas:
+  - band: S
+    id: antenna-S
+  - band: Ka
+    id: antenna-Ka
+  groundContacts:
+  - gs-ssc-kiruna
+  - gs-ssc-yatharagga
+  - gs-ssc-alaska
+  - gs-ssc-inuvik
+  - gs-ksat-hartebeesthoek
+  - gs-scc-santiago
+  - gs-ksat-svalbard
+  id: rsn-A-P01-07
+  name: RSN Sat A P01-07
+  orbit:
+    argumentPeriapsis: 0
+    eccentricity: 0
+    inclination: 89
+    meanAnomaly: 90.0
+    referenceFrame: EME2000
+    rightAscensionAscendingNode: 0.0
+    semiMajorAxis: 7428000
+    type: BLSKEPLERIAN
+    utcTime: '2026-01-01T00:00:00.00'
+  spaceContacts:
+  - rsn-A-P02-06
+  - rsn-A-P02-07
+  - rsn-A-P03-01
+  - rsn-A-P03-02
+  - rsn-A-P03-03
+  - rsn-A-P03-04
+  - rsn-A-P03-05
+  - rsn-A-P03-06
+  - rsn-A-P03-07
+  - rsn-A-P03-08
+  - rsn-A-P03-09
+  - rsn-A-P03-10
+  - rsn-A-P03-11
+  - rsn-A-P03-12
+  - rsn-A-P03-13
+  - rsn-A-P03-14
+  - rsn-A-P03-15
+  - rsn-A-P03-16
+  - rsn-A-P03-17
+  - rsn-A-P03-18
+  - rsn-A-P03-19
+  - rsn-A-P03-20
+  - rsn-A-P03-21
+  - rsn-A-P03-22
+  - rsn-A-P03-23
+  - rsn-A-P03-24
+- antennas:
+  - band: S
+    id: antenna-S
+  - band: Ka
+    id: antenna-Ka
+  groundContacts:
+  - gs-ssc-kiruna
+  - gs-ssc-yatharagga
+  - gs-ssc-alaska
+  - gs-ssc-inuvik
+  - gs-ksat-hartebeesthoek
+  - gs-scc-santiago
+  - gs-ksat-svalbard
+  id: rsn-A-P01-08
+  name: RSN Sat A P01-08
+  orbit:
+    argumentPeriapsis: 0
+    eccentricity: 0
+    inclination: 89
+    meanAnomaly: 105.0
+    referenceFrame: EME2000
+    rightAscensionAscendingNode: 0.0
+    semiMajorAxis: 7428000
+    type: BLSKEPLERIAN
+    utcTime: '2026-01-01T00:00:00.00'
+  spaceContacts:
+  - rsn-A-P02-07
+  - rsn-A-P02-08
+  - rsn-A-P03-01
+  - rsn-A-P03-02
+  - rsn-A-P03-03
+  - rsn-A-P03-04
+  - rsn-A-P03-05
+  - rsn-A-P03-06
+  - rsn-A-P03-07
+  - rsn-A-P03-08
+  - rsn-A-P03-09
+  - rsn-A-P03-10
+  - rsn-A-P03-11
+  - rsn-A-P03-12
+  - rsn-A-P03-13
+  - rsn-A-P03-14
+  - rsn-A-P03-15
+  - rsn-A-P03-16
+  - rsn-A-P03-17
+  - rsn-A-P03-18
+  - rsn-A-P03-19
+  - rsn-A-P03-20
+  - rsn-A-P03-21
+  - rsn-A-P03-22
+  - rsn-A-P03-23
+  - rsn-A-P03-24
+- antennas:
+  - band: S
+    id: antenna-S
+  - band: Ka
+    id: antenna-Ka
+  groundContacts:
+  - gs-ssc-kiruna
+  - gs-ssc-yatharagga
+  - gs-ssc-alaska
+  - gs-ssc-inuvik
+  - gs-ksat-hartebeesthoek
+  - gs-scc-santiago
+  - gs-ksat-svalbard
+  id: rsn-A-P01-09
+  name: RSN Sat A P01-09
+  orbit:
+    argumentPeriapsis: 0
+    eccentricity: 0
+    inclination: 89
+    meanAnomaly: 120.0
+    referenceFrame: EME2000
+    rightAscensionAscendingNode: 0.0
+    semiMajorAxis: 7428000
+    type: BLSKEPLERIAN
+    utcTime: '2026-01-01T00:00:00.00'
+  spaceContacts:
+  - rsn-A-P02-08
+  - rsn-A-P02-09
+  - rsn-A-P03-01
+  - rsn-A-P03-02
+  - rsn-A-P03-03
+  - rsn-A-P03-04
+  - rsn-A-P03-05
+  - rsn-A-P03-06
+  - rsn-A-P03-07
+  - rsn-A-P03-08
+  - rsn-A-P03-09
+  - rsn-A-P03-10
+  - rsn-A-P03-11
+  - rsn-A-P03-12
+  - rsn-A-P03-13
+  - rsn-A-P03-14
+  - rsn-A-P03-15
+  - rsn-A-P03-16
+  - rsn-A-P03-17
+  - rsn-A-P03-18
+  - rsn-A-P03-19
+  - rsn-A-P03-20
+  - rsn-A-P03-21
+  - rsn-A-P03-22
+  - rsn-A-P03-23
+  - rsn-A-P03-24
+- antennas:
+  - band: S
+    id: antenna-S
+  - band: Ka
+    id: antenna-Ka
+  groundContacts:
+  - gs-ssc-kiruna
+  - gs-ssc-yatharagga
+  - gs-ssc-alaska
+  - gs-ssc-inuvik
+  - gs-ksat-hartebeesthoek
+  - gs-scc-santiago
+  - gs-ksat-svalbard
+  id: rsn-A-P01-10
+  name: RSN Sat A P01-10
+  orbit:
+    argumentPeriapsis: 0
+    eccentricity: 0
+    inclination: 89
+    meanAnomaly: 135.0
+    referenceFrame: EME2000
+    rightAscensionAscendingNode: 0.0
+    semiMajorAxis: 7428000
+    type: BLSKEPLERIAN
+    utcTime: '2026-01-01T00:00:00.00'
+  spaceContacts:
+  - rsn-A-P02-09
+  - rsn-A-P02-10
+  - rsn-A-P03-01
+  - rsn-A-P03-02
+  - rsn-A-P03-03
+  - rsn-A-P03-04
+  - rsn-A-P03-05
+  - rsn-A-P03-06
+  - rsn-A-P03-07
+  - rsn-A-P03-08
+  - rsn-A-P03-09
+  - rsn-A-P03-10
+  - rsn-A-P03-11
+  - rsn-A-P03-12
+  - rsn-A-P03-13
+  - rsn-A-P03-14
+  - rsn-A-P03-15
+  - rsn-A-P03-16
+  - rsn-A-P03-17
+  - rsn-A-P03-18
+  - rsn-A-P03-19
+  - rsn-A-P03-20
+  - rsn-A-P03-21
+  - rsn-A-P03-22
+  - rsn-A-P03-23
+  - rsn-A-P03-24
+- antennas:
+  - band: S
+    id: antenna-S
+  - band: Ka
+    id: antenna-Ka
+  groundContacts:
+  - gs-ssc-kiruna
+  - gs-ssc-yatharagga
+  - gs-ssc-alaska
+  - gs-ssc-inuvik
+  - gs-ksat-hartebeesthoek
+  - gs-scc-santiago
+  - gs-ksat-svalbard
+  id: rsn-A-P01-11
+  name: RSN Sat A P01-11
+  orbit:
+    argumentPeriapsis: 0
+    eccentricity: 0
+    inclination: 89
+    meanAnomaly: 150.0
+    referenceFrame: EME2000
+    rightAscensionAscendingNode: 0.0
+    semiMajorAxis: 7428000
+    type: BLSKEPLERIAN
+    utcTime: '2026-01-01T00:00:00.00'
+  spaceContacts:
+  - rsn-A-P02-10
+  - rsn-A-P02-11
+  - rsn-A-P03-01
+  - rsn-A-P03-02
+  - rsn-A-P03-03
+  - rsn-A-P03-04
+  - rsn-A-P03-05
+  - rsn-A-P03-06
+  - rsn-A-P03-07
+  - rsn-A-P03-08
+  - rsn-A-P03-09
+  - rsn-A-P03-10
+  - rsn-A-P03-11
+  - rsn-A-P03-12
+  - rsn-A-P03-13
+  - rsn-A-P03-14
+  - rsn-A-P03-15
+  - rsn-A-P03-16
+  - rsn-A-P03-17
+  - rsn-A-P03-18
+  - rsn-A-P03-19
+  - rsn-A-P03-20
+  - rsn-A-P03-21
+  - rsn-A-P03-22
+  - rsn-A-P03-23
+  - rsn-A-P03-24
+- antennas:
+  - band: S
+    id: antenna-S
+  - band: Ka
+    id: antenna-Ka
+  groundContacts:
+  - gs-ssc-kiruna
+  - gs-ssc-yatharagga
+  - gs-ssc-alaska
+  - gs-ssc-inuvik
+  - gs-ksat-hartebeesthoek
+  - gs-scc-santiago
+  - gs-ksat-svalbard
+  id: rsn-A-P01-12
+  name: RSN Sat A P01-12
+  orbit:
+    argumentPeriapsis: 0
+    eccentricity: 0
+    inclination: 89
+    meanAnomaly: 165.0
+    referenceFrame: EME2000
+    rightAscensionAscendingNode: 0.0
+    semiMajorAxis: 7428000
+    type: BLSKEPLERIAN
+    utcTime: '2026-01-01T00:00:00.00'
+  spaceContacts:
+  - rsn-A-P02-11
+  - rsn-A-P02-12
+  - rsn-A-P03-01
+  - rsn-A-P03-02
+  - rsn-A-P03-03
+  - rsn-A-P03-04
+  - rsn-A-P03-05
+  - rsn-A-P03-06
+  - rsn-A-P03-07
+  - rsn-A-P03-08
+  - rsn-A-P03-09
+  - rsn-A-P03-10
+  - rsn-A-P03-11
+  - rsn-A-P03-12
+  - rsn-A-P03-13
+  - rsn-A-P03-14
+  - rsn-A-P03-15
+  - rsn-A-P03-16
+  - rsn-A-P03-17
+  - rsn-A-P03-18
+  - rsn-A-P03-19
+  - rsn-A-P03-20
+  - rsn-A-P03-21
+  - rsn-A-P03-22
+  - rsn-A-P03-23
+  - rsn-A-P03-24
+- antennas:
+  - band: S
+    id: antenna-S
+  - band: Ka
+    id: antenna-Ka
+  groundContacts:
+  - gs-ssc-kiruna
+  - gs-ssc-yatharagga
+  - gs-ssc-alaska
+  - gs-ssc-inuvik
+  - gs-ksat-hartebeesthoek
+  - gs-scc-santiago
+  - gs-ksat-svalbard
+  id: rsn-A-P01-13
+  name: RSN Sat A P01-13
+  orbit:
+    argumentPeriapsis: 0
+    eccentricity: 0
+    inclination: 89
+    meanAnomaly: 180.0
+    referenceFrame: EME2000
+    rightAscensionAscendingNode: 0.0
+    semiMajorAxis: 7428000
+    type: BLSKEPLERIAN
+    utcTime: '2026-01-01T00:00:00.00'
+  spaceContacts:
+  - rsn-A-P02-12
+  - rsn-A-P02-13
+  - rsn-A-P03-01
+  - rsn-A-P03-02
+  - rsn-A-P03-03
+  - rsn-A-P03-04
+  - rsn-A-P03-05
+  - rsn-A-P03-06
+  - rsn-A-P03-07
+  - rsn-A-P03-08
+  - rsn-A-P03-09
+  - rsn-A-P03-10
+  - rsn-A-P03-11
+  - rsn-A-P03-12
+  - rsn-A-P03-13
+  - rsn-A-P03-14
+  - rsn-A-P03-15
+  - rsn-A-P03-16
+  - rsn-A-P03-17
+  - rsn-A-P03-18
+  - rsn-A-P03-19
+  - rsn-A-P03-20
+  - rsn-A-P03-21
+  - rsn-A-P03-22
+  - rsn-A-P03-23
+  - rsn-A-P03-24
+- antennas:
+  - band: S
+    id: antenna-S
+  - band: Ka
+    id: antenna-Ka
+  groundContacts:
+  - gs-ssc-kiruna
+  - gs-ssc-yatharagga
+  - gs-ssc-alaska
+  - gs-ssc-inuvik
+  - gs-ksat-hartebeesthoek
+  - gs-scc-santiago
+  - gs-ksat-svalbard
+  id: rsn-A-P01-14
+  name: RSN Sat A P01-14
+  orbit:
+    argumentPeriapsis: 0
+    eccentricity: 0
+    inclination: 89
+    meanAnomaly: 195.0
+    referenceFrame: EME2000
+    rightAscensionAscendingNode: 0.0
+    semiMajorAxis: 7428000
+    type: BLSKEPLERIAN
+    utcTime: '2026-01-01T00:00:00.00'
+  spaceContacts:
+  - rsn-A-P02-13
+  - rsn-A-P02-14
+  - rsn-A-P03-01
+  - rsn-A-P03-02
+  - rsn-A-P03-03
+  - rsn-A-P03-04
+  - rsn-A-P03-05
+  - rsn-A-P03-06
+  - rsn-A-P03-07
+  - rsn-A-P03-08
+  - rsn-A-P03-09
+  - rsn-A-P03-10
+  - rsn-A-P03-11
+  - rsn-A-P03-12
+  - rsn-A-P03-13
+  - rsn-A-P03-14
+  - rsn-A-P03-15
+  - rsn-A-P03-16
+  - rsn-A-P03-17
+  - rsn-A-P03-18
+  - rsn-A-P03-19
+  - rsn-A-P03-20
+  - rsn-A-P03-21
+  - rsn-A-P03-22
+  - rsn-A-P03-23
+  - rsn-A-P03-24
+- antennas:
+  - band: S
+    id: antenna-S
+  - band: Ka
+    id: antenna-Ka
+  groundContacts:
+  - gs-ssc-kiruna
+  - gs-ssc-yatharagga
+  - gs-ssc-alaska
+  - gs-ssc-inuvik
+  - gs-ksat-hartebeesthoek
+  - gs-scc-santiago
+  - gs-ksat-svalbard
+  id: rsn-A-P01-15
+  name: RSN Sat A P01-15
+  orbit:
+    argumentPeriapsis: 0
+    eccentricity: 0
+    inclination: 89
+    meanAnomaly: 210.0
+    referenceFrame: EME2000
+    rightAscensionAscendingNode: 0.0
+    semiMajorAxis: 7428000
+    type: BLSKEPLERIAN
+    utcTime: '2026-01-01T00:00:00.00'
+  spaceContacts:
+  - rsn-A-P02-14
+  - rsn-A-P02-15
+  - rsn-A-P03-01
+  - rsn-A-P03-02
+  - rsn-A-P03-03
+  - rsn-A-P03-04
+  - rsn-A-P03-05
+  - rsn-A-P03-06
+  - rsn-A-P03-07
+  - rsn-A-P03-08
+  - rsn-A-P03-09
+  - rsn-A-P03-10
+  - rsn-A-P03-11
+  - rsn-A-P03-12
+  - rsn-A-P03-13
+  - rsn-A-P03-14
+  - rsn-A-P03-15
+  - rsn-A-P03-16
+  - rsn-A-P03-17
+  - rsn-A-P03-18
+  - rsn-A-P03-19
+  - rsn-A-P03-20
+  - rsn-A-P03-21
+  - rsn-A-P03-22
+  - rsn-A-P03-23
+  - rsn-A-P03-24
+- antennas:
+  - band: S
+    id: antenna-S
+  - band: Ka
+    id: antenna-Ka
+  groundContacts:
+  - gs-ssc-kiruna
+  - gs-ssc-yatharagga
+  - gs-ssc-alaska
+  - gs-ssc-inuvik
+  - gs-ksat-hartebeesthoek
+  - gs-scc-santiago
+  - gs-ksat-svalbard
+  id: rsn-A-P01-16
+  name: RSN Sat A P01-16
+  orbit:
+    argumentPeriapsis: 0
+    eccentricity: 0
+    inclination: 89
+    meanAnomaly: 225.0
+    referenceFrame: EME2000
+    rightAscensionAscendingNode: 0.0
+    semiMajorAxis: 7428000
+    type: BLSKEPLERIAN
+    utcTime: '2026-01-01T00:00:00.00'
+  spaceContacts:
+  - rsn-A-P02-15
+  - rsn-A-P02-16
+  - rsn-A-P03-01
+  - rsn-A-P03-02
+  - rsn-A-P03-03
+  - rsn-A-P03-04
+  - rsn-A-P03-05
+  - rsn-A-P03-06
+  - rsn-A-P03-07
+  - rsn-A-P03-08
+  - rsn-A-P03-09
+  - rsn-A-P03-10
+  - rsn-A-P03-11
+  - rsn-A-P03-12
+  - rsn-A-P03-13
+  - rsn-A-P03-14
+  - rsn-A-P03-15
+  - rsn-A-P03-16
+  - rsn-A-P03-17
+  - rsn-A-P03-18
+  - rsn-A-P03-19
+  - rsn-A-P03-20
+  - rsn-A-P03-21
+  - rsn-A-P03-22
+  - rsn-A-P03-23
+  - rsn-A-P03-24
+- antennas:
+  - band: S
+    id: antenna-S
+  - band: Ka
+    id: antenna-Ka
+  groundContacts:
+  - gs-ssc-kiruna
+  - gs-ssc-yatharagga
+  - gs-ssc-alaska
+  - gs-ssc-inuvik
+  - gs-ksat-hartebeesthoek
+  - gs-scc-santiago
+  - gs-ksat-svalbard
+  id: rsn-A-P01-17
+  name: RSN Sat A P01-17
+  orbit:
+    argumentPeriapsis: 0
+    eccentricity: 0
+    inclination: 89
+    meanAnomaly: 240.0
+    referenceFrame: EME2000
+    rightAscensionAscendingNode: 0.0
+    semiMajorAxis: 7428000
+    type: BLSKEPLERIAN
+    utcTime: '2026-01-01T00:00:00.00'
+  spaceContacts:
+  - rsn-A-P02-16
+  - rsn-A-P02-17
+  - rsn-A-P03-01
+  - rsn-A-P03-02
+  - rsn-A-P03-03
+  - rsn-A-P03-04
+  - rsn-A-P03-05
+  - rsn-A-P03-06
+  - rsn-A-P03-07
+  - rsn-A-P03-08
+  - rsn-A-P03-09
+  - rsn-A-P03-10
+  - rsn-A-P03-11
+  - rsn-A-P03-12
+  - rsn-A-P03-13
+  - rsn-A-P03-14
+  - rsn-A-P03-15
+  - rsn-A-P03-16
+  - rsn-A-P03-17
+  - rsn-A-P03-18
+  - rsn-A-P03-19
+  - rsn-A-P03-20
+  - rsn-A-P03-21
+  - rsn-A-P03-22
+  - rsn-A-P03-23
+  - rsn-A-P03-24
+- antennas:
+  - band: S
+    id: antenna-S
+  - band: Ka
+    id: antenna-Ka
+  groundContacts:
+  - gs-ssc-kiruna
+  - gs-ssc-yatharagga
+  - gs-ssc-alaska
+  - gs-ssc-inuvik
+  - gs-ksat-hartebeesthoek
+  - gs-scc-santiago
+  - gs-ksat-svalbard
+  id: rsn-A-P01-18
+  name: RSN Sat A P01-18
+  orbit:
+    argumentPeriapsis: 0
+    eccentricity: 0
+    inclination: 89
+    meanAnomaly: 255.0
+    referenceFrame: EME2000
+    rightAscensionAscendingNode: 0.0
+    semiMajorAxis: 7428000
+    type: BLSKEPLERIAN
+    utcTime: '2026-01-01T00:00:00.00'
+  spaceContacts:
+  - rsn-A-P02-17
+  - rsn-A-P02-18
+  - rsn-A-P03-01
+  - rsn-A-P03-02
+  - rsn-A-P03-03
+  - rsn-A-P03-04
+  - rsn-A-P03-05
+  - rsn-A-P03-06
+  - rsn-A-P03-07
+  - rsn-A-P03-08
+  - rsn-A-P03-09
+  - rsn-A-P03-10
+  - rsn-A-P03-11
+  - rsn-A-P03-12
+  - rsn-A-P03-13
+  - rsn-A-P03-14
+  - rsn-A-P03-15
+  - rsn-A-P03-16
+  - rsn-A-P03-17
+  - rsn-A-P03-18
+  - rsn-A-P03-19
+  - rsn-A-P03-20
+  - rsn-A-P03-21
+  - rsn-A-P03-22
+  - rsn-A-P03-23
+  - rsn-A-P03-24
+- antennas:
+  - band: S
+    id: antenna-S
+  - band: Ka
+    id: antenna-Ka
+  groundContacts:
+  - gs-ssc-kiruna
+  - gs-ssc-yatharagga
+  - gs-ssc-alaska
+  - gs-ssc-inuvik
+  - gs-ksat-hartebeesthoek
+  - gs-scc-santiago
+  - gs-ksat-svalbard
+  id: rsn-A-P01-19
+  name: RSN Sat A P01-19
+  orbit:
+    argumentPeriapsis: 0
+    eccentricity: 0
+    inclination: 89
+    meanAnomaly: 270.0
+    referenceFrame: EME2000
+    rightAscensionAscendingNode: 0.0
+    semiMajorAxis: 7428000
+    type: BLSKEPLERIAN
+    utcTime: '2026-01-01T00:00:00.00'
+  spaceContacts:
+  - rsn-A-P02-18
+  - rsn-A-P02-19
+  - rsn-A-P03-01
+  - rsn-A-P03-02
+  - rsn-A-P03-03
+  - rsn-A-P03-04
+  - rsn-A-P03-05
+  - rsn-A-P03-06
+  - rsn-A-P03-07
+  - rsn-A-P03-08
+  - rsn-A-P03-09
+  - rsn-A-P03-10
+  - rsn-A-P03-11
+  - rsn-A-P03-12
+  - rsn-A-P03-13
+  - rsn-A-P03-14
+  - rsn-A-P03-15
+  - rsn-A-P03-16
+  - rsn-A-P03-17
+  - rsn-A-P03-18
+  - rsn-A-P03-19
+  - rsn-A-P03-20
+  - rsn-A-P03-21
+  - rsn-A-P03-22
+  - rsn-A-P03-23
+  - rsn-A-P03-24
+- antennas:
+  - band: S
+    id: antenna-S
+  - band: Ka
+    id: antenna-Ka
+  groundContacts:
+  - gs-ssc-kiruna
+  - gs-ssc-yatharagga
+  - gs-ssc-alaska
+  - gs-ssc-inuvik
+  - gs-ksat-hartebeesthoek
+  - gs-scc-santiago
+  - gs-ksat-svalbard
+  id: rsn-A-P01-20
+  name: RSN Sat A P01-20
+  orbit:
+    argumentPeriapsis: 0
+    eccentricity: 0
+    inclination: 89
+    meanAnomaly: 285.0
+    referenceFrame: EME2000
+    rightAscensionAscendingNode: 0.0
+    semiMajorAxis: 7428000
+    type: BLSKEPLERIAN
+    utcTime: '2026-01-01T00:00:00.00'
+  spaceContacts:
+  - rsn-A-P02-19
+  - rsn-A-P02-20
+  - rsn-A-P03-01
+  - rsn-A-P03-02
+  - rsn-A-P03-03
+  - rsn-A-P03-04
+  - rsn-A-P03-05
+  - rsn-A-P03-06
+  - rsn-A-P03-07
+  - rsn-A-P03-08
+  - rsn-A-P03-09
+  - rsn-A-P03-10
+  - rsn-A-P03-11
+  - rsn-A-P03-12
+  - rsn-A-P03-13
+  - rsn-A-P03-14
+  - rsn-A-P03-15
+  - rsn-A-P03-16
+  - rsn-A-P03-17
+  - rsn-A-P03-18
+  - rsn-A-P03-19
+  - rsn-A-P03-20
+  - rsn-A-P03-21
+  - rsn-A-P03-22
+  - rsn-A-P03-23
+  - rsn-A-P03-24
+- antennas:
+  - band: S
+    id: antenna-S
+  - band: Ka
+    id: antenna-Ka
+  groundContacts:
+  - gs-ssc-kiruna
+  - gs-ssc-yatharagga
+  - gs-ssc-alaska
+  - gs-ssc-inuvik
+  - gs-ksat-hartebeesthoek
+  - gs-scc-santiago
+  - gs-ksat-svalbard
+  id: rsn-A-P01-21
+  name: RSN Sat A P01-21
+  orbit:
+    argumentPeriapsis: 0
+    eccentricity: 0
+    inclination: 89
+    meanAnomaly: 300.0
+    referenceFrame: EME2000
+    rightAscensionAscendingNode: 0.0
+    semiMajorAxis: 7428000
+    type: BLSKEPLERIAN
+    utcTime: '2026-01-01T00:00:00.00'
+  spaceContacts:
+  - rsn-A-P02-20
+  - rsn-A-P02-21
+  - rsn-A-P03-01
+  - rsn-A-P03-02
+  - rsn-A-P03-03
+  - rsn-A-P03-04
+  - rsn-A-P03-05
+  - rsn-A-P03-06
+  - rsn-A-P03-07
+  - rsn-A-P03-08
+  - rsn-A-P03-09
+  - rsn-A-P03-10
+  - rsn-A-P03-11
+  - rsn-A-P03-12
+  - rsn-A-P03-13
+  - rsn-A-P03-14
+  - rsn-A-P03-15
+  - rsn-A-P03-16
+  - rsn-A-P03-17
+  - rsn-A-P03-18
+  - rsn-A-P03-19
+  - rsn-A-P03-20
+  - rsn-A-P03-21
+  - rsn-A-P03-22
+  - rsn-A-P03-23
+  - rsn-A-P03-24
+- antennas:
+  - band: S
+    id: antenna-S
+  - band: Ka
+    id: antenna-Ka
+  groundContacts:
+  - gs-ssc-kiruna
+  - gs-ssc-yatharagga
+  - gs-ssc-alaska
+  - gs-ssc-inuvik
+  - gs-ksat-hartebeesthoek
+  - gs-scc-santiago
+  - gs-ksat-svalbard
+  id: rsn-A-P01-22
+  name: RSN Sat A P01-22
+  orbit:
+    argumentPeriapsis: 0
+    eccentricity: 0
+    inclination: 89
+    meanAnomaly: 315.0
+    referenceFrame: EME2000
+    rightAscensionAscendingNode: 0.0
+    semiMajorAxis: 7428000
+    type: BLSKEPLERIAN
+    utcTime: '2026-01-01T00:00:00.00'
+  spaceContacts:
+  - rsn-A-P02-21
+  - rsn-A-P02-22
+  - rsn-A-P03-01
+  - rsn-A-P03-02
+  - rsn-A-P03-03
+  - rsn-A-P03-04
+  - rsn-A-P03-05
+  - rsn-A-P03-06
+  - rsn-A-P03-07
+  - rsn-A-P03-08
+  - rsn-A-P03-09
+  - rsn-A-P03-10
+  - rsn-A-P03-11
+  - rsn-A-P03-12
+  - rsn-A-P03-13
+  - rsn-A-P03-14
+  - rsn-A-P03-15
+  - rsn-A-P03-16
+  - rsn-A-P03-17
+  - rsn-A-P03-18
+  - rsn-A-P03-19
+  - rsn-A-P03-20
+  - rsn-A-P03-21
+  - rsn-A-P03-22
+  - rsn-A-P03-23
+  - rsn-A-P03-24
+- antennas:
+  - band: S
+    id: antenna-S
+  - band: Ka
+    id: antenna-Ka
+  groundContacts:
+  - gs-ssc-kiruna
+  - gs-ssc-yatharagga
+  - gs-ssc-alaska
+  - gs-ssc-inuvik
+  - gs-ksat-hartebeesthoek
+  - gs-scc-santiago
+  - gs-ksat-svalbard
+  id: rsn-A-P01-23
+  name: RSN Sat A P01-23
+  orbit:
+    argumentPeriapsis: 0
+    eccentricity: 0
+    inclination: 89
+    meanAnomaly: 330.0
+    referenceFrame: EME2000
+    rightAscensionAscendingNode: 0.0
+    semiMajorAxis: 7428000
+    type: BLSKEPLERIAN
+    utcTime: '2026-01-01T00:00:00.00'
+  spaceContacts:
+  - rsn-A-P02-22
+  - rsn-A-P02-23
+  - rsn-A-P03-01
+  - rsn-A-P03-02
+  - rsn-A-P03-03
+  - rsn-A-P03-04
+  - rsn-A-P03-05
+  - rsn-A-P03-06
+  - rsn-A-P03-07
+  - rsn-A-P03-08
+  - rsn-A-P03-09
+  - rsn-A-P03-10
+  - rsn-A-P03-11
+  - rsn-A-P03-12
+  - rsn-A-P03-13
+  - rsn-A-P03-14
+  - rsn-A-P03-15
+  - rsn-A-P03-16
+  - rsn-A-P03-17
+  - rsn-A-P03-18
+  - rsn-A-P03-19
+  - rsn-A-P03-20
+  - rsn-A-P03-21
+  - rsn-A-P03-22
+  - rsn-A-P03-23
+  - rsn-A-P03-24
+- antennas:
+  - band: S
+    id: antenna-S
+  - band: Ka
+    id: antenna-Ka
+  groundContacts:
+  - gs-ssc-kiruna
+  - gs-ssc-yatharagga
+  - gs-ssc-alaska
+  - gs-ssc-inuvik
+  - gs-ksat-hartebeesthoek
+  - gs-scc-santiago
+  - gs-ksat-svalbard
+  id: rsn-A-P01-24
+  name: RSN Sat A P01-24
+  orbit:
+    argumentPeriapsis: 0
+    eccentricity: 0
+    inclination: 89
+    meanAnomaly: 345.0
+    referenceFrame: EME2000
+    rightAscensionAscendingNode: 0.0
+    semiMajorAxis: 7428000
+    type: BLSKEPLERIAN
+    utcTime: '2026-01-01T00:00:00.00'
+  spaceContacts:
+  - rsn-A-P02-23
+  - rsn-A-P02-24
+  - rsn-A-P03-01
+  - rsn-A-P03-02
+  - rsn-A-P03-03
+  - rsn-A-P03-04
+  - rsn-A-P03-05
+  - rsn-A-P03-06
+  - rsn-A-P03-07
+  - rsn-A-P03-08
+  - rsn-A-P03-09
+  - rsn-A-P03-10
+  - rsn-A-P03-11
+  - rsn-A-P03-12
+  - rsn-A-P03-13
+  - rsn-A-P03-14
+  - rsn-A-P03-15
+  - rsn-A-P03-16
+  - rsn-A-P03-17
+  - rsn-A-P03-18
+  - rsn-A-P03-19
+  - rsn-A-P03-20
+  - rsn-A-P03-21
+  - rsn-A-P03-22
+  - rsn-A-P03-23
+  - rsn-A-P03-24
+- antennas:
+  - band: S
+    id: antenna-S
+  - band: Ka
+    id: antenna-Ka
+  groundContacts:
+  - gs-ssc-kiruna
+  - gs-ssc-yatharagga
+  - gs-ssc-alaska
+  - gs-ssc-inuvik
+  - gs-ksat-hartebeesthoek
+  - gs-scc-santiago
+  - gs-ksat-svalbard
+  id: rsn-A-P02-01
+  name: RSN Sat A P02-01
+  orbit:
+    argumentPeriapsis: 0
+    eccentricity: 0
+    inclination: 89
+    meanAnomaly: 7.5
+    referenceFrame: EME2000
+    rightAscensionAscendingNode: 60.0
+    semiMajorAxis: 7428000
+    type: BLSKEPLERIAN
+    utcTime: '2026-01-01T00:00:00.00'
+  spaceContacts:
+  - rsn-A-P01-01
+  - rsn-A-P01-02
+  - rsn-A-P03-01
+  - rsn-A-P03-02
+- antennas:
+  - band: S
+    id: antenna-S
+  - band: Ka
+    id: antenna-Ka
+  groundContacts:
+  - gs-ssc-kiruna
+  - gs-ssc-yatharagga
+  - gs-ssc-alaska
+  - gs-ssc-inuvik
+  - gs-ksat-hartebeesthoek
+  - gs-scc-santiago
+  - gs-ksat-svalbard
+  id: rsn-A-P02-02
+  name: RSN Sat A P02-02
+  orbit:
+    argumentPeriapsis: 0
+    eccentricity: 0
+    inclination: 89
+    meanAnomaly: 22.5
+    referenceFrame: EME2000
+    rightAscensionAscendingNode: 60.0
+    semiMajorAxis: 7428000
+    type: BLSKEPLERIAN
+    utcTime: '2026-01-01T00:00:00.00'
+  spaceContacts:
+  - rsn-A-P01-02
+  - rsn-A-P01-03
+  - rsn-A-P03-02
+  - rsn-A-P03-03
+- antennas:
+  - band: S
+    id: antenna-S
+  - band: Ka
+    id: antenna-Ka
+  groundContacts:
+  - gs-ssc-kiruna
+  - gs-ssc-yatharagga
+  - gs-ssc-alaska
+  - gs-ssc-inuvik
+  - gs-ksat-hartebeesthoek
+  - gs-scc-santiago
+  - gs-ksat-svalbard
+  id: rsn-A-P02-03
+  name: RSN Sat A P02-03
+  orbit:
+    argumentPeriapsis: 0
+    eccentricity: 0
+    inclination: 89
+    meanAnomaly: 37.5
+    referenceFrame: EME2000
+    rightAscensionAscendingNode: 60.0
+    semiMajorAxis: 7428000
+    type: BLSKEPLERIAN
+    utcTime: '2026-01-01T00:00:00.00'
+  spaceContacts:
+  - rsn-A-P01-03
+  - rsn-A-P01-04
+  - rsn-A-P03-03
+  - rsn-A-P03-04
+- antennas:
+  - band: S
+    id: antenna-S
+  - band: Ka
+    id: antenna-Ka
+  groundContacts:
+  - gs-ssc-kiruna
+  - gs-ssc-yatharagga
+  - gs-ssc-alaska
+  - gs-ssc-inuvik
+  - gs-ksat-hartebeesthoek
+  - gs-scc-santiago
+  - gs-ksat-svalbard
+  id: rsn-A-P02-04
+  name: RSN Sat A P02-04
+  orbit:
+    argumentPeriapsis: 0
+    eccentricity: 0
+    inclination: 89
+    meanAnomaly: 52.5
+    referenceFrame: EME2000
+    rightAscensionAscendingNode: 60.0
+    semiMajorAxis: 7428000
+    type: BLSKEPLERIAN
+    utcTime: '2026-01-01T00:00:00.00'
+  spaceContacts:
+  - rsn-A-P01-04
+  - rsn-A-P01-05
+  - rsn-A-P03-04
+  - rsn-A-P03-05
+- antennas:
+  - band: S
+    id: antenna-S
+  - band: Ka
+    id: antenna-Ka
+  groundContacts:
+  - gs-ssc-kiruna
+  - gs-ssc-yatharagga
+  - gs-ssc-alaska
+  - gs-ssc-inuvik
+  - gs-ksat-hartebeesthoek
+  - gs-scc-santiago
+  - gs-ksat-svalbard
+  id: rsn-A-P02-05
+  name: RSN Sat A P02-05
+  orbit:
+    argumentPeriapsis: 0
+    eccentricity: 0
+    inclination: 89
+    meanAnomaly: 67.5
+    referenceFrame: EME2000
+    rightAscensionAscendingNode: 60.0
+    semiMajorAxis: 7428000
+    type: BLSKEPLERIAN
+    utcTime: '2026-01-01T00:00:00.00'
+  spaceContacts:
+  - rsn-A-P01-05
+  - rsn-A-P01-06
+  - rsn-A-P03-05
+  - rsn-A-P03-06
+- antennas:
+  - band: S
+    id: antenna-S
+  - band: Ka
+    id: antenna-Ka
+  groundContacts:
+  - gs-ssc-kiruna
+  - gs-ssc-yatharagga
+  - gs-ssc-alaska
+  - gs-ssc-inuvik
+  - gs-ksat-hartebeesthoek
+  - gs-scc-santiago
+  - gs-ksat-svalbard
+  id: rsn-A-P02-06
+  name: RSN Sat A P02-06
+  orbit:
+    argumentPeriapsis: 0
+    eccentricity: 0
+    inclination: 89
+    meanAnomaly: 82.5
+    referenceFrame: EME2000
+    rightAscensionAscendingNode: 60.0
+    semiMajorAxis: 7428000
+    type: BLSKEPLERIAN
+    utcTime: '2026-01-01T00:00:00.00'
+  spaceContacts:
+  - rsn-A-P01-06
+  - rsn-A-P01-07
+  - rsn-A-P03-06
+  - rsn-A-P03-07
+- antennas:
+  - band: S
+    id: antenna-S
+  - band: Ka
+    id: antenna-Ka
+  groundContacts:
+  - gs-ssc-kiruna
+  - gs-ssc-yatharagga
+  - gs-ssc-alaska
+  - gs-ssc-inuvik
+  - gs-ksat-hartebeesthoek
+  - gs-scc-santiago
+  - gs-ksat-svalbard
+  id: rsn-A-P02-07
+  name: RSN Sat A P02-07
+  orbit:
+    argumentPeriapsis: 0
+    eccentricity: 0
+    inclination: 89
+    meanAnomaly: 97.5
+    referenceFrame: EME2000
+    rightAscensionAscendingNode: 60.0
+    semiMajorAxis: 7428000
+    type: BLSKEPLERIAN
+    utcTime: '2026-01-01T00:00:00.00'
+  spaceContacts:
+  - rsn-A-P01-07
+  - rsn-A-P01-08
+  - rsn-A-P03-07
+  - rsn-A-P03-08
+- antennas:
+  - band: S
+    id: antenna-S
+  - band: Ka
+    id: antenna-Ka
+  groundContacts:
+  - gs-ssc-kiruna
+  - gs-ssc-yatharagga
+  - gs-ssc-alaska
+  - gs-ssc-inuvik
+  - gs-ksat-hartebeesthoek
+  - gs-scc-santiago
+  - gs-ksat-svalbard
+  id: rsn-A-P02-08
+  name: RSN Sat A P02-08
+  orbit:
+    argumentPeriapsis: 0
+    eccentricity: 0
+    inclination: 89
+    meanAnomaly: 112.5
+    referenceFrame: EME2000
+    rightAscensionAscendingNode: 60.0
+    semiMajorAxis: 7428000
+    type: BLSKEPLERIAN
+    utcTime: '2026-01-01T00:00:00.00'
+  spaceContacts:
+  - rsn-A-P01-08
+  - rsn-A-P01-09
+  - rsn-A-P03-08
+  - rsn-A-P03-09
+- antennas:
+  - band: S
+    id: antenna-S
+  - band: Ka
+    id: antenna-Ka
+  groundContacts:
+  - gs-ssc-kiruna
+  - gs-ssc-yatharagga
+  - gs-ssc-alaska
+  - gs-ssc-inuvik
+  - gs-ksat-hartebeesthoek
+  - gs-scc-santiago
+  - gs-ksat-svalbard
+  id: rsn-A-P02-09
+  name: RSN Sat A P02-09
+  orbit:
+    argumentPeriapsis: 0
+    eccentricity: 0
+    inclination: 89
+    meanAnomaly: 127.5
+    referenceFrame: EME2000
+    rightAscensionAscendingNode: 60.0
+    semiMajorAxis: 7428000
+    type: BLSKEPLERIAN
+    utcTime: '2026-01-01T00:00:00.00'
+  spaceContacts:
+  - rsn-A-P01-09
+  - rsn-A-P01-10
+  - rsn-A-P03-09
+  - rsn-A-P03-10
+- antennas:
+  - band: S
+    id: antenna-S
+  - band: Ka
+    id: antenna-Ka
+  groundContacts:
+  - gs-ssc-kiruna
+  - gs-ssc-yatharagga
+  - gs-ssc-alaska
+  - gs-ssc-inuvik
+  - gs-ksat-hartebeesthoek
+  - gs-scc-santiago
+  - gs-ksat-svalbard
+  id: rsn-A-P02-10
+  name: RSN Sat A P02-10
+  orbit:
+    argumentPeriapsis: 0
+    eccentricity: 0
+    inclination: 89
+    meanAnomaly: 142.5
+    referenceFrame: EME2000
+    rightAscensionAscendingNode: 60.0
+    semiMajorAxis: 7428000
+    type: BLSKEPLERIAN
+    utcTime: '2026-01-01T00:00:00.00'
+  spaceContacts:
+  - rsn-A-P01-10
+  - rsn-A-P01-11
+  - rsn-A-P03-10
+  - rsn-A-P03-11
+- antennas:
+  - band: S
+    id: antenna-S
+  - band: Ka
+    id: antenna-Ka
+  groundContacts:
+  - gs-ssc-kiruna
+  - gs-ssc-yatharagga
+  - gs-ssc-alaska
+  - gs-ssc-inuvik
+  - gs-ksat-hartebeesthoek
+  - gs-scc-santiago
+  - gs-ksat-svalbard
+  id: rsn-A-P02-11
+  name: RSN Sat A P02-11
+  orbit:
+    argumentPeriapsis: 0
+    eccentricity: 0
+    inclination: 89
+    meanAnomaly: 157.5
+    referenceFrame: EME2000
+    rightAscensionAscendingNode: 60.0
+    semiMajorAxis: 7428000
+    type: BLSKEPLERIAN
+    utcTime: '2026-01-01T00:00:00.00'
+  spaceContacts:
+  - rsn-A-P01-11
+  - rsn-A-P01-12
+  - rsn-A-P03-11
+  - rsn-A-P03-12
+- antennas:
+  - band: S
+    id: antenna-S
+  - band: Ka
+    id: antenna-Ka
+  groundContacts:
+  - gs-ssc-kiruna
+  - gs-ssc-yatharagga
+  - gs-ssc-alaska
+  - gs-ssc-inuvik
+  - gs-ksat-hartebeesthoek
+  - gs-scc-santiago
+  - gs-ksat-svalbard
+  id: rsn-A-P02-12
+  name: RSN Sat A P02-12
+  orbit:
+    argumentPeriapsis: 0
+    eccentricity: 0
+    inclination: 89
+    meanAnomaly: 172.5
+    referenceFrame: EME2000
+    rightAscensionAscendingNode: 60.0
+    semiMajorAxis: 7428000
+    type: BLSKEPLERIAN
+    utcTime: '2026-01-01T00:00:00.00'
+  spaceContacts:
+  - rsn-A-P01-12
+  - rsn-A-P01-13
+  - rsn-A-P03-12
+  - rsn-A-P03-13
+- antennas:
+  - band: S
+    id: antenna-S
+  - band: Ka
+    id: antenna-Ka
+  groundContacts:
+  - gs-ssc-kiruna
+  - gs-ssc-yatharagga
+  - gs-ssc-alaska
+  - gs-ssc-inuvik
+  - gs-ksat-hartebeesthoek
+  - gs-scc-santiago
+  - gs-ksat-svalbard
+  id: rsn-A-P02-13
+  name: RSN Sat A P02-13
+  orbit:
+    argumentPeriapsis: 0
+    eccentricity: 0
+    inclination: 89
+    meanAnomaly: 187.5
+    referenceFrame: EME2000
+    rightAscensionAscendingNode: 60.0
+    semiMajorAxis: 7428000
+    type: BLSKEPLERIAN
+    utcTime: '2026-01-01T00:00:00.00'
+  spaceContacts:
+  - rsn-A-P01-13
+  - rsn-A-P01-14
+  - rsn-A-P03-13
+  - rsn-A-P03-14
+- antennas:
+  - band: S
+    id: antenna-S
+  - band: Ka
+    id: antenna-Ka
+  groundContacts:
+  - gs-ssc-kiruna
+  - gs-ssc-yatharagga
+  - gs-ssc-alaska
+  - gs-ssc-inuvik
+  - gs-ksat-hartebeesthoek
+  - gs-scc-santiago
+  - gs-ksat-svalbard
+  id: rsn-A-P02-14
+  name: RSN Sat A P02-14
+  orbit:
+    argumentPeriapsis: 0
+    eccentricity: 0
+    inclination: 89
+    meanAnomaly: 202.5
+    referenceFrame: EME2000
+    rightAscensionAscendingNode: 60.0
+    semiMajorAxis: 7428000
+    type: BLSKEPLERIAN
+    utcTime: '2026-01-01T00:00:00.00'
+  spaceContacts:
+  - rsn-A-P01-14
+  - rsn-A-P01-15
+  - rsn-A-P03-14
+  - rsn-A-P03-15
+- antennas:
+  - band: S
+    id: antenna-S
+  - band: Ka
+    id: antenna-Ka
+  groundContacts:
+  - gs-ssc-kiruna
+  - gs-ssc-yatharagga
+  - gs-ssc-alaska
+  - gs-ssc-inuvik
+  - gs-ksat-hartebeesthoek
+  - gs-scc-santiago
+  - gs-ksat-svalbard
+  id: rsn-A-P02-15
+  name: RSN Sat A P02-15
+  orbit:
+    argumentPeriapsis: 0
+    eccentricity: 0
+    inclination: 89
+    meanAnomaly: 217.5
+    referenceFrame: EME2000
+    rightAscensionAscendingNode: 60.0
+    semiMajorAxis: 7428000
+    type: BLSKEPLERIAN
+    utcTime: '2026-01-01T00:00:00.00'
+  spaceContacts:
+  - rsn-A-P01-15
+  - rsn-A-P01-16
+  - rsn-A-P03-15
+  - rsn-A-P03-16
+- antennas:
+  - band: S
+    id: antenna-S
+  - band: Ka
+    id: antenna-Ka
+  groundContacts:
+  - gs-ssc-kiruna
+  - gs-ssc-yatharagga
+  - gs-ssc-alaska
+  - gs-ssc-inuvik
+  - gs-ksat-hartebeesthoek
+  - gs-scc-santiago
+  - gs-ksat-svalbard
+  id: rsn-A-P02-16
+  name: RSN Sat A P02-16
+  orbit:
+    argumentPeriapsis: 0
+    eccentricity: 0
+    inclination: 89
+    meanAnomaly: 232.5
+    referenceFrame: EME2000
+    rightAscensionAscendingNode: 60.0
+    semiMajorAxis: 7428000
+    type: BLSKEPLERIAN
+    utcTime: '2026-01-01T00:00:00.00'
+  spaceContacts:
+  - rsn-A-P01-16
+  - rsn-A-P01-17
+  - rsn-A-P03-16
+  - rsn-A-P03-17
+- antennas:
+  - band: S
+    id: antenna-S
+  - band: Ka
+    id: antenna-Ka
+  groundContacts:
+  - gs-ssc-kiruna
+  - gs-ssc-yatharagga
+  - gs-ssc-alaska
+  - gs-ssc-inuvik
+  - gs-ksat-hartebeesthoek
+  - gs-scc-santiago
+  - gs-ksat-svalbard
+  id: rsn-A-P02-17
+  name: RSN Sat A P02-17
+  orbit:
+    argumentPeriapsis: 0
+    eccentricity: 0
+    inclination: 89
+    meanAnomaly: 247.5
+    referenceFrame: EME2000
+    rightAscensionAscendingNode: 60.0
+    semiMajorAxis: 7428000
+    type: BLSKEPLERIAN
+    utcTime: '2026-01-01T00:00:00.00'
+  spaceContacts:
+  - rsn-A-P01-17
+  - rsn-A-P01-18
+  - rsn-A-P03-17
+  - rsn-A-P03-18
+- antennas:
+  - band: S
+    id: antenna-S
+  - band: Ka
+    id: antenna-Ka
+  groundContacts:
+  - gs-ssc-kiruna
+  - gs-ssc-yatharagga
+  - gs-ssc-alaska
+  - gs-ssc-inuvik
+  - gs-ksat-hartebeesthoek
+  - gs-scc-santiago
+  - gs-ksat-svalbard
+  id: rsn-A-P02-18
+  name: RSN Sat A P02-18
+  orbit:
+    argumentPeriapsis: 0
+    eccentricity: 0
+    inclination: 89
+    meanAnomaly: 262.5
+    referenceFrame: EME2000
+    rightAscensionAscendingNode: 60.0
+    semiMajorAxis: 7428000
+    type: BLSKEPLERIAN
+    utcTime: '2026-01-01T00:00:00.00'
+  spaceContacts:
+  - rsn-A-P01-18
+  - rsn-A-P01-19
+  - rsn-A-P03-18
+  - rsn-A-P03-19
+- antennas:
+  - band: S
+    id: antenna-S
+  - band: Ka
+    id: antenna-Ka
+  groundContacts:
+  - gs-ssc-kiruna
+  - gs-ssc-yatharagga
+  - gs-ssc-alaska
+  - gs-ssc-inuvik
+  - gs-ksat-hartebeesthoek
+  - gs-scc-santiago
+  - gs-ksat-svalbard
+  id: rsn-A-P02-19
+  name: RSN Sat A P02-19
+  orbit:
+    argumentPeriapsis: 0
+    eccentricity: 0
+    inclination: 89
+    meanAnomaly: 277.5
+    referenceFrame: EME2000
+    rightAscensionAscendingNode: 60.0
+    semiMajorAxis: 7428000
+    type: BLSKEPLERIAN
+    utcTime: '2026-01-01T00:00:00.00'
+  spaceContacts:
+  - rsn-A-P01-19
+  - rsn-A-P01-20
+  - rsn-A-P03-19
+  - rsn-A-P03-20
+- antennas:
+  - band: S
+    id: antenna-S
+  - band: Ka
+    id: antenna-Ka
+  groundContacts:
+  - gs-ssc-kiruna
+  - gs-ssc-yatharagga
+  - gs-ssc-alaska
+  - gs-ssc-inuvik
+  - gs-ksat-hartebeesthoek
+  - gs-scc-santiago
+  - gs-ksat-svalbard
+  id: rsn-A-P02-20
+  name: RSN Sat A P02-20
+  orbit:
+    argumentPeriapsis: 0
+    eccentricity: 0
+    inclination: 89
+    meanAnomaly: 292.5
+    referenceFrame: EME2000
+    rightAscensionAscendingNode: 60.0
+    semiMajorAxis: 7428000
+    type: BLSKEPLERIAN
+    utcTime: '2026-01-01T00:00:00.00'
+  spaceContacts:
+  - rsn-A-P01-20
+  - rsn-A-P01-21
+  - rsn-A-P03-20
+  - rsn-A-P03-21
+- antennas:
+  - band: S
+    id: antenna-S
+  - band: Ka
+    id: antenna-Ka
+  groundContacts:
+  - gs-ssc-kiruna
+  - gs-ssc-yatharagga
+  - gs-ssc-alaska
+  - gs-ssc-inuvik
+  - gs-ksat-hartebeesthoek
+  - gs-scc-santiago
+  - gs-ksat-svalbard
+  id: rsn-A-P02-21
+  name: RSN Sat A P02-21
+  orbit:
+    argumentPeriapsis: 0
+    eccentricity: 0
+    inclination: 89
+    meanAnomaly: 307.5
+    referenceFrame: EME2000
+    rightAscensionAscendingNode: 60.0
+    semiMajorAxis: 7428000
+    type: BLSKEPLERIAN
+    utcTime: '2026-01-01T00:00:00.00'
+  spaceContacts:
+  - rsn-A-P01-21
+  - rsn-A-P01-22
+  - rsn-A-P03-21
+  - rsn-A-P03-22
+- antennas:
+  - band: S
+    id: antenna-S
+  - band: Ka
+    id: antenna-Ka
+  groundContacts:
+  - gs-ssc-kiruna
+  - gs-ssc-yatharagga
+  - gs-ssc-alaska
+  - gs-ssc-inuvik
+  - gs-ksat-hartebeesthoek
+  - gs-scc-santiago
+  - gs-ksat-svalbard
+  id: rsn-A-P02-22
+  name: RSN Sat A P02-22
+  orbit:
+    argumentPeriapsis: 0
+    eccentricity: 0
+    inclination: 89
+    meanAnomaly: 322.5
+    referenceFrame: EME2000
+    rightAscensionAscendingNode: 60.0
+    semiMajorAxis: 7428000
+    type: BLSKEPLERIAN
+    utcTime: '2026-01-01T00:00:00.00'
+  spaceContacts:
+  - rsn-A-P01-22
+  - rsn-A-P01-23
+  - rsn-A-P03-22
+  - rsn-A-P03-23
+- antennas:
+  - band: S
+    id: antenna-S
+  - band: Ka
+    id: antenna-Ka
+  groundContacts:
+  - gs-ssc-kiruna
+  - gs-ssc-yatharagga
+  - gs-ssc-alaska
+  - gs-ssc-inuvik
+  - gs-ksat-hartebeesthoek
+  - gs-scc-santiago
+  - gs-ksat-svalbard
+  id: rsn-A-P02-23
+  name: RSN Sat A P02-23
+  orbit:
+    argumentPeriapsis: 0
+    eccentricity: 0
+    inclination: 89
+    meanAnomaly: 337.5
+    referenceFrame: EME2000
+    rightAscensionAscendingNode: 60.0
+    semiMajorAxis: 7428000
+    type: BLSKEPLERIAN
+    utcTime: '2026-01-01T00:00:00.00'
+  spaceContacts:
+  - rsn-A-P01-23
+  - rsn-A-P01-24
+  - rsn-A-P03-23
+  - rsn-A-P03-24
+- antennas:
+  - band: S
+    id: antenna-S
+  - band: Ka
+    id: antenna-Ka
+  groundContacts:
+  - gs-ssc-kiruna
+  - gs-ssc-yatharagga
+  - gs-ssc-alaska
+  - gs-ssc-inuvik
+  - gs-ksat-hartebeesthoek
+  - gs-scc-santiago
+  - gs-ksat-svalbard
+  id: rsn-A-P02-24
+  name: RSN Sat A P02-24
+  orbit:
+    argumentPeriapsis: 0
+    eccentricity: 0
+    inclination: 89
+    meanAnomaly: 352.5
+    referenceFrame: EME2000
+    rightAscensionAscendingNode: 60.0
+    semiMajorAxis: 7428000
+    type: BLSKEPLERIAN
+    utcTime: '2026-01-01T00:00:00.00'
+  spaceContacts:
+  - rsn-A-P01-01
+  - rsn-A-P01-24
+  - rsn-A-P03-01
+  - rsn-A-P03-24
+- antennas:
+  - band: S
+    id: antenna-S
+  - band: Ka
+    id: antenna-Ka
+  groundContacts:
+  - gs-ssc-kiruna
+  - gs-ssc-yatharagga
+  - gs-ssc-alaska
+  - gs-ssc-inuvik
+  - gs-ksat-hartebeesthoek
+  - gs-scc-santiago
+  - gs-ksat-svalbard
+  id: rsn-A-P03-01
+  name: RSN Sat A P03-01
+  orbit:
+    argumentPeriapsis: 0
+    eccentricity: 0
+    inclination: 89
+    meanAnomaly: 0.0
+    referenceFrame: EME2000
+    rightAscensionAscendingNode: 120.0
+    semiMajorAxis: 7428000
+    type: BLSKEPLERIAN
+    utcTime: '2026-01-01T00:00:00.00'
+  spaceContacts:
+  - rsn-A-P01-01
+  - rsn-A-P01-02
+  - rsn-A-P01-03
+  - rsn-A-P01-04
+  - rsn-A-P01-05
+  - rsn-A-P01-06
+  - rsn-A-P01-07
+  - rsn-A-P01-08
+  - rsn-A-P01-09
+  - rsn-A-P01-10
+  - rsn-A-P01-11
+  - rsn-A-P01-12
+  - rsn-A-P01-13
+  - rsn-A-P01-14
+  - rsn-A-P01-15
+  - rsn-A-P01-16
+  - rsn-A-P01-17
+  - rsn-A-P01-18
+  - rsn-A-P01-19
+  - rsn-A-P01-20
+  - rsn-A-P01-21
+  - rsn-A-P01-22
+  - rsn-A-P01-23
+  - rsn-A-P01-24
+  - rsn-A-P02-01
+  - rsn-A-P02-24
+- antennas:
+  - band: S
+    id: antenna-S
+  - band: Ka
+    id: antenna-Ka
+  groundContacts:
+  - gs-ssc-kiruna
+  - gs-ssc-yatharagga
+  - gs-ssc-alaska
+  - gs-ssc-inuvik
+  - gs-ksat-hartebeesthoek
+  - gs-scc-santiago
+  - gs-ksat-svalbard
+  id: rsn-A-P03-02
+  name: RSN Sat A P03-02
+  orbit:
+    argumentPeriapsis: 0
+    eccentricity: 0
+    inclination: 89
+    meanAnomaly: 15.0
+    referenceFrame: EME2000
+    rightAscensionAscendingNode: 120.0
+    semiMajorAxis: 7428000
+    type: BLSKEPLERIAN
+    utcTime: '2026-01-01T00:00:00.00'
+  spaceContacts:
+  - rsn-A-P01-01
+  - rsn-A-P01-02
+  - rsn-A-P01-03
+  - rsn-A-P01-04
+  - rsn-A-P01-05
+  - rsn-A-P01-06
+  - rsn-A-P01-07
+  - rsn-A-P01-08
+  - rsn-A-P01-09
+  - rsn-A-P01-10
+  - rsn-A-P01-11
+  - rsn-A-P01-12
+  - rsn-A-P01-13
+  - rsn-A-P01-14
+  - rsn-A-P01-15
+  - rsn-A-P01-16
+  - rsn-A-P01-17
+  - rsn-A-P01-18
+  - rsn-A-P01-19
+  - rsn-A-P01-20
+  - rsn-A-P01-21
+  - rsn-A-P01-22
+  - rsn-A-P01-23
+  - rsn-A-P01-24
+  - rsn-A-P02-01
+  - rsn-A-P02-02
+- antennas:
+  - band: S
+    id: antenna-S
+  - band: Ka
+    id: antenna-Ka
+  groundContacts:
+  - gs-ssc-kiruna
+  - gs-ssc-yatharagga
+  - gs-ssc-alaska
+  - gs-ssc-inuvik
+  - gs-ksat-hartebeesthoek
+  - gs-scc-santiago
+  - gs-ksat-svalbard
+  id: rsn-A-P03-03
+  name: RSN Sat A P03-03
+  orbit:
+    argumentPeriapsis: 0
+    eccentricity: 0
+    inclination: 89
+    meanAnomaly: 30.0
+    referenceFrame: EME2000
+    rightAscensionAscendingNode: 120.0
+    semiMajorAxis: 7428000
+    type: BLSKEPLERIAN
+    utcTime: '2026-01-01T00:00:00.00'
+  spaceContacts:
+  - rsn-A-P01-01
+  - rsn-A-P01-02
+  - rsn-A-P01-03
+  - rsn-A-P01-04
+  - rsn-A-P01-05
+  - rsn-A-P01-06
+  - rsn-A-P01-07
+  - rsn-A-P01-08
+  - rsn-A-P01-09
+  - rsn-A-P01-10
+  - rsn-A-P01-11
+  - rsn-A-P01-12
+  - rsn-A-P01-13
+  - rsn-A-P01-14
+  - rsn-A-P01-15
+  - rsn-A-P01-16
+  - rsn-A-P01-17
+  - rsn-A-P01-18
+  - rsn-A-P01-19
+  - rsn-A-P01-20
+  - rsn-A-P01-21
+  - rsn-A-P01-22
+  - rsn-A-P01-23
+  - rsn-A-P01-24
+  - rsn-A-P02-02
+  - rsn-A-P02-03
+- antennas:
+  - band: S
+    id: antenna-S
+  - band: Ka
+    id: antenna-Ka
+  groundContacts:
+  - gs-ssc-kiruna
+  - gs-ssc-yatharagga
+  - gs-ssc-alaska
+  - gs-ssc-inuvik
+  - gs-ksat-hartebeesthoek
+  - gs-scc-santiago
+  - gs-ksat-svalbard
+  id: rsn-A-P03-04
+  name: RSN Sat A P03-04
+  orbit:
+    argumentPeriapsis: 0
+    eccentricity: 0
+    inclination: 89
+    meanAnomaly: 45.0
+    referenceFrame: EME2000
+    rightAscensionAscendingNode: 120.0
+    semiMajorAxis: 7428000
+    type: BLSKEPLERIAN
+    utcTime: '2026-01-01T00:00:00.00'
+  spaceContacts:
+  - rsn-A-P01-01
+  - rsn-A-P01-02
+  - rsn-A-P01-03
+  - rsn-A-P01-04
+  - rsn-A-P01-05
+  - rsn-A-P01-06
+  - rsn-A-P01-07
+  - rsn-A-P01-08
+  - rsn-A-P01-09
+  - rsn-A-P01-10
+  - rsn-A-P01-11
+  - rsn-A-P01-12
+  - rsn-A-P01-13
+  - rsn-A-P01-14
+  - rsn-A-P01-15
+  - rsn-A-P01-16
+  - rsn-A-P01-17
+  - rsn-A-P01-18
+  - rsn-A-P01-19
+  - rsn-A-P01-20
+  - rsn-A-P01-21
+  - rsn-A-P01-22
+  - rsn-A-P01-23
+  - rsn-A-P01-24
+  - rsn-A-P02-03
+  - rsn-A-P02-04
+- antennas:
+  - band: S
+    id: antenna-S
+  - band: Ka
+    id: antenna-Ka
+  groundContacts:
+  - gs-ssc-kiruna
+  - gs-ssc-yatharagga
+  - gs-ssc-alaska
+  - gs-ssc-inuvik
+  - gs-ksat-hartebeesthoek
+  - gs-scc-santiago
+  - gs-ksat-svalbard
+  id: rsn-A-P03-05
+  name: RSN Sat A P03-05
+  orbit:
+    argumentPeriapsis: 0
+    eccentricity: 0
+    inclination: 89
+    meanAnomaly: 60.0
+    referenceFrame: EME2000
+    rightAscensionAscendingNode: 120.0
+    semiMajorAxis: 7428000
+    type: BLSKEPLERIAN
+    utcTime: '2026-01-01T00:00:00.00'
+  spaceContacts:
+  - rsn-A-P01-01
+  - rsn-A-P01-02
+  - rsn-A-P01-03
+  - rsn-A-P01-04
+  - rsn-A-P01-05
+  - rsn-A-P01-06
+  - rsn-A-P01-07
+  - rsn-A-P01-08
+  - rsn-A-P01-09
+  - rsn-A-P01-10
+  - rsn-A-P01-11
+  - rsn-A-P01-12
+  - rsn-A-P01-13
+  - rsn-A-P01-14
+  - rsn-A-P01-15
+  - rsn-A-P01-16
+  - rsn-A-P01-17
+  - rsn-A-P01-18
+  - rsn-A-P01-19
+  - rsn-A-P01-20
+  - rsn-A-P01-21
+  - rsn-A-P01-22
+  - rsn-A-P01-23
+  - rsn-A-P01-24
+  - rsn-A-P02-04
+  - rsn-A-P02-05
+- antennas:
+  - band: S
+    id: antenna-S
+  - band: Ka
+    id: antenna-Ka
+  groundContacts:
+  - gs-ssc-kiruna
+  - gs-ssc-yatharagga
+  - gs-ssc-alaska
+  - gs-ssc-inuvik
+  - gs-ksat-hartebeesthoek
+  - gs-scc-santiago
+  - gs-ksat-svalbard
+  id: rsn-A-P03-06
+  name: RSN Sat A P03-06
+  orbit:
+    argumentPeriapsis: 0
+    eccentricity: 0
+    inclination: 89
+    meanAnomaly: 75.0
+    referenceFrame: EME2000
+    rightAscensionAscendingNode: 120.0
+    semiMajorAxis: 7428000
+    type: BLSKEPLERIAN
+    utcTime: '2026-01-01T00:00:00.00'
+  spaceContacts:
+  - rsn-A-P01-01
+  - rsn-A-P01-02
+  - rsn-A-P01-03
+  - rsn-A-P01-04
+  - rsn-A-P01-05
+  - rsn-A-P01-06
+  - rsn-A-P01-07
+  - rsn-A-P01-08
+  - rsn-A-P01-09
+  - rsn-A-P01-10
+  - rsn-A-P01-11
+  - rsn-A-P01-12
+  - rsn-A-P01-13
+  - rsn-A-P01-14
+  - rsn-A-P01-15
+  - rsn-A-P01-16
+  - rsn-A-P01-17
+  - rsn-A-P01-18
+  - rsn-A-P01-19
+  - rsn-A-P01-20
+  - rsn-A-P01-21
+  - rsn-A-P01-22
+  - rsn-A-P01-23
+  - rsn-A-P01-24
+  - rsn-A-P02-05
+  - rsn-A-P02-06
+- antennas:
+  - band: S
+    id: antenna-S
+  - band: Ka
+    id: antenna-Ka
+  groundContacts:
+  - gs-ssc-kiruna
+  - gs-ssc-yatharagga
+  - gs-ssc-alaska
+  - gs-ssc-inuvik
+  - gs-ksat-hartebeesthoek
+  - gs-scc-santiago
+  - gs-ksat-svalbard
+  id: rsn-A-P03-07
+  name: RSN Sat A P03-07
+  orbit:
+    argumentPeriapsis: 0
+    eccentricity: 0
+    inclination: 89
+    meanAnomaly: 90.0
+    referenceFrame: EME2000
+    rightAscensionAscendingNode: 120.0
+    semiMajorAxis: 7428000
+    type: BLSKEPLERIAN
+    utcTime: '2026-01-01T00:00:00.00'
+  spaceContacts:
+  - rsn-A-P01-01
+  - rsn-A-P01-02
+  - rsn-A-P01-03
+  - rsn-A-P01-04
+  - rsn-A-P01-05
+  - rsn-A-P01-06
+  - rsn-A-P01-07
+  - rsn-A-P01-08
+  - rsn-A-P01-09
+  - rsn-A-P01-10
+  - rsn-A-P01-11
+  - rsn-A-P01-12
+  - rsn-A-P01-13
+  - rsn-A-P01-14
+  - rsn-A-P01-15
+  - rsn-A-P01-16
+  - rsn-A-P01-17
+  - rsn-A-P01-18
+  - rsn-A-P01-19
+  - rsn-A-P01-20
+  - rsn-A-P01-21
+  - rsn-A-P01-22
+  - rsn-A-P01-23
+  - rsn-A-P01-24
+  - rsn-A-P02-06
+  - rsn-A-P02-07
+- antennas:
+  - band: S
+    id: antenna-S
+  - band: Ka
+    id: antenna-Ka
+  groundContacts:
+  - gs-ssc-kiruna
+  - gs-ssc-yatharagga
+  - gs-ssc-alaska
+  - gs-ssc-inuvik
+  - gs-ksat-hartebeesthoek
+  - gs-scc-santiago
+  - gs-ksat-svalbard
+  id: rsn-A-P03-08
+  name: RSN Sat A P03-08
+  orbit:
+    argumentPeriapsis: 0
+    eccentricity: 0
+    inclination: 89
+    meanAnomaly: 105.0
+    referenceFrame: EME2000
+    rightAscensionAscendingNode: 120.0
+    semiMajorAxis: 7428000
+    type: BLSKEPLERIAN
+    utcTime: '2026-01-01T00:00:00.00'
+  spaceContacts:
+  - rsn-A-P01-01
+  - rsn-A-P01-02
+  - rsn-A-P01-03
+  - rsn-A-P01-04
+  - rsn-A-P01-05
+  - rsn-A-P01-06
+  - rsn-A-P01-07
+  - rsn-A-P01-08
+  - rsn-A-P01-09
+  - rsn-A-P01-10
+  - rsn-A-P01-11
+  - rsn-A-P01-12
+  - rsn-A-P01-13
+  - rsn-A-P01-14
+  - rsn-A-P01-15
+  - rsn-A-P01-16
+  - rsn-A-P01-17
+  - rsn-A-P01-18
+  - rsn-A-P01-19
+  - rsn-A-P01-20
+  - rsn-A-P01-21
+  - rsn-A-P01-22
+  - rsn-A-P01-23
+  - rsn-A-P01-24
+  - rsn-A-P02-07
+  - rsn-A-P02-08
+- antennas:
+  - band: S
+    id: antenna-S
+  - band: Ka
+    id: antenna-Ka
+  groundContacts:
+  - gs-ssc-kiruna
+  - gs-ssc-yatharagga
+  - gs-ssc-alaska
+  - gs-ssc-inuvik
+  - gs-ksat-hartebeesthoek
+  - gs-scc-santiago
+  - gs-ksat-svalbard
+  id: rsn-A-P03-09
+  name: RSN Sat A P03-09
+  orbit:
+    argumentPeriapsis: 0
+    eccentricity: 0
+    inclination: 89
+    meanAnomaly: 120.0
+    referenceFrame: EME2000
+    rightAscensionAscendingNode: 120.0
+    semiMajorAxis: 7428000
+    type: BLSKEPLERIAN
+    utcTime: '2026-01-01T00:00:00.00'
+  spaceContacts:
+  - rsn-A-P01-01
+  - rsn-A-P01-02
+  - rsn-A-P01-03
+  - rsn-A-P01-04
+  - rsn-A-P01-05
+  - rsn-A-P01-06
+  - rsn-A-P01-07
+  - rsn-A-P01-08
+  - rsn-A-P01-09
+  - rsn-A-P01-10
+  - rsn-A-P01-11
+  - rsn-A-P01-12
+  - rsn-A-P01-13
+  - rsn-A-P01-14
+  - rsn-A-P01-15
+  - rsn-A-P01-16
+  - rsn-A-P01-17
+  - rsn-A-P01-18
+  - rsn-A-P01-19
+  - rsn-A-P01-20
+  - rsn-A-P01-21
+  - rsn-A-P01-22
+  - rsn-A-P01-23
+  - rsn-A-P01-24
+  - rsn-A-P02-08
+  - rsn-A-P02-09
+- antennas:
+  - band: S
+    id: antenna-S
+  - band: Ka
+    id: antenna-Ka
+  groundContacts:
+  - gs-ssc-kiruna
+  - gs-ssc-yatharagga
+  - gs-ssc-alaska
+  - gs-ssc-inuvik
+  - gs-ksat-hartebeesthoek
+  - gs-scc-santiago
+  - gs-ksat-svalbard
+  id: rsn-A-P03-10
+  name: RSN Sat A P03-10
+  orbit:
+    argumentPeriapsis: 0
+    eccentricity: 0
+    inclination: 89
+    meanAnomaly: 135.0
+    referenceFrame: EME2000
+    rightAscensionAscendingNode: 120.0
+    semiMajorAxis: 7428000
+    type: BLSKEPLERIAN
+    utcTime: '2026-01-01T00:00:00.00'
+  spaceContacts:
+  - rsn-A-P01-01
+  - rsn-A-P01-02
+  - rsn-A-P01-03
+  - rsn-A-P01-04
+  - rsn-A-P01-05
+  - rsn-A-P01-06
+  - rsn-A-P01-07
+  - rsn-A-P01-08
+  - rsn-A-P01-09
+  - rsn-A-P01-10
+  - rsn-A-P01-11
+  - rsn-A-P01-12
+  - rsn-A-P01-13
+  - rsn-A-P01-14
+  - rsn-A-P01-15
+  - rsn-A-P01-16
+  - rsn-A-P01-17
+  - rsn-A-P01-18
+  - rsn-A-P01-19
+  - rsn-A-P01-20
+  - rsn-A-P01-21
+  - rsn-A-P01-22
+  - rsn-A-P01-23
+  - rsn-A-P01-24
+  - rsn-A-P02-09
+  - rsn-A-P02-10
+- antennas:
+  - band: S
+    id: antenna-S
+  - band: Ka
+    id: antenna-Ka
+  groundContacts:
+  - gs-ssc-kiruna
+  - gs-ssc-yatharagga
+  - gs-ssc-alaska
+  - gs-ssc-inuvik
+  - gs-ksat-hartebeesthoek
+  - gs-scc-santiago
+  - gs-ksat-svalbard
+  id: rsn-A-P03-11
+  name: RSN Sat A P03-11
+  orbit:
+    argumentPeriapsis: 0
+    eccentricity: 0
+    inclination: 89
+    meanAnomaly: 150.0
+    referenceFrame: EME2000
+    rightAscensionAscendingNode: 120.0
+    semiMajorAxis: 7428000
+    type: BLSKEPLERIAN
+    utcTime: '2026-01-01T00:00:00.00'
+  spaceContacts:
+  - rsn-A-P01-01
+  - rsn-A-P01-02
+  - rsn-A-P01-03
+  - rsn-A-P01-04
+  - rsn-A-P01-05
+  - rsn-A-P01-06
+  - rsn-A-P01-07
+  - rsn-A-P01-08
+  - rsn-A-P01-09
+  - rsn-A-P01-10
+  - rsn-A-P01-11
+  - rsn-A-P01-12
+  - rsn-A-P01-13
+  - rsn-A-P01-14
+  - rsn-A-P01-15
+  - rsn-A-P01-16
+  - rsn-A-P01-17
+  - rsn-A-P01-18
+  - rsn-A-P01-19
+  - rsn-A-P01-20
+  - rsn-A-P01-21
+  - rsn-A-P01-22
+  - rsn-A-P01-23
+  - rsn-A-P01-24
+  - rsn-A-P02-10
+  - rsn-A-P02-11
+- antennas:
+  - band: S
+    id: antenna-S
+  - band: Ka
+    id: antenna-Ka
+  groundContacts:
+  - gs-ssc-kiruna
+  - gs-ssc-yatharagga
+  - gs-ssc-alaska
+  - gs-ssc-inuvik
+  - gs-ksat-hartebeesthoek
+  - gs-scc-santiago
+  - gs-ksat-svalbard
+  id: rsn-A-P03-12
+  name: RSN Sat A P03-12
+  orbit:
+    argumentPeriapsis: 0
+    eccentricity: 0
+    inclination: 89
+    meanAnomaly: 165.0
+    referenceFrame: EME2000
+    rightAscensionAscendingNode: 120.0
+    semiMajorAxis: 7428000
+    type: BLSKEPLERIAN
+    utcTime: '2026-01-01T00:00:00.00'
+  spaceContacts:
+  - rsn-A-P01-01
+  - rsn-A-P01-02
+  - rsn-A-P01-03
+  - rsn-A-P01-04
+  - rsn-A-P01-05
+  - rsn-A-P01-06
+  - rsn-A-P01-07
+  - rsn-A-P01-08
+  - rsn-A-P01-09
+  - rsn-A-P01-10
+  - rsn-A-P01-11
+  - rsn-A-P01-12
+  - rsn-A-P01-13
+  - rsn-A-P01-14
+  - rsn-A-P01-15
+  - rsn-A-P01-16
+  - rsn-A-P01-17
+  - rsn-A-P01-18
+  - rsn-A-P01-19
+  - rsn-A-P01-20
+  - rsn-A-P01-21
+  - rsn-A-P01-22
+  - rsn-A-P01-23
+  - rsn-A-P01-24
+  - rsn-A-P02-11
+  - rsn-A-P02-12
+- antennas:
+  - band: S
+    id: antenna-S
+  - band: Ka
+    id: antenna-Ka
+  groundContacts:
+  - gs-ssc-kiruna
+  - gs-ssc-yatharagga
+  - gs-ssc-alaska
+  - gs-ssc-inuvik
+  - gs-ksat-hartebeesthoek
+  - gs-scc-santiago
+  - gs-ksat-svalbard
+  id: rsn-A-P03-13
+  name: RSN Sat A P03-13
+  orbit:
+    argumentPeriapsis: 0
+    eccentricity: 0
+    inclination: 89
+    meanAnomaly: 180.0
+    referenceFrame: EME2000
+    rightAscensionAscendingNode: 120.0
+    semiMajorAxis: 7428000
+    type: BLSKEPLERIAN
+    utcTime: '2026-01-01T00:00:00.00'
+  spaceContacts:
+  - rsn-A-P01-01
+  - rsn-A-P01-02
+  - rsn-A-P01-03
+  - rsn-A-P01-04
+  - rsn-A-P01-05
+  - rsn-A-P01-06
+  - rsn-A-P01-07
+  - rsn-A-P01-08
+  - rsn-A-P01-09
+  - rsn-A-P01-10
+  - rsn-A-P01-11
+  - rsn-A-P01-12
+  - rsn-A-P01-13
+  - rsn-A-P01-14
+  - rsn-A-P01-15
+  - rsn-A-P01-16
+  - rsn-A-P01-17
+  - rsn-A-P01-18
+  - rsn-A-P01-19
+  - rsn-A-P01-20
+  - rsn-A-P01-21
+  - rsn-A-P01-22
+  - rsn-A-P01-23
+  - rsn-A-P01-24
+  - rsn-A-P02-12
+  - rsn-A-P02-13
+- antennas:
+  - band: S
+    id: antenna-S
+  - band: Ka
+    id: antenna-Ka
+  groundContacts:
+  - gs-ssc-kiruna
+  - gs-ssc-yatharagga
+  - gs-ssc-alaska
+  - gs-ssc-inuvik
+  - gs-ksat-hartebeesthoek
+  - gs-scc-santiago
+  - gs-ksat-svalbard
+  id: rsn-A-P03-14
+  name: RSN Sat A P03-14
+  orbit:
+    argumentPeriapsis: 0
+    eccentricity: 0
+    inclination: 89
+    meanAnomaly: 195.0
+    referenceFrame: EME2000
+    rightAscensionAscendingNode: 120.0
+    semiMajorAxis: 7428000
+    type: BLSKEPLERIAN
+    utcTime: '2026-01-01T00:00:00.00'
+  spaceContacts:
+  - rsn-A-P01-01
+  - rsn-A-P01-02
+  - rsn-A-P01-03
+  - rsn-A-P01-04
+  - rsn-A-P01-05
+  - rsn-A-P01-06
+  - rsn-A-P01-07
+  - rsn-A-P01-08
+  - rsn-A-P01-09
+  - rsn-A-P01-10
+  - rsn-A-P01-11
+  - rsn-A-P01-12
+  - rsn-A-P01-13
+  - rsn-A-P01-14
+  - rsn-A-P01-15
+  - rsn-A-P01-16
+  - rsn-A-P01-17
+  - rsn-A-P01-18
+  - rsn-A-P01-19
+  - rsn-A-P01-20
+  - rsn-A-P01-21
+  - rsn-A-P01-22
+  - rsn-A-P01-23
+  - rsn-A-P01-24
+  - rsn-A-P02-13
+  - rsn-A-P02-14
+- antennas:
+  - band: S
+    id: antenna-S
+  - band: Ka
+    id: antenna-Ka
+  groundContacts:
+  - gs-ssc-kiruna
+  - gs-ssc-yatharagga
+  - gs-ssc-alaska
+  - gs-ssc-inuvik
+  - gs-ksat-hartebeesthoek
+  - gs-scc-santiago
+  - gs-ksat-svalbard
+  id: rsn-A-P03-15
+  name: RSN Sat A P03-15
+  orbit:
+    argumentPeriapsis: 0
+    eccentricity: 0
+    inclination: 89
+    meanAnomaly: 210.0
+    referenceFrame: EME2000
+    rightAscensionAscendingNode: 120.0
+    semiMajorAxis: 7428000
+    type: BLSKEPLERIAN
+    utcTime: '2026-01-01T00:00:00.00'
+  spaceContacts:
+  - rsn-A-P01-01
+  - rsn-A-P01-02
+  - rsn-A-P01-03
+  - rsn-A-P01-04
+  - rsn-A-P01-05
+  - rsn-A-P01-06
+  - rsn-A-P01-07
+  - rsn-A-P01-08
+  - rsn-A-P01-09
+  - rsn-A-P01-10
+  - rsn-A-P01-11
+  - rsn-A-P01-12
+  - rsn-A-P01-13
+  - rsn-A-P01-14
+  - rsn-A-P01-15
+  - rsn-A-P01-16
+  - rsn-A-P01-17
+  - rsn-A-P01-18
+  - rsn-A-P01-19
+  - rsn-A-P01-20
+  - rsn-A-P01-21
+  - rsn-A-P01-22
+  - rsn-A-P01-23
+  - rsn-A-P01-24
+  - rsn-A-P02-14
+  - rsn-A-P02-15
+- antennas:
+  - band: S
+    id: antenna-S
+  - band: Ka
+    id: antenna-Ka
+  groundContacts:
+  - gs-ssc-kiruna
+  - gs-ssc-yatharagga
+  - gs-ssc-alaska
+  - gs-ssc-inuvik
+  - gs-ksat-hartebeesthoek
+  - gs-scc-santiago
+  - gs-ksat-svalbard
+  id: rsn-A-P03-16
+  name: RSN Sat A P03-16
+  orbit:
+    argumentPeriapsis: 0
+    eccentricity: 0
+    inclination: 89
+    meanAnomaly: 225.0
+    referenceFrame: EME2000
+    rightAscensionAscendingNode: 120.0
+    semiMajorAxis: 7428000
+    type: BLSKEPLERIAN
+    utcTime: '2026-01-01T00:00:00.00'
+  spaceContacts:
+  - rsn-A-P01-01
+  - rsn-A-P01-02
+  - rsn-A-P01-03
+  - rsn-A-P01-04
+  - rsn-A-P01-05
+  - rsn-A-P01-06
+  - rsn-A-P01-07
+  - rsn-A-P01-08
+  - rsn-A-P01-09
+  - rsn-A-P01-10
+  - rsn-A-P01-11
+  - rsn-A-P01-12
+  - rsn-A-P01-13
+  - rsn-A-P01-14
+  - rsn-A-P01-15
+  - rsn-A-P01-16
+  - rsn-A-P01-17
+  - rsn-A-P01-18
+  - rsn-A-P01-19
+  - rsn-A-P01-20
+  - rsn-A-P01-21
+  - rsn-A-P01-22
+  - rsn-A-P01-23
+  - rsn-A-P01-24
+  - rsn-A-P02-15
+  - rsn-A-P02-16
+- antennas:
+  - band: S
+    id: antenna-S
+  - band: Ka
+    id: antenna-Ka
+  groundContacts:
+  - gs-ssc-kiruna
+  - gs-ssc-yatharagga
+  - gs-ssc-alaska
+  - gs-ssc-inuvik
+  - gs-ksat-hartebeesthoek
+  - gs-scc-santiago
+  - gs-ksat-svalbard
+  id: rsn-A-P03-17
+  name: RSN Sat A P03-17
+  orbit:
+    argumentPeriapsis: 0
+    eccentricity: 0
+    inclination: 89
+    meanAnomaly: 240.0
+    referenceFrame: EME2000
+    rightAscensionAscendingNode: 120.0
+    semiMajorAxis: 7428000
+    type: BLSKEPLERIAN
+    utcTime: '2026-01-01T00:00:00.00'
+  spaceContacts:
+  - rsn-A-P01-01
+  - rsn-A-P01-02
+  - rsn-A-P01-03
+  - rsn-A-P01-04
+  - rsn-A-P01-05
+  - rsn-A-P01-06
+  - rsn-A-P01-07
+  - rsn-A-P01-08
+  - rsn-A-P01-09
+  - rsn-A-P01-10
+  - rsn-A-P01-11
+  - rsn-A-P01-12
+  - rsn-A-P01-13
+  - rsn-A-P01-14
+  - rsn-A-P01-15
+  - rsn-A-P01-16
+  - rsn-A-P01-17
+  - rsn-A-P01-18
+  - rsn-A-P01-19
+  - rsn-A-P01-20
+  - rsn-A-P01-21
+  - rsn-A-P01-22
+  - rsn-A-P01-23
+  - rsn-A-P01-24
+  - rsn-A-P02-16
+  - rsn-A-P02-17
+- antennas:
+  - band: S
+    id: antenna-S
+  - band: Ka
+    id: antenna-Ka
+  groundContacts:
+  - gs-ssc-kiruna
+  - gs-ssc-yatharagga
+  - gs-ssc-alaska
+  - gs-ssc-inuvik
+  - gs-ksat-hartebeesthoek
+  - gs-scc-santiago
+  - gs-ksat-svalbard
+  id: rsn-A-P03-18
+  name: RSN Sat A P03-18
+  orbit:
+    argumentPeriapsis: 0
+    eccentricity: 0
+    inclination: 89
+    meanAnomaly: 255.0
+    referenceFrame: EME2000
+    rightAscensionAscendingNode: 120.0
+    semiMajorAxis: 7428000
+    type: BLSKEPLERIAN
+    utcTime: '2026-01-01T00:00:00.00'
+  spaceContacts:
+  - rsn-A-P01-01
+  - rsn-A-P01-02
+  - rsn-A-P01-03
+  - rsn-A-P01-04
+  - rsn-A-P01-05
+  - rsn-A-P01-06
+  - rsn-A-P01-07
+  - rsn-A-P01-08
+  - rsn-A-P01-09
+  - rsn-A-P01-10
+  - rsn-A-P01-11
+  - rsn-A-P01-12
+  - rsn-A-P01-13
+  - rsn-A-P01-14
+  - rsn-A-P01-15
+  - rsn-A-P01-16
+  - rsn-A-P01-17
+  - rsn-A-P01-18
+  - rsn-A-P01-19
+  - rsn-A-P01-20
+  - rsn-A-P01-21
+  - rsn-A-P01-22
+  - rsn-A-P01-23
+  - rsn-A-P01-24
+  - rsn-A-P02-17
+  - rsn-A-P02-18
+- antennas:
+  - band: S
+    id: antenna-S
+  - band: Ka
+    id: antenna-Ka
+  groundContacts:
+  - gs-ssc-kiruna
+  - gs-ssc-yatharagga
+  - gs-ssc-alaska
+  - gs-ssc-inuvik
+  - gs-ksat-hartebeesthoek
+  - gs-scc-santiago
+  - gs-ksat-svalbard
+  id: rsn-A-P03-19
+  name: RSN Sat A P03-19
+  orbit:
+    argumentPeriapsis: 0
+    eccentricity: 0
+    inclination: 89
+    meanAnomaly: 270.0
+    referenceFrame: EME2000
+    rightAscensionAscendingNode: 120.0
+    semiMajorAxis: 7428000
+    type: BLSKEPLERIAN
+    utcTime: '2026-01-01T00:00:00.00'
+  spaceContacts:
+  - rsn-A-P01-01
+  - rsn-A-P01-02
+  - rsn-A-P01-03
+  - rsn-A-P01-04
+  - rsn-A-P01-05
+  - rsn-A-P01-06
+  - rsn-A-P01-07
+  - rsn-A-P01-08
+  - rsn-A-P01-09
+  - rsn-A-P01-10
+  - rsn-A-P01-11
+  - rsn-A-P01-12
+  - rsn-A-P01-13
+  - rsn-A-P01-14
+  - rsn-A-P01-15
+  - rsn-A-P01-16
+  - rsn-A-P01-17
+  - rsn-A-P01-18
+  - rsn-A-P01-19
+  - rsn-A-P01-20
+  - rsn-A-P01-21
+  - rsn-A-P01-22
+  - rsn-A-P01-23
+  - rsn-A-P01-24
+  - rsn-A-P02-18
+  - rsn-A-P02-19
+- antennas:
+  - band: S
+    id: antenna-S
+  - band: Ka
+    id: antenna-Ka
+  groundContacts:
+  - gs-ssc-kiruna
+  - gs-ssc-yatharagga
+  - gs-ssc-alaska
+  - gs-ssc-inuvik
+  - gs-ksat-hartebeesthoek
+  - gs-scc-santiago
+  - gs-ksat-svalbard
+  id: rsn-A-P03-20
+  name: RSN Sat A P03-20
+  orbit:
+    argumentPeriapsis: 0
+    eccentricity: 0
+    inclination: 89
+    meanAnomaly: 285.0
+    referenceFrame: EME2000
+    rightAscensionAscendingNode: 120.0
+    semiMajorAxis: 7428000
+    type: BLSKEPLERIAN
+    utcTime: '2026-01-01T00:00:00.00'
+  spaceContacts:
+  - rsn-A-P01-01
+  - rsn-A-P01-02
+  - rsn-A-P01-03
+  - rsn-A-P01-04
+  - rsn-A-P01-05
+  - rsn-A-P01-06
+  - rsn-A-P01-07
+  - rsn-A-P01-08
+  - rsn-A-P01-09
+  - rsn-A-P01-10
+  - rsn-A-P01-11
+  - rsn-A-P01-12
+  - rsn-A-P01-13
+  - rsn-A-P01-14
+  - rsn-A-P01-15
+  - rsn-A-P01-16
+  - rsn-A-P01-17
+  - rsn-A-P01-18
+  - rsn-A-P01-19
+  - rsn-A-P01-20
+  - rsn-A-P01-21
+  - rsn-A-P01-22
+  - rsn-A-P01-23
+  - rsn-A-P01-24
+  - rsn-A-P02-19
+  - rsn-A-P02-20
+- antennas:
+  - band: S
+    id: antenna-S
+  - band: Ka
+    id: antenna-Ka
+  groundContacts:
+  - gs-ssc-kiruna
+  - gs-ssc-yatharagga
+  - gs-ssc-alaska
+  - gs-ssc-inuvik
+  - gs-ksat-hartebeesthoek
+  - gs-scc-santiago
+  - gs-ksat-svalbard
+  id: rsn-A-P03-21
+  name: RSN Sat A P03-21
+  orbit:
+    argumentPeriapsis: 0
+    eccentricity: 0
+    inclination: 89
+    meanAnomaly: 300.0
+    referenceFrame: EME2000
+    rightAscensionAscendingNode: 120.0
+    semiMajorAxis: 7428000
+    type: BLSKEPLERIAN
+    utcTime: '2026-01-01T00:00:00.00'
+  spaceContacts:
+  - rsn-A-P01-01
+  - rsn-A-P01-02
+  - rsn-A-P01-03
+  - rsn-A-P01-04
+  - rsn-A-P01-05
+  - rsn-A-P01-06
+  - rsn-A-P01-07
+  - rsn-A-P01-08
+  - rsn-A-P01-09
+  - rsn-A-P01-10
+  - rsn-A-P01-11
+  - rsn-A-P01-12
+  - rsn-A-P01-13
+  - rsn-A-P01-14
+  - rsn-A-P01-15
+  - rsn-A-P01-16
+  - rsn-A-P01-17
+  - rsn-A-P01-18
+  - rsn-A-P01-19
+  - rsn-A-P01-20
+  - rsn-A-P01-21
+  - rsn-A-P01-22
+  - rsn-A-P01-23
+  - rsn-A-P01-24
+  - rsn-A-P02-20
+  - rsn-A-P02-21
+- antennas:
+  - band: S
+    id: antenna-S
+  - band: Ka
+    id: antenna-Ka
+  groundContacts:
+  - gs-ssc-kiruna
+  - gs-ssc-yatharagga
+  - gs-ssc-alaska
+  - gs-ssc-inuvik
+  - gs-ksat-hartebeesthoek
+  - gs-scc-santiago
+  - gs-ksat-svalbard
+  id: rsn-A-P03-22
+  name: RSN Sat A P03-22
+  orbit:
+    argumentPeriapsis: 0
+    eccentricity: 0
+    inclination: 89
+    meanAnomaly: 315.0
+    referenceFrame: EME2000
+    rightAscensionAscendingNode: 120.0
+    semiMajorAxis: 7428000
+    type: BLSKEPLERIAN
+    utcTime: '2026-01-01T00:00:00.00'
+  spaceContacts:
+  - rsn-A-P01-01
+  - rsn-A-P01-02
+  - rsn-A-P01-03
+  - rsn-A-P01-04
+  - rsn-A-P01-05
+  - rsn-A-P01-06
+  - rsn-A-P01-07
+  - rsn-A-P01-08
+  - rsn-A-P01-09
+  - rsn-A-P01-10
+  - rsn-A-P01-11
+  - rsn-A-P01-12
+  - rsn-A-P01-13
+  - rsn-A-P01-14
+  - rsn-A-P01-15
+  - rsn-A-P01-16
+  - rsn-A-P01-17
+  - rsn-A-P01-18
+  - rsn-A-P01-19
+  - rsn-A-P01-20
+  - rsn-A-P01-21
+  - rsn-A-P01-22
+  - rsn-A-P01-23
+  - rsn-A-P01-24
+  - rsn-A-P02-21
+  - rsn-A-P02-22
+- antennas:
+  - band: S
+    id: antenna-S
+  - band: Ka
+    id: antenna-Ka
+  groundContacts:
+  - gs-ssc-kiruna
+  - gs-ssc-yatharagga
+  - gs-ssc-alaska
+  - gs-ssc-inuvik
+  - gs-ksat-hartebeesthoek
+  - gs-scc-santiago
+  - gs-ksat-svalbard
+  id: rsn-A-P03-23
+  name: RSN Sat A P03-23
+  orbit:
+    argumentPeriapsis: 0
+    eccentricity: 0
+    inclination: 89
+    meanAnomaly: 330.0
+    referenceFrame: EME2000
+    rightAscensionAscendingNode: 120.0
+    semiMajorAxis: 7428000
+    type: BLSKEPLERIAN
+    utcTime: '2026-01-01T00:00:00.00'
+  spaceContacts:
+  - rsn-A-P01-01
+  - rsn-A-P01-02
+  - rsn-A-P01-03
+  - rsn-A-P01-04
+  - rsn-A-P01-05
+  - rsn-A-P01-06
+  - rsn-A-P01-07
+  - rsn-A-P01-08
+  - rsn-A-P01-09
+  - rsn-A-P01-10
+  - rsn-A-P01-11
+  - rsn-A-P01-12
+  - rsn-A-P01-13
+  - rsn-A-P01-14
+  - rsn-A-P01-15
+  - rsn-A-P01-16
+  - rsn-A-P01-17
+  - rsn-A-P01-18
+  - rsn-A-P01-19
+  - rsn-A-P01-20
+  - rsn-A-P01-21
+  - rsn-A-P01-22
+  - rsn-A-P01-23
+  - rsn-A-P01-24
+  - rsn-A-P02-22
+  - rsn-A-P02-23
+- antennas:
+  - band: S
+    id: antenna-S
+  - band: Ka
+    id: antenna-Ka
+  groundContacts:
+  - gs-ssc-kiruna
+  - gs-ssc-yatharagga
+  - gs-ssc-alaska
+  - gs-ssc-inuvik
+  - gs-ksat-hartebeesthoek
+  - gs-scc-santiago
+  - gs-ksat-svalbard
+  id: rsn-A-P03-24
+  name: RSN Sat A P03-24
+  orbit:
+    argumentPeriapsis: 0
+    eccentricity: 0
+    inclination: 89
+    meanAnomaly: 345.0
+    referenceFrame: EME2000
+    rightAscensionAscendingNode: 120.0
+    semiMajorAxis: 7428000
+    type: BLSKEPLERIAN
+    utcTime: '2026-01-01T00:00:00.00'
+  spaceContacts:
+  - rsn-A-P01-01
+  - rsn-A-P01-02
+  - rsn-A-P01-03
+  - rsn-A-P01-04
+  - rsn-A-P01-05
+  - rsn-A-P01-06
+  - rsn-A-P01-07
+  - rsn-A-P01-08
+  - rsn-A-P01-09
+  - rsn-A-P01-10
+  - rsn-A-P01-11
+  - rsn-A-P01-12
+  - rsn-A-P01-13
+  - rsn-A-P01-14
+  - rsn-A-P01-15
+  - rsn-A-P01-16
+  - rsn-A-P01-17
+  - rsn-A-P01-18
+  - rsn-A-P01-19
+  - rsn-A-P01-20
+  - rsn-A-P01-21
+  - rsn-A-P01-22
+  - rsn-A-P01-23
+  - rsn-A-P01-24
+  - rsn-A-P02-23
+  - rsn-A-P02-24

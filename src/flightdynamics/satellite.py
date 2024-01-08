@@ -14,9 +14,9 @@ Cr = 1.8
 def getGeometry() -> dict:
     """ Get standard geometry """
     return {
-        "dimX": 1.0,
-        "dimY": 0.25,
-        "dimZ": 0.5,
+        "dimX": 2.10,  #TBC no info from TO
+        "dimY": 0.5,   #TBC no info from TO
+        "dimZ": 1.57,  #TBC no info from TO
         "shape": "parallelepiped"
     }
 
@@ -35,7 +35,7 @@ def getSolarArrays() -> tuple:
     """ Get standard solar arrays """
     sa1 = {
           "id": "solar-array-left",
-          "surface": 2,
+          "surface": 12,
           "orientation": {
             "q0": 0.7071068,
             "q1": 0.0,
@@ -45,7 +45,7 @@ def getSolarArrays() -> tuple:
     }
     sa2 = {
           "id": "solar-array-right",
-          "surface": 2,
+          "surface": 12,
           "orientation": {
             "q0": 0.7071068,
             "q1": 0.0,

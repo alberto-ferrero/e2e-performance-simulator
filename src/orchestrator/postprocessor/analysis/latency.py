@@ -20,7 +20,7 @@ import numpy as np
 
 from ..analysis.noc import getFlatXConnections, getItalXConnections
 from ..analysis.noc import getCloserSatelliteDistance, getCloserSatelliteDistanceMesh
-from ..analysis.noc import getPointFromLatLong, getSatelliteLatitudeLongitude, getDistance, getSatellitePosition
+from ..analysis.noc import getGeopointFromLatLong, getSatelliteLatitudeLongitude, getDistance, getSatellitePosition
 
 from ....utils.filemanager import makeOutputFolder
 from ....utils.timeconverter import getDatetimeFromDate
@@ -38,19 +38,19 @@ deltaAngle = 5     #[deg]
 def write(doc: Document, outputDataFolderPath: str, outputPlotFolderPath: str, flightDynamicsDataOutputPath: str):
     tick = time.time()
     #Read from Flight Dynamics file and extract EME2000 coordinates
-    satsDf = {}
+    satsStatesDf = {}
     totSats = 0
     totPlanes = 0
     for fileName in glob.glob(os.path.join(flightDynamicsDataOutputPath, "*_orbit-state.csv")):
         satId = fileName.split(os.sep)[-1].split("_")[0]
         df = pd.read_csv(fileName)
         df = df[['utcTime', 'X', 'Y', 'Z']].iloc[0:1]
-        satsDf[satId] = df
+        satsStatesDf[satId] = df
         t = getDatetimeFromDate(df.iloc[0]['utcTime'])
         totSats = int(satId.split("-")[-1]) if int(satId.split("-")[-1]) > totSats else totSats
         totPlanes = int(satId.split("-")[-2].replace('P','')) if int(satId.split("-")[-2].replace('P','')) > totPlanes else totPlanes 
 
-    if satsDf == {}:
+    if satsStatesDf == {}:
         return
     
     outputAnalysFolderPath = os.path.join(outputDataFolderPath, 'analysis')
@@ -70,15 +70,15 @@ def write(doc: Document, outputDataFolderPath: str, outputPlotFolderPath: str, f
         latitudes = np.arange(0, 95, 5)
         #Save mesh
         with open(os.path.join(outputAnalysFolderPath, "analysis_connections-{}-mesh-time-0.txt".format(tag.replace(" ", ""))), "w") as f:
-            for satId in satsDf:
+            for satId in satsStatesDf:
                 f.write("{} {}\n".format(satId, getMesh(satId, totPlanes, totSats)))
         images = []
         for latitude in latitudes:
             longitude = 0
-            firstGeoPoint = getPointFromLatLong(latitude, longitude, t)
+            firstGeoPoint = getGeopointFromLatLong(latitude, longitude, t)
 
             #Get first communication distance
-            firstDistance, firstSatId = getCloserSatelliteDistance(satsDf, firstGeoPoint)
+            firstDistance, firstSatId = getCloserSatelliteDistance(satsStatesDf, firstGeoPoint)
             firstDelay = firstDistance / c
 
             #Empty delays
@@ -88,20 +88,20 @@ def write(doc: Document, outputDataFolderPath: str, outputPlotFolderPath: str, f
             #Get closer satellite distance and calculate delay as d * c
             for i, lat in enumerate(lats):
                 for j, lng in enumerate(lngs):
-                    geoPoint = getPointFromLatLong(lat, lng, t)
-                    distance, closerSatId = getCloserSatelliteDistance(satsDf, geoPoint)
+                    geoPoint = getGeopointFromLatLong(lat, lng, t)
+                    distance, closerSatId = getCloserSatelliteDistance(satsStatesDf, geoPoint)
                     #Go through mesh from initial geo point up to target point
                     nextSatId = closerSatId
                     contactedSatIds = [closerSatId, ]
                     #[DEBUG]print("\n", lat, lng, "from SAT", closerSatId, "to SAT", firstSatId)
                     while nextSatId != firstSatId:
                         #From the current point, amongh the ones in the mesh, get closer to initial geo point
-                        closerSatId = getCloserSatelliteDistanceMesh(getMesh, totPlanes, totSats, satsDf, firstGeoPoint, contactedSatIds + [nextSatId,], firstSatId)
+                        closerSatId = getCloserSatelliteDistanceMesh(getMesh, totPlanes, totSats, satsStatesDf, firstGeoPoint, contactedSatIds + [nextSatId,], firstSatId)
                         #[DEBUG]print(nextSatId, [satId for satId in getMesh(nextSatId) if satId not in contactedSatIds], 'closer', closerSatId)
                         contactedSatIds.append(closerSatId)
                         #Add intersatellite distance and go to next
-                        distance += getDistance(getSatellitePosition(satsDf[closerSatId]),
-                                                getSatellitePosition(satsDf[nextSatId]))
+                        distance += getDistance(getSatellitePosition(satsStatesDf[closerSatId]),
+                                                getSatellitePosition(satsStatesDf[nextSatId]))
                         nextSatId = closerSatId
                     #[DEBUG]if (distance / c + firstDelay) * 1000.0 > 300:
                         #[DEBUG]print('Delay:', (distance / c + firstDelay) * 1000.0)
@@ -123,8 +123,8 @@ def write(doc: Document, outputDataFolderPath: str, outputPlotFolderPath: str, f
             ax.set_xlabel("Longitude [deg]")
             ax.set_ylabel("Latitude [deg]")
             ax.set(xlim=[lngs[0], lngs[-1]], ylim=[lats[0], lats[-1]])
-            for satId in satsDf:
-                lat, lng = getSatelliteLatitudeLongitude(satsDf[satId])
+            for satId in satsStatesDf:
+                lat, lng = getSatelliteLatitudeLongitude(satsStatesDf[satId])
                 ax.scatter(lng, lat, s=10, c=['black'], alpha=0.7)
                 #[DEBUG]ax.annotate(satId, (lng, lat), fontsize=7)
             ax.scatter(longitude, latitude, s=30, c=['black'], alpha=0.9)
@@ -146,7 +146,7 @@ def write(doc: Document, outputDataFolderPath: str, outputPlotFolderPath: str, f
                 heading[0].text = "UT Coordinates"
                 heading[1].text = "WUL Coordinates"
             ax.set_title("Lat = {} deg".format(latitude))
-            pd.DataFrame(delays, columns=lngs, index=lats).to_csv(os.path.join(outputAnalysFolderPath, 'analysis_latency-{}-mesh-{}.csv'.format(tag.replace(" ", ""), latitude)), index=False)
+            pd.DataFrame(delays, columns=lngs, index=lats).to_csv(os.path.join(outputAnalysFolderPath, 'analysis_latency-{}-mesh-{}.csv'.format(tag.replace(" ", ""), latitude)))
             # Set value of worst condition
             cells = table.add_row().cells
             cells[0].text = "Lng = 00 deg\nLat = {} deg".format(str(int(latitude)).zfill(2))

@@ -1,4 +1,4 @@
-id: scenario-id-04
+id: scenario-id-05
 simulationWindow:
   start: "2026-01-01T00:00:00.00Z"
   end: "2026-01-02T00:00:00.00Z"
@@ -9,21 +9,21 @@ modules:
     address: C:\workspace\e2e-performance-simulator\test\data\test_flightdynamics\18-satellites
     report:
       - plot-something
-  airLinkBudget:
+  spaceLinkBudget:
     data: run
-    address: http://localhost:8082/air-link-budget/api/v1/air-link-data
+    address: http://localhost:8082/space-link-budget/api/v1/space-link-data
     report:
       - plot-something
 
 analysis:
-- contacts
+- network
 
 groundstations:
   file: groundstations-sband.yml
 satellites:
   file: rsn-018-constellation.yml
   groundcontacts: false
-  spacecontacts: false
+  spacecontacts: true
 userterminals:
 - file: 01R_Gov_Defense.txt
   usage: 0.6

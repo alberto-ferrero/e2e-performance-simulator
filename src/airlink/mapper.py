@@ -5,9 +5,28 @@
 
 """ E2E Performance Simulator Air Link Budget Calculator Handler: Antenna properties mapper """
 
-def getSatelliteAntennaProperties(satBand: str):
+from enum import Enum
+
+class Band(str, Enum):
+    Ka = 'Ka'
+    S = 'S'
+
+class Class(str, Enum):
+    SMALL = 'small'
+    MEDIUM = 'medium'
+    LARGE = 'large'
+
+def getClassFromThroughput(th: float) -> Class:
+    if th <= 100:
+        return Class.SMALL
+    elif th <= 2000:
+        return Class.MEDIUM
+    else:
+        return Class.LARGE
+
+def getSatelliteAntennaProperties(satBand: Band):
     """ Get antenna properties for satellite """
-    if satBand.lower() == 's':
+    if satBand == Band.S:
         return {
             "txSize": 0.240, #[m]
             "rxSize": 0.159, #[m]
@@ -28,7 +47,7 @@ def getSatelliteAntennaProperties(satBand: str):
             "txPower": 20, #[W]
         }
  
-def getUserTerminalAntennaProperties(utClass: str):
+def getUserTerminalAntennaProperties(utClass: Class):
     """ Get antenna properties for user terminal """
     # if utClass.lower() == 'small':
     #     return {
@@ -48,13 +67,13 @@ def getUserTerminalAntennaProperties(utClass: str):
     #         "eirp": 55.5, #[dBW]
     #         "throughput": 10000 #[Mbps]
     #     }
-    if utClass.lower() == 'small':
+    if utClass == Class.SMALL:
         return {
             "txSize": 0.240, #[m]
             "rxSize": 0.159, #[m]
             "txPower": .20, #[W]
         }
-    elif utClass.lower() == 'medium':
+    elif utClass == Class.MEDIUM:
         return {
             "txSize": 2.240, #[m]
             "rxSize": 2.159, #[m]
@@ -67,9 +86,9 @@ def getUserTerminalAntennaProperties(utClass: str):
             "txPower": 24.20, #[W]
         }
 
-def getGrounStationAntennaProperties(gsBand: str):
+def getGrounStationAntennaProperties(gsBand: Band):
     """ Get antenna properties for ground stations """
-    if gsBand.lower() == 's':
+    if gsBand == Band.S:
         return {
             "txSize": 3.240, #[m]
             "rxSize": 3.159, #[m]

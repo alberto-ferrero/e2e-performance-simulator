@@ -55,13 +55,3 @@ groundstations:
     altitude: 0
     latitude: 78.22
     longitude: 15.4
-- antennas:
-  - band: S
-    id: ant-1
-  - band: Ka
-    id: ant-0
-  id: gs-0
-  location:
-    altitude: 2900
-    latitude: -17
-    longitude: -88

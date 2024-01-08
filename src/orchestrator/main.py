@@ -20,7 +20,6 @@ This is the main Orchestrator function, that:
 import os
 import time
 from datetime import datetime
-from ..utils.results import AppResult
 from ..utils.filemanager import getBasePath, makeOutputFolder
 
 #Import Orchestrator modules
@@ -34,7 +33,14 @@ from ..spacelink.main import getSpaceLinkBudgetData
 from ..networktopology.main import getNetworkTopologyData
 from ..regulatory.main import getRegulatoryMapperData
 from ..systembudgets.main import exportBudgetsData
-    
+
+#Import outputdata folders
+from ..flightdynamics.filemanager import getFlightDynamicsDataOutputPath
+from ..airlink.filemanager import getAirLinkDataOutputPath
+from ..spacelink.filemanager import getSpaceLinkDataOutputPath
+from ..networktopology.filemanager import getNetworkDataOutputPath
+from ..regulatory.filemanager import getRegulatoryDataOutputPath
+
 def main(inputFile: str) -> str:
     """Main Orchestrator function call"""
 

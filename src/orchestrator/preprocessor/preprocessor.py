@@ -6,6 +6,8 @@
 import pandas as pd
 
 from ...utils.filemanager import getBasePath, readInputYmlFile
+from ...airlink.mapper import getClassFromThroughput
+
 from jsonschema import validate
 import json
 import os
@@ -90,17 +92,18 @@ def readUserTerminals(simulationRequest: dict, all: bool = False) -> list:
         fileName = ut['file']
         usage = ut['usage']
         userterminalsFilePath = os.path.join(getBasePath(), 'data', 'userterminals', fileName)
-        df = pd.read_csv(userterminalsFilePath, delimiter=r"\s+")
+        df = pd.read_csv(userterminalsFilePath, sep='\t')
         id = "ut-" + fileName.split("_")[0]
         n = len(df)
         indexes = random.sample(range(n), int(usage * n)) if not all else range(n)
         for i in indexes:
             userTerminals.append({'id' : id + str(int(df.iloc[i]['utIndex'])),
                                 'location': {
-                                    'latitude': df.iloc[i]['utLat'],
-                                    'longitude': df.iloc[i]['utLon'],
+                                    'latitude': df.iloc[i]['utLat (deg)'],
+                                    'longitude': df.iloc[i]['utLon (deg)'],
                                     'altitude': 0
-                                }
+                                },
+                                'class': getClassFromThroughput(df.iloc[i]['Max DL (Mbps)'])
                              }
                             )
     # TODO validation

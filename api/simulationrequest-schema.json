@@ -257,6 +257,7 @@
           "groundstations-location",
           "contacts",
           "links",
+          "network",
           "latency"
         ]
       }

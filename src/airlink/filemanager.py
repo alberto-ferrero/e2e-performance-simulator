@@ -9,20 +9,21 @@ from ..utils.filemanager import makeOutputFolder, saveListDictToCsv
 
 """ E2E Performance Simulator Air Link Budget Calculator Handler: File Manager """
 
-def extractLinkDataFromCsv(simulationRequest: dict) -> dict:
+def extractAirLinkDataFromCsv(simulationRequest: dict) -> dict:
     """ Read from repository required csv files and parse back to link data """
-     
     def validateTime(orbitData: list, startTimestamp: int, endTimestamp: int, satId: str, stateTag: str):
         #TODO
         pass
     raise NotImplementedError
 
-def saveLinkData(outputDataFolderPath: str, linkDataFull: dict):
-    """ Save to output/data/linkbudget """
-    outputPath = os.path.join(outputDataFolderPath, 'linkbudget')
+def saveAirLinkData(outputDataFolderPath: str, satId: str, airLinkData: dict):
+    """ Save to output/data/airlink """
+    outputPath = getAirLinkDataOutputPath(outputDataFolderPath)
     makeOutputFolder(outputPath)
-    for satId in linkDataFull:
-        saveListDictToCsv(linkDataFull[satId], os.path.join(outputPath, satId + "_Link-Data.csv"))
+    saveListDictToCsv(airLinkData, os.path.join(outputPath, satId + "_Air-Link-Data.csv"))
     return outputPath
+
+def getAirLinkDataOutputPath(outputDataFolderPath: str) -> str:
+    return os.path.join(outputDataFolderPath, 'airlink')
 
 # -*- coding: utf-8 -*-

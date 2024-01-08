@@ -31,28 +31,28 @@ def write(doc: Document, simulationRequest: dict, outputPlotFolderPath: str, fli
     """Write analyis chapter """
     #Read from Flight Dynamics file and extract mean Keplerian elements
     tick = time.time()
-    constDf = {}
+    satsStatesDf = {}
     utcTimestamps = []
     for fileName in glob.glob(os.path.join(flightDynamicsDataOutputPath, "*_orbit-state.csv")):
         df = pd.read_csv(fileName)
         satId = fileName.split(os.sep)[-1].split("_")[0]
         df = df[['utcTime', 'X', 'Y', 'Z', 'Vx', 'Vy', 'Vz']]
         df['timestamp'] = df['utcTime'].apply(getTimestampFromDate)
-        constDf[satId] = df
+        satsStatesDf[satId] = df
         #Get list of timestamps
         if utcTimestamps == []:
             utcTimestamps = df['timestamp'].to_list()
         else:
             utcTimestamps = set(utcTimestamps).intersection(df['timestamp'].to_list())
 
-    if len(constDf) == 0:
+    if len(satsStatesDf) == 0:
         return
 
     #Get Keplerian Elements from orbit definition
     raan = []
     la = []
-    for satId in constDf:
-        kepl = pyorb.cart_to_kep(getSatellitePositionVelocity(constDf[satId], index=0)).tolist()
+    for satId in satsStatesDf:
+        kepl = pyorb.cart_to_kep(getSatellitePositionVelocity(satsStatesDf[satId], index=0)).tolist()
         raan.append(kepl[4] * 180.0 / pi)
         la.append((kepl[3] + kepl[5]) * 180.0 / pi)
         la[-1] = la[-1] if la[-1] < 355 else 0
@@ -74,15 +74,15 @@ def write(doc: Document, simulationRequest: dict, outputPlotFolderPath: str, fli
         ax.set_ylabel("Latitude [deg]")
         worldmap.plot(color="darkgrey", ax=ax)
         ax.set(xlim=[-180, 180], ylim=[-90, 90])
-        for satId in constDf:
-            index = np.where(constDf[satId]["timestamp"] == utcTimestamp)[0].tolist()[0]
-            lat, lng = getSatelliteLatitudeLongitude(constDf[satId], index=index)
+        for satId in satsStatesDf:
+            index = np.where(satsStatesDf[satId]["timestamp"] == utcTimestamp)[0].tolist()[0]
+            lat, lng = getSatelliteLatitudeLongitude(satsStatesDf[satId], index=index)
             ax.scatter(lng, lat, s=10, c=['black'], alpha=0.7)
             ax.annotate(satId, (lng, lat), fontsize=7)
-        t = constDf[satId].iloc[index]['utcTime']
+        t = satsStatesDf[satId].iloc[index]['utcTime']
         ax.set_title(t)
         ax.margins(x=0.9,y=0)
-        figPath = os.path.join(tmpPath, "analysis_constellation-orbit-{}.jpg".format(constDf[satId].iloc[index]['timestamp']))
+        figPath = os.path.join(tmpPath, "analysis_constellation-orbit-{}.jpg".format(utcTimestamp))
         images.append(figPath)
         fig.savefig(figPath)
         #Save first, image and position

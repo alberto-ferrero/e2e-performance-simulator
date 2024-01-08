@@ -5,6 +5,7 @@
 
 import pymap3d as pm
 import numpy as np
+import pandas as pd
 
 from ....utils.timeconverter import getDatetimeFromDate
 
@@ -20,7 +21,7 @@ def getItalXConnections(satId: str, totPlanes: int, totSats: int) -> list:
     planeL = str(plane - 1 if plane - 1 > 0 else int(totPlanes))
     planeR = str(plane + 1 if plane + 1 <= int(totPlanes) else 1)
 
-    #Even plane
+    #Connection
     indexLU = getPlusIndex(index, totSats)
     indexRU = getSameIndex(index, totSats)
     indexLL = getSameIndex(index, totSats)
@@ -119,7 +120,7 @@ def getSameIndex(index: int, totSats: int, reversed = False, deltaIndex = 0) -> 
     else:
         return index
 
-def getPointFromLatLong(lat: float, lng: float, time) -> np.array:
+def getGeopointFromLatLong(lat: float, lng: float, time) -> np.array:
     """ From lat and lng ([deg]) get geo point, considering perfect sphere, alt 0     
     """
     x, y, z = pm.geodetic2eci(lat, lng, 0, time)
@@ -128,57 +129,93 @@ def getPointFromLatLong(lat: float, lng: float, time) -> np.array:
 def getDistance(a, b) -> float:
     return np.linalg.norm(a-b)
 
-def getMeshSatsDataframe(getMesh, totPlanes: int, totSats: int, satsDf: dict, contactedSatIds: list) -> dict:
+def getLastContactedMeshSatsDataframe(getMesh, totPlanes: int, totSats: int, satsStatesDf: dict, contactedSatIds: list) -> dict:
+    #Get last contacted satellite
     satId = contactedSatIds[-1]
     #Get mesh satellites, not passing from the onese already contacted
     meshSatsIds = getMesh(satId, totPlanes, totSats)
     meshSatsIds = [satId for satId in meshSatsIds if satId not in contactedSatIds]
     meshDf = {}
     for meshSatId in meshSatsIds:
-        if meshSatId not in satsDf:
+        if meshSatId not in satsStatesDf:
             raise Exception('ERROR: for satellite {}, mesh satellite {} was not propagated, not found in Propagation Data'.format(satId, meshSatId))
-        meshDf[meshSatId] = satsDf[meshSatId]
+        meshDf[meshSatId] = satsStatesDf[meshSatId]
     return meshDf
 
-def getSatellitePosition(df, index=0) -> np.array:
+def getSatellitePosition(df, index: int =0) -> np.array:
     return np.array((df.iloc[index]['X'], df.iloc[index]['Y'], df.iloc[index]['Z']))
 
-def getSatellitePositionVelocity(df, index) -> np.array:
+def getSatellitePositionVelocity(df, index: int) -> np.array:
     return np.array((df.iloc[index]['X'], df.iloc[index]['Y'], df.iloc[index]['Z'], df.iloc[index]['Vx'], df.iloc[index]['Vy'], df.iloc[index]['Vz']))
 
-def getSatelliteLatitudeLongitude(df, index = 0) -> (float, float):
+def getSatelliteLatitudeLongitude(df, index: int = 0) -> (float, float):
     pos: np.array = getSatellitePosition(df, index)
     lla = pm.eci2geodetic(pos[0], pos[1], pos[2], getDatetimeFromDate(df.iloc[index]['utcTime']))
     return lla[0], lla[1]
 
-def getCloserSatelliteDistanceMesh(getMesh, totPlanes: int, totSats: int, satsDf: dict, geoPoint: np.array, contactedSatIds: list, firstSatId: str) -> (float, str):
+def getCloserSatelliteDistanceMesh(getMesh, totPlanes: int, totSats: int, satsStatesDf: dict, geoPoint: np.array, contactedSatIds: list, firstSatId: str) -> str:
     """ Iterate 1 step into mesh, get for each of the connected satellites, the next closer and choose the one with less distance as root point """
-    subSatsDf = getMeshSatsDataframe(getMesh, totPlanes, totSats, satsDf, contactedSatIds)
-    if firstSatId in subSatsDf:
+    subsatsStatesDf = getLastContactedMeshSatsDataframe(getMesh, totPlanes, totSats, satsStatesDf, contactedSatIds)
+    if firstSatId in subsatsStatesDf:
         return firstSatId
+    elif subsatsStatesDf == {}:
+        return Exception("ERROR: impossible to find satellite in mesh, for satellite {}, as already contacted {}".format(contactedSatIds))
     #Get distance over mesh
     distances = {}
-    for satId in subSatsDf:
-        pos = getSatellitePosition(satsDf[satId])
+    for satId in subsatsStatesDf:
+        pos = getSatellitePosition(satsStatesDf[satId])
         d = getDistance(pos, geoPoint)
-        nextSubSatsDf = getMeshSatsDataframe(getMesh, totPlanes, totSats, satsDf, contactedSatIds + [satId,])
+        nextSubsatsStatesDf = getLastContactedMeshSatsDataframe(getMesh, totPlanes, totSats, satsStatesDf, contactedSatIds + [satId,])
         #Get closer in next step and add to distance
-        dd, _ = getCloserSatelliteDistance(nextSubSatsDf, geoPoint)
+        dd, _ = getCloserSatelliteDistance(nextSubsatsStatesDf, geoPoint)
         distances[dd+d] = satId
-    #Get closer satId as distance: satId
+    #Get closer satellite id by distance saved in the list
     return distances[min(distances.keys())]
 
-def getCloserSatelliteDistance(satsDf: dict, geoPoint: np.array) -> (float, str):
+def getCloserSatelliteDistance(satsStatesDf: dict, geoPoint: np.array) -> (float, str):
     """ Iterate over entire list of satellites and get closer """
     from sys import maxsize
     minD = maxsize
     minSatId = ""
-    for satId in satsDf.keys():
-        pos = getSatellitePosition(satsDf[satId])
+    for satId in satsStatesDf.keys():
+        pos = getSatellitePosition(satsStatesDf[satId])
         d = getDistance(pos, geoPoint)
         if d < minD:
             minSatId = satId
             minD = d
+    return minD, minSatId
+
+def getCloserSatelliteDistance(satsStatesDf: dict, geoPoint: np.array, timestamp: int) -> (float, str):
+    """ Iterate over entire list of satellites and get closer """
+    from sys import maxsize
+    minD = maxsize
+    minSatId = ""
+    for satId in satsStatesDf.keys():
+        index = np.where(satsStatesDf[satId]["timestamp"] == timestamp)[0].tolist()[0]
+        pos = getSatellitePosition(satsStatesDf[satId], index)
+        d = getDistance(pos, geoPoint)
+        if d < minD:
+            minSatId = satId
+            minD = d
+    return minD, minSatId
+
+def getCloserSatelliteContactDistance(timestamp: int, satId: str, geoPoint: np.array, satsStatesDf: pd.DataFrame, satsContactsDf: pd.DataFrame, contactedSatIds: list) -> (float, str):
+    """ Get from a time, the matching contacts and select the closer satellite """
+    from sys import maxsize
+    minD = maxsize
+    minSatId = ""
+    df = satsContactsDf[satId]
+    contactsDf = df[(df['startTimestamp'] <= timestamp) & (timestamp <= df['endTimestamp'])]
+    soiIds = set(contactsDf['argumentOfInterestId'].to_list())
+    #[DEBUG]print(satId, 'connects', soiIds, 'seen', contactedSatIds)
+    for soiId in soiIds:
+        if soiId not in contactedSatIds:
+            index = np.where(satsStatesDf[soiId]["timestamp"] == timestamp)[0].tolist()[0]
+            pos = getSatellitePosition(satsStatesDf[soiId], index)
+            d = getDistance(pos, geoPoint)
+            if d < minD:
+                minSatId = soiId
+                minD = d
     return minD, minSatId
 
 # -*- coding: utf-8 -*-

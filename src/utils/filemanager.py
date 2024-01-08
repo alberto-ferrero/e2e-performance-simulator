@@ -10,6 +10,7 @@ Collection of methods to manage files and folders.
 import os
 import pandas as pd
 import yaml
+import json
 import re
 
 def getBasePath() -> str:
@@ -55,13 +56,24 @@ def saveDictToJson(data: dict, filePath: str):
 
 def readLocalCsvToDict(filePath: str) -> list:
     """ Save dictionary reading csv from local folder """
-    from pandas.errors import EmptyDataError
-
     if os.path.isfile(filePath):
         try:
             df = pd.read_csv(filePath)
             return df.T.apply(lambda x: x.dropna().to_dict()).tolist()
-        except EmptyDataError:
+        except pd.errors.EmptyDataError:
+            return []
+        except Exception as e:
+            raise Exception('ERROR: impossible to open file and read as csv: {}, due to {}'.format(filePath, str(e)))
+    else:
+        raise Exception('ERROR: impossible to open file: {}'.format(filePath))
+
+def readLocalCsvToDf(filePath: str) -> pd.DataFrame:
+    """ Save dictionary reading csv from local folder """
+    if os.path.isfile(filePath):
+        try:
+            df = pd.read_csv(filePath)
+            return df
+        except pd.errors.EmptyDataError:
             return []
         except Exception as e:
             raise Exception('ERROR: impossible to open file and read as csv: {}, due to {}'.format(filePath, str(e)))
@@ -73,9 +85,21 @@ def readRemoteCsvToDict(filePath: str) -> list:
     try:
         df = pd.read_csv(filePath)
         return df.T.apply(lambda x: x.dropna().to_dict()).tolist()
+    except pd.errors.EmptyDataError:
+            return []
     except Exception as e:
         raise Exception('ERROR: impossible to open file and read as csv: {}, due to {}'.format(filePath, str(e)))
-    
+
+def readRemoteCsvToDf(filePath: str) -> pd.DataFrame:
+    """ Save dictionary reading csv from remote folder """ 
+    try:
+        df = pd.read_csv(filePath)
+        return df
+    except pd.errors.EmptyDataError:
+            return []
+    except Exception as e:
+        raise Exception('ERROR: impossible to open file and read as csv: {}, due to {}'.format(filePath, str(e)))
+
 def readInputYmlFile(inputFilePath: str) -> dict:
     # Try to open as yaml
     try:
@@ -106,3 +130,12 @@ def readInputYmlFile(inputFilePath: str) -> dict:
     except Exception as e:
         #Raise error
         raise Exception('ERROR: not possible to parse input yaml file due to: {}'.format(str(e)))
+    
+def readInputJsonFile(inputFilePath: str) -> dict:
+    # Try to open as json
+    try:
+        with open(inputFilePath) as scenarioJson:
+            return json.load(scenarioJson)
+    except Exception as e:
+        #Raise error
+        raise Exception('ERROR: not possible to parse input json file due to: {}'.format(str(e)))

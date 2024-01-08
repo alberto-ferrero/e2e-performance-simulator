@@ -6,23 +6,15 @@ simulationWindow:
 modules:
   flightDynamics:
     data: local
-    address: C:\workspace\e2e-performance-simulator\test\data\test_flightdynamics\72-satellites
+    address: C:\workspace\e2e-performance-simulator\test\data\test_flightdynamics\18-satellites
     report:
       - plot-something
 
 analysis:
-- constellation-geometry
-- userterminals-location
-- groundstations-location
+- network
 - contacts
-- latency
 
-groundstations:
-  file: groundstations-sband.yml
 satellites:
-  file: rsn-072-constellation.yml
-  groundcontacts: false
+  file: rsn-018-constellation-w-sat-gs-contacts.yml
+  groundcontacts: true
   spacecontacts: false
-userterminals:
-- file: 01R_Gov_Defense.txt
-  usage: 0.6

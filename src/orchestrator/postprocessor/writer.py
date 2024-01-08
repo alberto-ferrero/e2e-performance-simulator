@@ -21,6 +21,7 @@ from ..postprocessor.analysis import utlocation as utloc
 from ..postprocessor.analysis import contacts as contacts
 from ..postprocessor.analysis import links as links
 from ..postprocessor.analysis import latency as latency
+from ..postprocessor.analysis import network as network
 
 """ E2E Performance Simulator post processor report writed """
 
@@ -82,13 +83,16 @@ def writeReport(simulationRequest: dict,
             utloc.write(doc, outputPlotFolderPath, simulationRequest)
   
         if analyisTag == 'contacts':
-            contacts.write(doc, outputDataFolderPath, outputPlotFolderPath, flightDynamicsDataOutputPath)
+            contacts.write(doc, simulationRequest, outputDataFolderPath, outputPlotFolderPath, flightDynamicsDataOutputPath)
     
         if analyisTag == 'links':
             links.write(doc, outputDataFolderPath, outputPlotFolderPath, airLinkDataOutputPath)
   
         if analyisTag == 'latency':
             latency.write(doc, outputDataFolderPath, outputPlotFolderPath, flightDynamicsDataOutputPath)
+
+        if analyisTag == 'network':
+            network.write(doc, outputDataFolderPath, outputPlotFolderPath, flightDynamicsDataOutputPath)
   
     #Add Sections for each module
     modules: dict = simulationRequest['modules']
